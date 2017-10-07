@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  email: MyText
+  username: MyText
+  passwd: 
+  privilege: MyText
+  timestamp: 1
+  salt: 
+
+two:
+  email: MyText
+  username: MyText
+  passwd: 
+  privilege: MyText
+  timestamp: 1
+  salt: 
