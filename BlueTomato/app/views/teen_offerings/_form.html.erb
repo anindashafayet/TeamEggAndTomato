@@ -1,0 +1,32 @@
+<%= form_with scope: :teen_offering, url: teen_offerings_path, local: true do |form| %>
+    <% if @teen_offering.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(@teen_offering.errors.count, "error") %> prohibited
+            this request from being saved:
+          </h2>
+          <ul>
+            <% @teen_offering.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <p>
+      <%= form.label :service_type %><br>
+      <%= form.collection_select :service_type_id, ServiceType.all, :id, :name, prompt: true %>
+    </p>
+
+    <p>
+      <%= form.label :period %><br>
+      <%= date_select :teen_offering, :period %>
+    </p>
+
+    <p>
+      <%= form.label :detail %><br>
+      <%= form.text_field :detail %><br>
+    </p>
+    <p>
+      <%= form.submit %>
+    </p>
+<% end %>

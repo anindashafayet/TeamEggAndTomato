@@ -6,7 +6,7 @@ class CreateTeenOfferings < ActiveRecord::Migration[5.1]
       t.string :periods_type
       t.date :period
       t.string :period_detail
-      t.text :offering_detail
+      t.text :detail
 
       t.timestamps
     end

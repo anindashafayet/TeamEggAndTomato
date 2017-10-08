@@ -13,6 +13,7 @@
 ActiveRecord::Schema.define(version: 20171008190608) do
 
   create_table "accounts", force: :cascade do |t|
+    t.integer "teenager_id"
     t.text "email"
     t.text "username"
     t.binary "passwd"
@@ -21,15 +22,16 @@ ActiveRecord::Schema.define(version: 20171008190608) do
     t.binary "salt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["teenager_id"], name: "index_accounts_on_teenager_id", unique: true
   end
 
   create_table "client_requests", force: :cascade do |t|
     t.integer "account_id"
-    t.integer "service_type"
+    t.integer "service_type_id"
     t.string "periods_type"
     t.date "period"
     t.string "period_detail"
-    t.text "offering_detail"
+    t.text "detail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -43,11 +45,11 @@ ActiveRecord::Schema.define(version: 20171008190608) do
 
   create_table "teen_offerings", force: :cascade do |t|
     t.integer "account_id"
-    t.integer "service_type"
+    t.integer "service_type_id"
     t.string "periods_type"
     t.date "period"
     t.string "period_detail"
-    t.text "offering_detail"
+    t.text "detail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

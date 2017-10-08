@@ -6,7 +6,7 @@ one:
   periods_type: MyString
   period: 2017-10-08
   period_detail: MyString
-  offering_detail: MyText
+  detail: MyText
 
 two:
   account_id: 1
@@ -14,4 +14,4 @@ two:
   periods_type: MyString
   period: 2017-10-08
   period_detail: MyString
-  offering_detail: MyText
+  detail: MyText

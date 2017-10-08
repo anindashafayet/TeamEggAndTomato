@@ -1,0 +1,18 @@
+
+<p>
+  <strong>Service type:</strong>
+  <%= ServiceType.find(@client_request.service_type_id).name %>
+</p>
+
+<p>
+  <strong>Period:</strong>
+  <%= @client_request.period %>
+</p>
+
+<p>
+  <strong>Detail:</strong>
+  <%= @client_request.detail %>
+</p>
+
+<%= link_to 'Edit', edit_client_request_path(@client_request) %> |
+<%= link_to 'Back', client_requests_path %>
