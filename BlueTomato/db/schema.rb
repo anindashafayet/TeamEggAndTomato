@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20171008175821) do
   create_table "accounts", force: :cascade do |t|
     t.text "email"
     t.text "username"
-    t.binary "passwd"
+    t.binary "password"
     t.text "privilege"
     t.integer "timestamp"
     t.binary "salt"

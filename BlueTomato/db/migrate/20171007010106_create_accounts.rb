@@ -4,7 +4,7 @@ class CreateAccounts < ActiveRecord::Migration[5.1]
       #t.belongs_to :accountable, index: {unique: true}, foreign_key: true
       t.text :email
       t.text :username
-      t.binary :passwd
+      t.binary :password
       t.text :privilege
       t.integer :timestamp
       t.binary :salt
