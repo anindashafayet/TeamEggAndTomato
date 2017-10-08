@@ -2,7 +2,7 @@
 
 one:
   account_id: 1
-  service_type: 1
+  service_type_id: 1
   periods_type: MyString
   period: 2017-10-08
   period_detail: MyString
@@ -10,7 +10,7 @@ one:
 
 two:
   account_id: 1
-  service_type: 1
+  service_type_id: 1
   periods_type: MyString
   period: 2017-10-08
   period_detail: MyString
