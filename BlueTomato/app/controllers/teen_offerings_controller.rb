@@ -1,0 +1,2 @@
+class TeenOfferingsController < ApplicationController
+end
