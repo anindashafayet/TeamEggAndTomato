@@ -1,12 +1,12 @@
 class CreateTeenagers < ActiveRecord::Migration[5.1]
   def change
     create_table :teenagers do |t|
-      t.string :'First Name'
-      t.string :'Last Name'
-      t.date :'Birth Date'
-      t.string :'Home Address'
-      t.string :'Email Address'
-      t.string :'Cell Phone'
+      t.string :'fname'
+      t.string :'lname'
+      t.date :'birth_date'
+      t.string :'home_address'
+      t.string :'email_address'
+      t.string :'cell_phone'
 
       t.timestamps
     end

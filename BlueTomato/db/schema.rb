@@ -24,12 +24,12 @@ ActiveRecord::Schema.define(version: 20171008022713) do
   end
 
   create_table "teenagers", force: :cascade do |t|
-    t.string "First Name"
-    t.string "Last Name"
-    t.date "Birth Date"
-    t.string "Home Address"
-    t.string "Email Address"
-    t.string "Cell Phone"
+    t.string "fname"
+    t.string "lname"
+    t.date "birth_date"
+    t.string "home_address"
+    t.string "email_address"
+    t.string "cell_phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -2,15 +2,17 @@
 
 <p>Find me in app/views/teenagers/new.html.erb</p>
 
-<%= form_with scope: :teenager, local: true do |form| %>
+<%= form_with scope: :teenager, url: teenagers_path, local: true do |form| %>
   <p>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
+    <%= form.label :AccountInfo,'Account Information' %><br>
+    User Name: <%= form.text_field :UserID %>
   </p>
  
   <p>
-    <%= form.label :text %><br>
-    <%= form.text_area :text %>
+    <%= form.label 'Self Introduction' %><br>
+
+    <%= form.text_area :selfIntro %><br>
+    limit 500 words
   </p>
  
   <p>
