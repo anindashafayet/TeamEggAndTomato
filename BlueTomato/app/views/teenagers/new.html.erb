@@ -1,2 +1,19 @@
-<h1>Teenagers#new</h1>
+<h1> Register as a new Tomato! </h1>
+
 <p>Find me in app/views/teenagers/new.html.erb</p>
+
+<%= form_with scope: :teenager, local: true do |form| %>
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </p>
+ 
+  <p>
+    <%= form.label :text %><br>
+    <%= form.text_area :text %>
+  </p>
+ 
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
