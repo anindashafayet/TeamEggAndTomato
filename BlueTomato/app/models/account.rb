@@ -1,4 +1,4 @@
 class Account < ApplicationRecord
-	belongs_to :teenager
+	belongs_to :accountable, :polymorphic => true
 	#belongs_to :client
 end

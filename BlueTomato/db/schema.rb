@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171008022713) do
+ActiveRecord::Schema.define(version: 20171008175821) do
 
   create_table "accounts", force: :cascade do |t|
     t.text "email"
@@ -19,8 +19,24 @@ ActiveRecord::Schema.define(version: 20171008022713) do
     t.text "privilege"
     t.integer "timestamp"
     t.binary "salt"
+    t.integer "accountable_id"
+    t.string "accountable_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["accountable_id", "accountable_type"], name: "index_accounts_on_accountable_id_and_accountable_type", unique: true
+  end
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "line1"
+    t.string "line2"
+    t.string "city"
+    t.string "state"
+    t.string "zip"
+    t.integer "addressable_id"
+    t.string "addressable_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable_type_and_addressable_id", unique: true
   end
 
   create_table "teenagers", force: :cascade do |t|
