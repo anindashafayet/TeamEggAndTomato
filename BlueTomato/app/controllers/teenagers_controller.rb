@@ -2,11 +2,12 @@ class TeenagersController < ApplicationController
 	attr_accessor :teenager, :account
   def new
   	@teenager=Teenager.new
-  	@account=Account.new
+  	@teenager.build_account
+  	@teenager.build_address
   end
   def create
   	@teenager=Teenager.new(params[:fname]) 	
-  	@account=Account.new
+  	#@account=Account.new
   	# @teenager.save
   	#redirect_to root
   	render plain: params[:teenager].inspect
