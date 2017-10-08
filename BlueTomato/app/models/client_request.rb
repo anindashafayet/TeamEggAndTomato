@@ -1,0 +1,2 @@
+class ClientRequest < ApplicationRecord
+end
