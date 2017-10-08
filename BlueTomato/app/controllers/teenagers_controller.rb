@@ -1,8 +1,12 @@
 class TeenagersController < ApplicationController
+	attr_accessor :teenager, :account
   def new
+  	@teenager=Teenager.new
+  	@account=Account.new
   end
   def create
-  	#@teenager=Teenager.new(params)
+  	@teenager=Teenager.new(params[:fname]) 	
+  	@account=Account.new
   	# @teenager.save
   	#redirect_to root
   	render plain: params[:teenager].inspect
@@ -11,6 +15,6 @@ class TeenagersController < ApplicationController
   private
 
   def params_post
-  	params.require(:fname).permit(:title, :text)
+  	params.require(:fname).permit(:string, :text)
   end	
 end
