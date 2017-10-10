@@ -1,0 +1,2 @@
+class TeenOffering < ApplicationRecord
+end

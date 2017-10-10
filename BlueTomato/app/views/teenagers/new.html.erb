@@ -11,12 +11,11 @@
     Password Confirm: <%= a.password_field :password_confirmation %>
     <% end %>
   </p>
-
   <p>
     <%= form.label :PersonalInfo,'Personal Information' %><br>
     First Name: <%= form.text_field :fname %><br>
-    Last Name: <%= form.text_field :fname %><br>
-    Cell Phone: <%= form.text_field :fname %><br>
+    Last Name: <%= form.text_field :lname %><br>
+    Cell Phone: <%= form.text_field :cell_phone %><br>
     Home Address: 
     <%= form.fields_for :address do |address| %>
     <%= render :partial => 'shared/address', :locals => {:f => address} %>
