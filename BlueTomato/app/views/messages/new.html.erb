@@ -3,6 +3,16 @@
 <%= form_with scope: :message, url: messages_path,
 local: true do |form| %>
   <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+ 
+  <p>
+    <%= form.label :email %><br>
+    <%= form.text_field :email %>
+  </p>
+ 
+  <p>
     <%= form.label :title %><br>
     <%= form.text_field :title %>
   </p>
