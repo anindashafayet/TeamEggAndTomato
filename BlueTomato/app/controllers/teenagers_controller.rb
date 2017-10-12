@@ -19,6 +19,25 @@ class TeenagersController < ApplicationController
   	@account.inspect
   end
 
+  def sign_in
+    render "sign_in"
+  end
+
+  def verify
+    #render plain: params.inspect
+    @account=Account.select('*').where(accountable_type: 'Teenager', username: params_account_sign_in[:username],
+     password: params_account_sign_in[:password])
+    #render plain: @account.inspect
+    if @account.first!=nil
+      #@teenager=Teenager.find(0)
+      render plain: "login successfully"
+    else
+      flash[:notice] = 'wrong username/password'
+      redirect_to '/teenagers/sign_in'
+    end
+  end
+
+        
   private
 
   def params_teenager
@@ -26,11 +45,15 @@ class TeenagersController < ApplicationController
   	permit(:fname, :lname, :birth_date, :cell_phone)
   end	
   def params_address
-  	params.require(:teenager).require(:address_attributes).
+  	params.require(:teenager).require(:address).
   	permit(:line1, :line2, :city, :state, :zip)
   end	
   def params_account
-  	params.require(:teenager).require(:account_attributes).
+  	params.require(:teenager).require(:account).
   	permit(:username, :password)
   end	
+  def params_account_sign_in
+    params.require(:account).
+    permit(:username, :password)
+  end 
 end
