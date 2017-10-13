@@ -1,0 +1,21 @@
+<h1> Sign in client</h1>
+
+<p>Find me in app/views/clients/sign_in.html.erb</p>
+
+<%= form_with url:{action: :verify}, local: true do |form| %>
+  <p>
+    <%= form.fields_for :account do |a|%>
+    <%= form.label :AccountInfo,'Sign in' %><br>
+    User Name: <%= a.text_field :username %><br>
+    Password: <%= a.password_field :password %><br>
+    <% end %>
+  </p>
+ 
+ 
+ 
+  <p>
+    <%= form.submit "Sign in!" %>
+  </p>
+
+  <%= link_to "sign up as client", '/clients/new' %>
+<% end %>
