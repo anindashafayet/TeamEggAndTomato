@@ -30,10 +30,13 @@ class TeenagersController < ApplicationController
     #render plain: @account.inspect
     if @account.first!=nil
       #@teenager=Teenager.find(0)
-      render plain: "login successfully"
+      session[:user_id]=@account.first.id
+      if auth_user
+        render plain: "login successfully" and return true
+      end
     else
       flash[:notice] = 'wrong username/password'
-      redirect_to '/teenagers/sign_in'
+      redirect_to '/teenagers/sign_in' and return false
     end
   end
 
