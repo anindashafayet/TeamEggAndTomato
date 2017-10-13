@@ -8,3 +8,17 @@
     </p>
      <%= f.submit "Submit!" %>
 <% end %>
+
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Preview</th>
+    </tr>
+    <% @messages.each do |feedback| %>
+        <tr>
+            <td><%= feedback.title %></td>
+            <td><%= feedback.text %></td>
+            <td><%= link_to 'Show', article_path(article) %></td>
+        </tr>
+    <% end %>
+</table>
