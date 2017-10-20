@@ -2,6 +2,18 @@
 
 <%= form_with scope: :message, url: messages_path,
 local: true do |form| %>
+
+  <% if @message.errors.any? %>
+    <div id="error_explanation">
+      <h2> Error Message </h2>
+      <ul>
+        <% @message.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <%end%>
+      </ul>
+    </div>
+  <%end%>
+
   <p>
     <%= form.label :name %><br>
     <%= form.text_field :name %>
@@ -27,4 +39,5 @@ local: true do |form| %>
   </p>
 <% end %>
 
-<%= link_to 'Back', "customer_service/index" %>
+
+<%= link_to 'Back', "/customer_service/index" %>

@@ -5,15 +5,18 @@ class MessagesController < ApplicationController
     end
 
     def new
-
+        @message = Message.new
     end
+
     def create
         #render plain: params[:message].inspect
 
         @message = Message.new(message_params)
    
-        @message.save
-        redirect_to @message
+        if @message.save
+            redirect_to @message
+        else
+            render 'new'
     end
 
     private

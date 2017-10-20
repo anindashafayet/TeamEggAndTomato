@@ -1,2 +1,3 @@
 class Message < ApplicationRecord
-end
+    validates :title, presence: true, length: { minimum: 5 }
+    validates :email, presence: true
