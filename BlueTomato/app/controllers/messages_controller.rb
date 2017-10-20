@@ -8,7 +8,7 @@ class MessagesController < ApplicationController
 
     end
     def create
-        render plain: params[:message].inspect
+        #render plain: params[:message].inspect
 
         @message = Message.new(message_params)
    
