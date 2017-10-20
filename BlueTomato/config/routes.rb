@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   get 'teenagers/new'
   get 'teenagers/sign_in'
   post 'teenagers/sign_in', to: 'teenagers#verify' 
+  get 'clients/sign_in'
+  post 'clients/sign_in', to: 'clients#verify' 
   resources :teenagers
+  resources :clients
   resources :profiles
   resources :teen_offerings
   resources :client_requests
