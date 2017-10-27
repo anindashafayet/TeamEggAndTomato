@@ -24,6 +24,16 @@ class MessagesController < ApplicationController
         end
     end
 
+    def update
+        @message = Message.find(params[:id])
+        
+        if @message.update(message_params)
+            redirect_to @message
+        else
+            render 'edit'
+        end
+    end
+
 private
     def message_params
         params.require(:message).permit(:name, :email, :title, :text)

@@ -18,6 +18,7 @@
         <tr>
             <td><%= feedback.title %></td>
             <td><%= feedback.text %></td>
+            <td><%= link_to 'Edit', edit_message_path(feedback) %></td>
             <td><%= link_to 'Show', message_path(feedback) %></td>
         </tr>
     <% end %>
