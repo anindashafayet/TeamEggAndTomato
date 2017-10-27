@@ -1,0 +1,2 @@
+class HomeDb < ApplicationRecord
+end
