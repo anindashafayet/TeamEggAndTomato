@@ -8,6 +8,10 @@ class MessagesController < ApplicationController
         @message = Message.new
     end
 
+    def edit
+        @message = Message.find(params[:id])
+    end
+
     def create
         #render plain: params[:message].inspect
 
@@ -17,10 +21,11 @@ class MessagesController < ApplicationController
             redirect_to @message
         else
             render 'new'
+        end
     end
 
-    private
-        def message_params
-            params.require(:message).permit(:name, :email, :title, :text)
-        end
+private
+    def message_params
+        params.require(:message).permit(:name, :email, :title, :text)
+    end
 end
