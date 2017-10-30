@@ -7,8 +7,44 @@ class TeenOfferingsController < ApplicationController
     @teen_offering = TeenOffering.new
   end
 
+  def match_requests(teen_offering)
+    def occurrences(event)
+      if event.rule.nil?
+        [event.period]
+      else
+        schedule = IceCube::Schedule.new([event.period, Time.now.beginning_of_day].max)
+        schedule.add_recurrence_rule event.rule
+        schedule.occurrences([event.period, Time.now.beginning_of_day].max + 1.year)
+      end
+    end
+    def match_occurrences(base, matcher)
+      matcher_occurrence = occurrences(matcher)
+      schedule = IceCube::Schedule.new([base.period, Time.now.beginning_of_day].max)
+      unless base.rule.nil?
+        schedule.add_recurrence_rule base.rule
+      end
+      for occur_time in matcher_occurrence
+        if schedule.occurs_on? occur_time.to_date
+          return {request: matcher, occur_date: occur_time.to_date}
+        end
+      end
+      nil
+    end
+
+    requests = ClientRequest.where(service_type_id: teen_offering.service_type_id)
+    matched = []
+    for request in requests
+      matched_occurrences = match_occurrences(teen_offering, request)
+      unless matched_occurrences.nil?
+        matched << matched_occurrences
+      end
+    end
+    matched
+  end
+
   def show
     @teen_offering = TeenOffering.find(params[:id])
+    @matched_requests = match_requests(@teen_offering)
   end
 
   def edit
@@ -44,6 +80,6 @@ class TeenOfferingsController < ApplicationController
 
   private
   def teen_offering_params
-    params.require(:teen_offering).permit(:service_type_id, :period, :detail)
+    params.require(:teen_offering).permit(:service_type_id, :period, :detail, :period_detail)
   end
 end

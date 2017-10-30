@@ -12,20 +12,27 @@
           </ul>
         </div>
     <% end %>
+
     <p>
       <%= form.label :service_type %><br>
       <%= form.collection_select :service_type_id, ServiceType.all, :id, :name, prompt: true %>
     </p>
 
     <p>
-      <%= form.label :period %><br>
+      <%= form.label :start_from %><br>
       <%= date_select :teen_offering, :period %>
+    </p>
+
+    <p>
+      <%= form.label :period_detail %><br>
+      <%= form.select_recurring :period_detail, nil, allow_blank: true %><br>
     </p>
 
     <p>
       <%= form.label :detail %><br>
       <%= form.text_field :detail %><br>
     </p>
+
     <p>
       <%= form.submit %>
     </p>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171012232539) do
+ActiveRecord::Schema.define(version: 20171029203210) do
 
   create_table "accounts", force: :cascade do |t|
     t.text "email"
@@ -42,12 +42,12 @@ ActiveRecord::Schema.define(version: 20171012232539) do
   create_table "client_requests", force: :cascade do |t|
     t.integer "account_id"
     t.integer "service_type_id"
-    t.string "periods_type"
     t.date "period"
     t.string "period_detail"
     t.text "detail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "trigger"
   end
 
   create_table "clients", force: :cascade do |t|
@@ -79,6 +79,22 @@ ActiveRecord::Schema.define(version: 20171012232539) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "schedules", force: :cascade do |t|
+    t.string "schedulable_type"
+    t.integer "schedulable_id"
+    t.date "date"
+    t.time "time"
+    t.string "rule"
+    t.string "interval"
+    t.text "day"
+    t.text "day_of_week"
+    t.datetime "until"
+    t.integer "count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["schedulable_type", "schedulable_id"], name: "index_schedules_on_schedulable_type_and_schedulable_id"
+  end
+
   create_table "service_types", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -89,12 +105,12 @@ ActiveRecord::Schema.define(version: 20171012232539) do
   create_table "teen_offerings", force: :cascade do |t|
     t.integer "account_id"
     t.integer "service_type_id"
-    t.string "periods_type"
     t.date "period"
     t.string "period_detail"
     t.text "detail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "trigger"
   end
 
   create_table "teenagers", force: :cascade do |t|

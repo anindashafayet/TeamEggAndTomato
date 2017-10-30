@@ -5,13 +5,53 @@
 </p>
 
 <p>
-  <strong>Period:</strong>
+  <strong>Start from:</strong>
   <%= @client_request.period %>
+</p>
+
+<p>
+  <strong>Period detail:</strong>
+  <%= @client_request.rule.to_s %>
 </p>
 
 <p>
   <strong>Detail:</strong>
   <%= @client_request.detail %>
+</p>
+
+<p>
+  <strong>Matched Offerings:</strong>
+  <ul>
+  <% @matched_offerings.each do |offer_item| %>
+    <% offer = offer_item[:offering]; occur_date = offer_item[:occur_date] %>
+    <li>
+    <p>
+      <strong>Service type:</strong>
+      <%= ServiceType.find(offer.service_type_id).name %>
+    </p>
+
+    <p>
+      <strong>Start from:</strong>
+      <%= offer.period %>
+    </p>
+
+    <p>
+      <strong>Period detail:</strong>
+      <%= offer.rule.to_s %>
+    </p>
+
+    <p>
+      <strong>Detail:</strong>
+      <%= offer.detail %>
+    </p>
+
+    <p>
+      <strong> Recent available date:</strong>
+      <%= occur_date %>
+    </p>
+
+  <% end %>
+  </ul>
 </p>
 
 <%= link_to 'Edit', edit_client_request_path(@client_request) %> |
