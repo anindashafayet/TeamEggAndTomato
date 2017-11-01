@@ -79,22 +79,6 @@ ActiveRecord::Schema.define(version: 20171029203210) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "schedules", force: :cascade do |t|
-    t.string "schedulable_type"
-    t.integer "schedulable_id"
-    t.date "date"
-    t.time "time"
-    t.string "rule"
-    t.string "interval"
-    t.text "day"
-    t.text "day_of_week"
-    t.datetime "until"
-    t.integer "count"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["schedulable_type", "schedulable_id"], name: "index_schedules_on_schedulable_type_and_schedulable_id"
-  end
-
   create_table "service_types", force: :cascade do |t|
     t.string "name"
     t.text "description"
