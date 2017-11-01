@@ -8,15 +8,20 @@ class TeenagersController < ApplicationController
   end
   def create
   	@teenager=Teenager.create(params_teenager)
-  	@account=@teenager.build_account(params_account).save
-  	@address=@teenager.build_address(params_address).save
-  	# @address=@teenager.address
-  	#@account=Account.new
-  	# @teenager.save
-  	#redirect_to root
-  	render plain:  params_teenager.inspect + "\n" +params[:teenager].inspect + "\n" + 
-  	params_address.inspect + #@teenager.fname.inspect + @address.line1.inspect #params[:teenager].inspect
-  	@account.inspect
+  	#@account=@teenager.build_account(params_account).save
+	if @teenager.build_account(params_account).save
+		@address=@teenager.build_address(params_address).save
+		# @address=@teenager.address
+		#@account=Account.new
+		# @teenager.save
+		#redirect_to root
+		render plain:  params_teenager.inspect + "\n" +params[:teenager].inspect + "\n" + 
+		params_address.inspect + #@teenager.fname.inspect + @address.line1.inspect #params[:teenager].inspect
+		@account.inspect
+	else
+		@teenager.destroy
+		render 'new'
+	end
   end
 
   def sign_in

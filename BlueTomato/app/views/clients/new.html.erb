@@ -2,6 +2,32 @@
 
 <p><%= link_to 'Back Home', home_path%></p>
 
+<% if @client.account.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-danger">
+      The form contains <%= pluralize(@client.account.errors.count, "error") %>.
+    </div>
+    <ul>
+    <% @client.account.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<% if @client.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-danger">
+      The form contains <%= pluralize(@client.errors.count, "error") %>.
+    </div>
+    <ul>
+    <% @client.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_for @client, local: true do |form| %>
   <p>
     <%= form.fields_for :account do |a|%>

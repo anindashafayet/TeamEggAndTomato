@@ -8,15 +8,20 @@ class ClientsController < ApplicationController
   end
   def create
   	@client=Client.create(params_client)
-  	@account=@client.build_account(params_account).save
-  	@address=@client.build_address(params_address).save
-  	# @address=@client.address
-  	#@account=Account.new
-  	# @client.save
-  	#redirect_to root
-  	render plain:  params_client.inspect + "\n" +params[:client].inspect + "\n" + 
-  	params_address.inspect + #@client.fname.inspect + @address.line1.inspect #params[:client].inspect
-  	@account.inspect
+  	#@account=@client.build_account(params_account).save
+	if @client.build_account(params_account).save
+		@address=@client.build_address(params_address).save
+		# @address=@client.address
+		#@account=Account.new
+		# @client.save
+		#redirect_to root
+		render plain:  params_client.inspect + "\n" +params[:client].inspect + "\n" + 
+		params_address.inspect + #@client.fname.inspect + @address.line1.inspect #params[:client].inspect
+		@account.inspect
+	else
+		@client.destroy
+		render 'new'
+	end
   end
 
   def sign_in
