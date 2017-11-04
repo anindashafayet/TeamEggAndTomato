@@ -8,7 +8,9 @@ class ClientRequestsController < ApplicationController
   def new
     @client_request = ClientRequest.new
   end
-
+  # An IceCube rule(period_detail) and a start date (period) is used to denote the days that an offering or request are
+  # available.
+  # return [{offering: teen_offering, occur_date: date}], offerings that match the given client_request
   def match_offerings(client_request)
     def occurrences(event)
       if event.rule.nil?
