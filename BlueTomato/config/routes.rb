@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get 'home/sitemap', to: "home#sitemap", as: "sitemap"
   get 'teenagers/new', to: "teenagers#new", as: "new"
 
+  root "home#home"
+
   get 'customer_service/index'
   post 'customer_service/submit_feedback'#, to: 'customer_service#submit_feedback'
   #get 'customer_service/submit_feedback'#, to: 'customer_service#submit_feedback'
