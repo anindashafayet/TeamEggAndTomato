@@ -1,29 +1,13 @@
 <%= render "shared/links"%>
 <h1>CustomerService#index</h1>
 
-<%= form_with local: true, url:{action: "submit_feedback", controller: "customer_service"} do |f| %>
-    <p>
-        <label>Email Address</label><%= f.text_field :email_address %><br>
-        <label>Message:</label><br>
-        <%= f.text_area :message %><br>
-    </p>
-     <%= f.submit "Submit!" %>
-<% end %>
+<h2>Leave Feedback</h2>
+<%= render "messages/form" %>
 
-<table>
+<table id="public_messages">
     <tr>
         <th>Title</th>
         <th>Preview</th>
     </tr>
-    <% @messages.each do |feedback| %>
-        <tr>
-            <td><%= feedback.title %></td>
-            <td><%= feedback.text %></td>
-            <td><%= link_to 'Edit', edit_message_path(feedback) %></td>
-            <td><%= link_to 'Show', message_path(feedback) %></td>
-            <td><%= link_to 'Delete', message_path(feedback),
-                    method: :delete,
-                    data: {confirm: 'Are you sure to delete?'}%></td>
-        </tr>
-    <% end %>
+    <%= render @messages %>
 </table>

@@ -1,5 +1,6 @@
-<%= form_with model: @message, local: true do |form| %>
+<%= form_with model: @message, remote: true do |form| %>
 
+  <div id="error"></div>
   <% if @message.errors.any? %>
     <div id="error_explanation">
       <h2> Error Message </h2>
@@ -29,6 +30,11 @@
   <p>
     <%= form.label :text %><br>
     <%= form.text_area :text %>
+  </p>
+ 
+  <p>
+    <%= form.label "public ?" %>
+    <%= form.check_box :ispublic %>
   </p>
  
   <p>
