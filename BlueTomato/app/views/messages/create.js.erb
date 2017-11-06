@@ -1,0 +1,10 @@
+
+$('#error').html(" <div id='error_explanation'> \
+      <h3> Error Message </h3> \
+      <ul> \
+        <% @message.errors.full_messages.each do |msg| %> \
+          <li><%= msg %></li> \
+        <%end%> \
+      </ul> \
+    </div> \
+    ");

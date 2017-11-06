@@ -18,9 +18,15 @@ class MessagesController < ApplicationController
         @message = Message.new(message_params)
    
         if @message.save
-            redirect_to @message
+            #redirect_to @message
+            respond_to do |format|
+                format.js {render 'insert'}
+            end
         else
-            render 'new'
+            respond_to do |format|
+                format.js
+            end
+            #render '/customer_service/index'
         end
     end
 
@@ -44,6 +50,6 @@ class MessagesController < ApplicationController
 
 private
     def message_params
-        params.require(:message).permit(:name, :email, :title, :text)
+        params.require(:message).permit(:name, :email, :title, :text, :ispublic)
     end
 end
