@@ -4,6 +4,7 @@
 <table>
   <tr>
     <th>Service Type</th>
+	<th>Description</th>
     <th>Period</th>
     <th colspan="3"></th>
   </tr>
@@ -11,6 +12,7 @@
   <% @teen_offerings.each do |teen_offering| %>
       <tr>
         <td><%= ServiceType.find(teen_offering.service_type_id).name %></td>
+		<td><%= teen_offering.detail %></td>
         <td><%= teen_offering.period %></td>
         <td><%= link_to 'Show', teen_offering_path(teen_offering) %></td>
         <td><%= link_to 'Edit', edit_teen_offering_path(teen_offering) %></td>

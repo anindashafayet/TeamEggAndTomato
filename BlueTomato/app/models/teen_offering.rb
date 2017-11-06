@@ -1,5 +1,7 @@
 class TeenOffering < ApplicationRecord
   validates :service_type_id, presence: true
+  validates :detail, presence: true
+  
   serialize :period_detail, Hash
 
   # The model serialize input period_detail with the hash method from RecurringSelect

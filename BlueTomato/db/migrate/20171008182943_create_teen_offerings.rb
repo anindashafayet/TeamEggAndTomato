@@ -5,7 +5,7 @@ class CreateTeenOfferings < ActiveRecord::Migration[5.1]
       t.integer :service_type_id
       t.string :periods_type
       t.date :period
-      t.string :period_detail
+      t.string :period_detail, default => "N/A"
       t.text :detail
 
       t.timestamps
