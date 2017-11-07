@@ -14,8 +14,9 @@ class MessagesController < ApplicationController
 
     def create
         #render plain: params[:message].inspect
-
+        #@cid = params[:page_id]
         @message = Message.new(message_params)
+        #@message.client_request = ClientRequest.find(@cid)
         @message.account = current_user()
    
         if @message.save
@@ -51,6 +52,6 @@ class MessagesController < ApplicationController
 
 private
     def message_params
-        params.require(:message).permit(:name, :email, :title, :text, :ispublic)
+        params.require(:message).permit(:name, :email, :title, :text, :ispublic, :client_request_id)
     end
 end

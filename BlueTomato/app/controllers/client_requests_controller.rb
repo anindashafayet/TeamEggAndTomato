@@ -48,6 +48,8 @@ class ClientRequestsController < ApplicationController
   def show
     @client_request = ClientRequest.find(params[:id])
     @matched_offerings = match_offerings(@client_request)
+    @message = Message.new()
+    @messages = @client_request.messages
   end
 
   def edit

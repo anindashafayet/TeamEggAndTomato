@@ -32,10 +32,7 @@
     <%= form.text_area :text %>
   </p>
  
-  <p>
-    <%= form.label "public ?" %>
-    <%= form.check_box :ispublic %>
-  </p>
+  <%= form.hidden_field :ispublic, :value => true%>
  
   <p>
     <%= form.submit %>

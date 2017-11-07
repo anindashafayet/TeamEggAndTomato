@@ -1,6 +1,7 @@
 class ClientRequest < ApplicationRecord
   validates :service_type_id, presence: true
   serialize :period_detail, Hash
+  has_many :messages
 
   # The model serialize input period_detail with the hash method from RecurringSelect
   def period_detail=(value)

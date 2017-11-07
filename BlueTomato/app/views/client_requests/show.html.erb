@@ -1,4 +1,4 @@
-
+<%= render "shared/links" %>
 <p>
   <strong>Service type:</strong>
   <%= ServiceType.find(@client_request.service_type_id).name %>
@@ -18,6 +18,32 @@
   <strong>Detail:</strong>
   <%= @client_request.detail %>
 </p>
+
+<table id="public_messages">
+    <tr>
+        <th>User</th>
+        <th>Message</th>
+    </tr>
+    <%= render @messages %>
+</table>
+
+<%= form_with model: @message, controller: "messages", method: "post" ,remote: true do |form| %>
+  <div id="error"></div>
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name, value: current_user().username, readonly: true%>
+  </p>
+  <p>
+    <%= form.label :text %><br>
+    <%= form.text_area :text %>
+  </p>
+ 
+  <%= form.text_field :client_request_id, value: @client_request.id, readonly: true, type: "hidden" %>
+ 
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
 
 <!-- Display the matched offerings. TODO: extract a subview-->
 <p>
