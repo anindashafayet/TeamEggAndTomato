@@ -6,6 +6,7 @@ class ClientRequestsController < ApplicationController
   end
 
   def new
+    auth_user()
     @client_request = ClientRequest.new
   end
   # An IceCube rule(period_detail) and a start date (period) is used to denote the days that an offering or request are

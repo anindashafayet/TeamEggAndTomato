@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def home
+    @client_requests = ClientRequest.all
   end
 
   def signup

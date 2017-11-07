@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   		@current_user=Account.find session[:user_id]
   		return true
   	else 
-  		redirect_to '/teenagers/sign_in' and return false
+  		redirect_to '/home/login' and return false
   	end
 	end
 
@@ -14,6 +14,6 @@ class ApplicationController < ActionController::Base
     Account.find(session[:user_id])
 	end
 
-	helper_method :current_user, :authenticate_user
+	helper_method :current_user, :auth_user
 	include SessionsHelper
 end

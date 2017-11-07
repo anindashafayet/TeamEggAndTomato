@@ -37,7 +37,7 @@ class TeenagersController < ApplicationController
       #@teenager=Teenager.find(0)
       session[:user_id]=@account.first.id
       if auth_user
-        render plain: "login successfully" and return true
+        redirect_to "/home/home"
       end
     else
       flash[:notice] = 'wrong username/password'
