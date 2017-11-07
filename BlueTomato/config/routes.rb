@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+
   get 'home/home', to: "home#home", as: "home"
   get 'home/signup', to: "home#signup", as: "signup"
   get 'home/login', to: "home#login", as: "login"
@@ -21,6 +23,7 @@ Rails.application.routes.draw do
   post 'teenagers/sign_in', to: 'teenagers#verify' 
   get 'clients/sign_in'
   post 'clients/sign_in', to: 'clients#verify' 
+  get 'clients/sign_out'
   resources :teenagers
   resources :clients
   resources :profiles

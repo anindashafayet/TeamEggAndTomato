@@ -46,8 +46,12 @@ class TeenOfferingsController < ApplicationController
   end
 
   def show
-    @teen_offering = TeenOffering.find(params[:id])
-    @matched_requests = match_requests(@teen_offering)
+	  if auth_user
+		@teen_offering = TeenOffering.find(params[:id])
+		@matched_requests = match_requests(@teen_offering)
+	  else
+	   
+	  end
   end
 
   def edit

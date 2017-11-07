@@ -46,7 +46,11 @@ class ClientsController < ApplicationController
       redirect_to '/clients/sign_in' and return false
     end
   end
-
+  
+  def sign_out
+	reset_session
+	redirect_to '/clients/sign_in'
+  end
         
   private
 
