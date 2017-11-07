@@ -37,7 +37,9 @@ class ClientsController < ApplicationController
       #@client=client.find(0)
       session[:user_id]=@account.id
       if auth_user
-        render plain: "client login successfully" and return true
+        #render plain: "client login successfully" 
+		flash[:alert] = 'Client successful login'
+		redirect_to teen_offerings_url and return true
       end
     else
       flash[:notice] = 'wrong username/password'
