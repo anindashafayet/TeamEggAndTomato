@@ -15,5 +15,5 @@ class ApplicationController < ActionController::Base
 	end
 
 	helper_method :current_user, :authenticate_user
-
+	include SessionsHelper
 end
