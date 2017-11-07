@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   	if session[:user_id]
   		@current_user=Account.find session[:user_id]
   		return true
-  	else 
+  	else
   		redirect_to '/home/login' and return false
   	end
 	end

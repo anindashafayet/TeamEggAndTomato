@@ -14,26 +14,26 @@
 
   <p>
     <%= form.label :name %><br>
-    <%= form.text_field :name, value: current_user().username, readonly: true%>
+    <%= form.text_field :name, readonly: true%>
   </p>
- 
+
   <p>
     <%= form.label :email %><br>
-    <%= form.text_field :email, value: current_user().email %>
+    <%= form.text_field :email %>
   </p>
- 
+
   <p>
     <%= form.label :title %><br>
     <%= form.text_field :title %>
   </p>
- 
+
   <p>
     <%= form.label :text %><br>
     <%= form.text_area :text %>
   </p>
- 
+
   <%= form.hidden_field :ispublic, :value => true%>
- 
+
   <p>
     <%= form.submit %>
   </p>

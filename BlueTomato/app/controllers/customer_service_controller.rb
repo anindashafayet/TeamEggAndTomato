@@ -4,7 +4,7 @@ class CustomerServiceController < ApplicationController
     @messages = Message.where("ispublic = ?", true)
   end
   def submit_feedback
-    render plain: params.inspect
+    #render plain: params.inspect
   end
   def result
 
