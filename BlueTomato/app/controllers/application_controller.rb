@@ -8,5 +8,12 @@ class ApplicationController < ActionController::Base
   	else 
   		redirect_to '/teenagers/sign_in' and return false
   	end
-  end
+	end
+
+  def current_user
+    Account.find(session[:user_id])
+	end
+
+	helper_method :current_user, :authenticate_user
+
 end

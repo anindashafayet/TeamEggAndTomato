@@ -1,4 +1,6 @@
 class Message < ApplicationRecord
     validates :title, presence: true, length: { minimum: 5 }
-    validates :email, presence: true
+    validates_presence_of :account
+    belongs_to :account
+    #validates :email, presence: true
 end

@@ -16,6 +16,7 @@ class MessagesController < ApplicationController
         #render plain: params[:message].inspect
 
         @message = Message.new(message_params)
+        @message.account = current_user()
    
         if @message.save
             #redirect_to @message
