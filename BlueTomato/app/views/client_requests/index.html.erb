@@ -2,6 +2,25 @@
 <%= render "shared/links"%>
 <h1>Listing Client Requests</h1>
 <%= link_to 'New client request', new_client_request_path %>
+
+<%= form_for_filterrific @filterrific do |f| %>
+	<div>
+    Sorted by
+    <%= f.text_field(:search_query, 
+	class: 'filterrific-periodically-observed')
+	%>
+	
+  </div>
+  <div>
+    <%= link_to(
+      'Reset filters',
+      reset_filterrific_url,
+    ) %>
+  </div>
+  <%# add an automated spinner to your form when the list is refreshed %>
+<% end %>
+
+
 <table>
   <tr>
     <th>Service Type</th>
@@ -15,7 +34,7 @@
         <td><%= client_request.period %></td>
         <td><%= link_to 'Show', client_request_path(client_request) %></td>
         <td><%= link_to 'Edit', edit_client_request_path(client_request) %></td>
-        <td><%= link_to 'Destroy', client_request_path(client_request),
+        <td><%= link_to 'Delete', client_request_path(client_request),
                         method: :delete,
                         data: { confirm: 'Are you sure?' } %></td>
       </tr>

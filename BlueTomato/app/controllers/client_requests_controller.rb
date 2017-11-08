@@ -1,8 +1,25 @@
 require "ice_cube"
-
+include ActionView::Helpers::NumberHelper
 class ClientRequestsController < ApplicationController
   def index
-    @client_requests = ClientRequest.all
+	@filterrific =  initialize_filterrific(ClientRequest,params[:filterrific],
+		select_options: {
+			sorted_by: ClientRequest.options_for_sorted_by,
+			with_service_type_id: ServiceType.options_for_sorted_by
+		},
+	  persistence_id: 'shared_key',
+      default_filter_params: {},
+      available_filters: [],
+	) or return
+	
+	#@client_requests = ClientRequest.find.page(params[:page])
+	@client_requests = ClientRequest.all
+	
+	respond_to do |format|
+		format.html
+		format.js
+	end
+	
   end
 
   def new
@@ -83,7 +100,7 @@ class ClientRequestsController < ApplicationController
       render 'new'
     end
   end
-
+   
   private
   def client_request_params
     params.require(:client_request).permit(:service_type_id, :period, :detail, :period_detail)

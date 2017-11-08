@@ -40,7 +40,7 @@ class ClientsController < ApplicationController
         #render plain: "client login successfully" 
         redirect_to "home/home"
         flash[:alert] = 'Client successful login'
-        redirect_to teen_offerings_url and return true
+        #redirect_to teen_offerings_url and return true
       end
     else
       flash[:notice] = 'wrong username/password'
