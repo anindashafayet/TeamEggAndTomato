@@ -13,22 +13,24 @@ class MessagesController < ApplicationController
     end
 
     def create
-        #render plain: params[:message].inspect
-        #@cid = params[:page_id]
-        @message = Message.new(message_params)
-        #@message.client_request = ClientRequest.find(@cid)
-        @message.account = current_user()
+        if auth_user()
+          #render plain: params[:message].inspect
+          #@cid = params[:page_id]
+          @message = Message.new(message_params)
+          #@message.client_request = ClientRequest.find(@cid)
+          @message.account = current_user()
 
-        if @message.save
-            #redirect_to @message
-            respond_to do |format|
-                format.js {render 'insert'}
-            end
-        else
-            respond_to do |format|
-                format.js
-            end
-            #render '/customer_service/index'
+          if @message.save
+              #redirect_to @message
+              respond_to do |format|
+                  format.js {render 'insert'}
+              end
+          else
+              respond_to do |format|
+                  format.js
+              end
+              #render '/customer_service/index'
+          end
         end
     end
 

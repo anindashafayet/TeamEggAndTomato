@@ -11,7 +11,11 @@ class ApplicationController < ActionController::Base
 	end
 
   def current_user
-    Account.find(session[:user_id])
+    if session[:user_id]
+      return Account.find(session[:user_id])
+    else
+      return Account.new()
+    end
 	end
 
 	helper_method :current_user, :auth_user

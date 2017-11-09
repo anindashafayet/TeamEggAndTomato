@@ -31,15 +31,15 @@
   <div id="error"></div>
   <p>
     <%= form.label :name %><br>
-    <%= form.text_field :name, value: current_user().username, readonly: true%>
+    <%= form.text_field :name, value: @username, readonly: true%>
   </p>
   <p>
     <%= form.label :text %><br>
     <%= form.text_area :text %>
   </p>
- 
+
   <%= form.text_field :client_request_id, value: @client_request.id, readonly: true, type: "hidden" %>
- 
+
   <p>
     <%= form.submit %>
   </p>

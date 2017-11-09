@@ -4,7 +4,7 @@ class ClientsController < ApplicationController
   	@client=Client.new
   	@client.build_account
   	@client.build_address
-  	
+
   end
   def create
   	@client=Client.create(params_client)
@@ -15,7 +15,7 @@ class ClientsController < ApplicationController
 		#@account=Account.new
 		# @client.save
 		#redirect_to root
-		render plain:  params_client.inspect + "\n" +params[:client].inspect + "\n" + 
+		render plain:  params_client.inspect + "\n" +params[:client].inspect + "\n" +
 		params_address.inspect + #@client.fname.inspect + @address.line1.inspect #params[:client].inspect
 		@account.inspect
 	else
@@ -37,8 +37,8 @@ class ClientsController < ApplicationController
       #@client=client.find(0)
       session[:user_id]=@account.id
       if auth_user
-        #render plain: "client login successfully" 
-        redirect_to "home/home"
+        #render plain: "client login successfully"
+        redirect_to home_path
         flash[:alert] = 'Client successful login'
         #redirect_to teen_offerings_url and return true
       end
@@ -47,28 +47,28 @@ class ClientsController < ApplicationController
       redirect_to '/clients/sign_in' and return false
     end
   end
-  
+
   def sign_out
 	reset_session
 	redirect_to '/clients/sign_in'
   end
-        
+
   private
 
   def params_client
   	params.require(:client).
   	permit(:fname, :lname, :birth_date, :cell_phone)
-  end	
+  end
   def params_address
   	params.require(:client).require(:address).
   	permit(:line1, :line2, :city, :state, :zip)
-  end	
+  end
   def params_account
   	params.require(:client).require(:account).
   	permit(:username, :password)
-  end	
+  end
   def params_account_sign_in
     params.require(:account).
     permit(:username, :password)
-  end 
+  end
 end

@@ -11,15 +11,15 @@ class ClientRequestsController < ApplicationController
       default_filter_params: {},
       available_filters: [],
 	) or return
-	
+
 	#@client_requests = ClientRequest.find.page(params[:page])
 	@client_requests = ClientRequest.all
-	
+
 	respond_to do |format|
 		format.html
 		format.js
 	end
-	
+
   end
 
   def new
@@ -68,6 +68,11 @@ class ClientRequestsController < ApplicationController
     @matched_offerings = match_offerings(@client_request)
     @message = Message.new()
     @messages = @client_request.messages
+    if session[:user_id]
+      @username = current_user().username
+    else
+      @username = "Please log in first."
+    end
   end
 
   def edit
@@ -100,7 +105,7 @@ class ClientRequestsController < ApplicationController
       render 'new'
     end
   end
-   
+
   private
   def client_request_params
     params.require(:client_request).permit(:service_type_id, :period, :detail, :period_detail)
