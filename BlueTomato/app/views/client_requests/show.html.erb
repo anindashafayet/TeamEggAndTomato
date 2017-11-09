@@ -19,7 +19,8 @@
   <%= @client_request.detail %>
 </p>
 
-<table id="public_messages">
+<h3>Comments:</h3>
+<table id="public_messages" class="table table-striped">
     <tr>
         <th>User</th>
         <th>Message</th>
@@ -35,13 +36,13 @@
   </p>
   <p>
     <%= form.label :text %><br>
-    <%= form.text_area :text %>
+    <%= form.text_area :text, class: "form-control" %>
   </p>
 
   <%= form.text_field :client_request_id, value: @client_request.id, readonly: true, type: "hidden" %>
 
   <p>
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-primary"%>
   </p>
 <% end %>
 
