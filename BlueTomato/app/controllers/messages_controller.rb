@@ -18,7 +18,7 @@ class MessagesController < ApplicationController
         @message = Message.new(message_params)
         #@message.client_request = ClientRequest.find(@cid)
         @message.account = current_user()
-   
+
         if @message.save
             #redirect_to @message
             respond_to do |format|
@@ -34,7 +34,7 @@ class MessagesController < ApplicationController
 
     def update
         @message = Message.find(params[:id])
-        
+
         if @message.update(message_params)
             redirect_to @message
         else
@@ -46,8 +46,8 @@ class MessagesController < ApplicationController
 
       @message = Message.find(params[:id])
       @message.destroy
-        
-      redirect_to "/customer_service/index"
+      redirect_back(fallback_location: root_path)
+      #redirect_to request.referrer, notice: "You're being redirected"
     end
 
 private

@@ -5,10 +5,61 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'%>
+    <%= stylesheet_link_tag    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', media: 'all' %>
+    <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'%>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script>
+    $(document).ready(function () {
+        $('.dropdown-toggle').dropdown();
+    });
+    </script>
   </head>
 
   <body>
-    <%= yield %>
+
+    <nav class="navbar navbar-inverse ">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Blue Tomoto</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><%= link_to 'Home', home_path %></li>
+            <li><%= link_to 'Sign Up', signup_path %></li>
+            <li><%= link_to 'Login', login_path %></li>
+            <li><%= link_to 'Profile', profile_path %></li>
+            <li><%= link_to 'Services', "/customer_service/index" %></li>
+            <li><%= link_to 'About Us', aboutus_path %></li>
+            <li><%= link_to 'Facebook', 'https://www.facebook.com/BlueTomato-1528381810591668/' %></li>
+            <li><%= link_to 'Twitter', 'https://twitter.com/teensrv' %></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  More<span class="caret"></span>
+              </a>
+
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <ul>
+                <li><%= link_to 'FAQ', faq_path, class: "dropdown-item"%></li>
+                <li><%= link_to 'Privacy Policy', pp_path, class: "dropdown-item" %></li>
+                <li><%= link_to 'Terms of Services', tos_path, class: "dropdown-item"%></li>
+                <li><%= link_to 'SiteMap', sitemap_path, class: "dropdown-item"%></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>
