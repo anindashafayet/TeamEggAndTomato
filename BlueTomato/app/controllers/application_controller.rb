@@ -14,7 +14,9 @@ class ApplicationController < ActionController::Base
     if session[:user_id]
       return Account.find(session[:user_id])
     else
-      return Account.new()
+      guest = Account.new()
+      guest.username = "Guest"
+      return guest
     end
 	end
 

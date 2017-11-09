@@ -1,0 +1,7 @@
+<tr>
+  <% if applicant.account && current_user().accountable_type == "Client" %>
+    <td><%=applicant.try(:account).try(:username)%></td>
+    <td><%=applicant.try(:created_at).try(:strftime, "%b %d, %Y")%></td>
+    <td><%=link_to "Choose Applicant","#"%></td>
+  <%end%>
+</tr>

@@ -19,32 +19,56 @@
   <%= @client_request.detail %>
 </p>
 
-<h3>Comments:</h3>
-<table id="public_messages" class="table table-striped">
-    <tr>
-        <th>User</th>
-        <th>Message</th>
-    </tr>
-    <%= render @messages %>
-</table>
+<div class="row">
+  <div class="col-sm-6">
+    <h3>Comments:</h3>
+    <table id="public_messages" class="table table-striped">
+        <tr>
+            <th>User</th>
+            <th>Message</th>
+        </tr>
+        <%= render @messages %>
+    </table>
 
-<%= form_with model: @message, controller: "messages", method: "post" ,remote: true do |form| %>
-  <div id="error"></div>
-  <p>
-    <%= form.label :name %><br>
-    <%= form.text_field :name, value: @username, readonly: true%>
-  </p>
-  <p>
-    <%= form.label :text %><br>
-    <%= form.text_area :text, class: "form-control" %>
-  </p>
+    <%= form_with model: @message, controller: "messages", method: "post" ,remote: true do |form| %>
+      <div id="error"></div>
+      <p>
+        <%= form.label :name %><br>
+        <%= form.text_field :name, value: @username, readonly: true%>
+      </p>
+      <p>
+        <%= form.label :text %><br>
+        <%= form.text_area :text, class: "form-control" %>
+      </p>
 
-  <%= form.text_field :client_request_id, value: @client_request.id, readonly: true, type: "hidden" %>
+      <%= form.text_field :client_request_id, value: @client_request.id, readonly: true, type: "hidden" %>
 
-  <p>
-    <%= form.submit class: "btn btn-primary"%>
-  </p>
-<% end %>
+      <p>
+        <%= form.submit class: "btn btn-primary"%>
+      </p>
+    <% end %>
+  </div>
+  <div class="col-sm-1"></div>
+  <div class="well col-sm-5">
+    <h3>Apply For This Service</h3><br>
+    <%= form_for [@client_request, @client_request.applicants.build] do |form| %>
+      <div class="row">
+        <strong class="col-sm-6">User: <%= current_user.username %></strong>
+        <!--label class="col-sm-4"><%= current_user.username %></label-->
+        <%= form.submit "Apply For The Job!", class: "btn btn-primary"%>
+      </div>
+    <% end %>
+    <br>
+    <table class="table">
+      <tr> <th>Applicants</th> <th> Date </th> <tr>
+      <% if @client_request.applicants.size() > 1 %>
+        <%= render @client_request.applicants %>
+      <%else%>
+        <tr> <td> No Applicant Yet! </td> <td> Be The First One! </td> </tr>
+      <%end%>
+    </table>
+  </div>
+</div>
 
 <!-- Display the matched offerings. TODO: extract a subview-->
 <p>

@@ -1,22 +1,11 @@
 
 <h1>Listing Client Requests</h1>
 <%= link_to 'New client request', new_client_request_path %>
-<table>
-  <tr>
-    <th>Service Type</th>
-    <th>Period</th>
-    <th colspan="3"></th>
-  </tr>
 
-  <% @client_requests.each do |client_request| %>
-      <tr>
-        <td><%= ServiceType.find(client_request.service_type_id).name %></td>
-        <td><%= client_request.period %></td>
-        <td><%= link_to 'Show', client_request_path(client_request) %></td>
-        <td><%= link_to 'Edit', edit_client_request_path(client_request) %></td>
-        <td><%= link_to 'Destroy', client_request_path(client_request),
-                        method: :delete,
-                        data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-  <% end %>
-</table>
+<% @client_requests.each do |client_request| %>
+    <div class = "well">
+      <p><%= ServiceType.find(client_request.service_type_id).name %></p>
+      <p><%= client_request.period %></p>
+      <%= link_to 'Read More', client_request_path(client_request), class:"btn btn-default" %>
+    </div>
+<% end %>

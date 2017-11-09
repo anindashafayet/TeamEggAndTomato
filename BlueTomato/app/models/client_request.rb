@@ -2,6 +2,7 @@ class ClientRequest < ApplicationRecord
   validates :service_type_id, presence: true
   serialize :period_detail, Hash
   has_many :messages
+  has_many :applicants
 
   # The model serialize input period_detail with the hash method from RecurringSelect
   def period_detail=(value)
@@ -20,7 +21,7 @@ class ClientRequest < ApplicationRecord
       IceCube::Rule.from_hash period_detail
     end
   end
-  
+
 	filterrific(
 		default_filter_params: { sorted_by: 'created_at_desc' },
 		available_filters:[
@@ -55,7 +56,7 @@ class ClientRequest < ApplicationRecord
 
 		]
 	end
-	
+
 	scope :search_query, lambda { |query|
 		# Searches the students table on the 'first_name' and 'last_name' columns.
 		# Matches using LIKE, automatically appends '%' to each term.
@@ -83,5 +84,5 @@ class ClientRequest < ApplicationRecord
 			*terms.map { |e| [e] * num_or_conds }.flatten
 		)
 	}
-	
+
 end
