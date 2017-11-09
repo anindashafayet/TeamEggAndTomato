@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get 'home/sitemap', to: "home#sitemap", as: "sitemap"
   get 'teenagers/new', to: "teenagers#new", as: "new"
 
+  post 'client_requests/:id/match_applicant/:matched_id', to: 'client_requests#match_applicant', as: :match
+
   root "home#home"
 
   get 'customer_service/index'

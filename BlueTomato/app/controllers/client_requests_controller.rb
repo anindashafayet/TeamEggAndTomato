@@ -1,6 +1,15 @@
 require "ice_cube"
 include ActionView::Helpers::NumberHelper
 class ClientRequestsController < ApplicationController
+
+  def match_applicant
+    @client_request = ClientRequest.find(params[:id])
+    if @client_request.update_attribute("matched_user", params[:matched_id])
+      @client_request.applicants.clear()
+    end
+    redirect_to client_request_path(@client_request)
+  end
+
   def index
 	@filterrific =  initialize_filterrific(ClientRequest,params[:filterrific],
 		select_options: {
@@ -68,6 +77,9 @@ class ClientRequestsController < ApplicationController
     @matched_offerings = match_offerings(@client_request)
     @message = Message.new()
     @messages = @client_request.messages
+    if @client_request.matched_user?
+      @matched_user = Account.find(@client_request.matched_user)
+    end
     if session[:user_id]
       @username = current_user().username
     else
