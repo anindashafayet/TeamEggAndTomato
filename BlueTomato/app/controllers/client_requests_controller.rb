@@ -109,12 +109,15 @@ class ClientRequestsController < ApplicationController
   end
 
   def create
-    @client_request = ClientRequest.new(client_request_params)
+    if auth_user()
+      @client_request = ClientRequest.new(client_request_params)
+      @client_request.account_id = current_user.id
 
-    if @client_request.save
-      redirect_to @client_request
-    else
-      render 'new'
+      if @client_request.save
+        redirect_to @client_request
+      else
+        render 'new'
+      end
     end
   end
 

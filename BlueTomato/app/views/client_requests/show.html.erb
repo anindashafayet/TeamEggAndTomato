@@ -54,20 +54,15 @@
     <% if @matched_user %>
 
       <h4>Matched With: <%=@matched_user.username%> </h4>
-      <% if current_user.accountable_type == "Teenager" %>
-        <%= form_for do |form| %>
+      <% if current_user.id == @matched_user.id %>
+        <%= form_with do |form| %>
           <%=form.label :progress%>
-          <%=form.text_field :progress%>
+          <%=form.text_field :progress, class: "form-control"%>
           <%=form.label :fullfillment%>
-          <%=form.text_area :fullfillment%>
-          <%=form.submit%>
+          <%=form.text_area :fullfillment, class: "form-control"%>
+          <br>
+          <%=form.submit "Update Progress", class: "form-control btn btn-primary"%>
         <%end%>
-        <p>
-          <h5>Rating: 100%</h5>
-        </p>
-        <p>
-          <h5>Feedback: Well Done!</h5>
-        </p>
       <%else%>
         <p>
           <h5>Progress: 100%</h5>
@@ -75,6 +70,9 @@
         <p>
           <h5>Fullfillment: Well Done!</h5>
         </p>
+      <%end%>
+      <hr>
+      <% if current_user.id == @client_request.account_id && current_user.accountable_type == "Client" %>
         <%= form_with do |form| %>
           <%=form.label :rating%>
           <%=form.text_field :rating, class: "form-control"%>
@@ -83,6 +81,13 @@
           <hr>
           <%=form.submit "Pay", class: "form-control btn btn-warning"%>
         <%end%>
+      <%else%>
+        <p>
+          <h5>Rating: 100%</h5>
+        </p>
+        <p>
+          <h5>Feedback: Well Done!</h5>
+        </p>
       <%end%>
 
     <%else%>

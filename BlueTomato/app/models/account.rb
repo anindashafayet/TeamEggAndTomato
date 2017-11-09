@@ -4,4 +4,5 @@ class Account < ApplicationRecord
 	#belongs_to :client
 	has_many :messages, dependent: :destroy
 	has_many :applicants, dependent: :destroy
+	has_many :client_requests, dependent: :destroy
 end
