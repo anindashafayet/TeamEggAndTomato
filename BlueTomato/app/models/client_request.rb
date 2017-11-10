@@ -4,7 +4,8 @@ class ClientRequest < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :applicants, dependent: :destroy
   has_one :account
-
+  belongs_to :service_type
+  
   # The model serialize input period_detail with the hash method from RecurringSelect
   def period_detail=(value)
     if RecurringSelect.is_valid_rule?(value) and value != "null"
@@ -34,7 +35,7 @@ class ClientRequest < ApplicationRecord
 	)
 	#filter on 'name' column on service_type table
 	scope :with_service_type_id, lambda { |c|
-		where(service_type_id: [*c])
+		where(service_type_id: [c])
 	}
 	
 	

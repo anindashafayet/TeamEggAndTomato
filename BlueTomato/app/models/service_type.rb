@@ -1,6 +1,8 @@
 class ServiceType < ApplicationRecord
 	validates :name, uniqueness:true
 	validates :description, uniqueness:true
+	has_many :client_requests, :dependent => :nullify
+	
 	filterrific(
 	    default_filter_params: { sorted_by: 'created_at_desc' },
 		available_filters:[
