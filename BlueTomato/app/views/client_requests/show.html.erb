@@ -98,11 +98,14 @@
       <%else%>
 
         <%= form_for [@client_request, @client_request.applicants.build] do |form| %>
-          <div class="row">
-            <strong class="col-sm-6">User: <%= current_user.username %></strong>
+
+          <div class="container">
+            <strong class="">User: <%= current_user.username %></strong>
+            <span class="divider"></span>
             <!--label class="col-sm-4"><%= current_user.username %></label-->
             <%= form.submit "Apply For The Job!", class: "btn btn-primary"%>
-          </div>
+
+        </div>
         <% end %>
         <br>
         <table class="table">
