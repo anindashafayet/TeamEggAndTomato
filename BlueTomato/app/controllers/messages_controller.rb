@@ -13,28 +13,30 @@ class MessagesController < ApplicationController
     end
 
     def create
-        #render plain: params[:message].inspect
-        #@cid = params[:page_id]
-        @message = Message.new(message_params)
-        #@message.client_request = ClientRequest.find(@cid)
-        @message.account = current_user()
-   
-        if @message.save
-            #redirect_to @message
-            respond_to do |format|
-                format.js {render 'insert'}
-            end
-        else
-            respond_to do |format|
-                format.js
-            end
-            #render '/customer_service/index'
+        if auth_user()
+          #render plain: params[:message].inspect
+          #@cid = params[:page_id]
+          @message = Message.new(message_params)
+          #@message.client_request = ClientRequest.find(@cid)
+          @message.account = current_user()
+
+          if @message.save
+              #redirect_to @message
+              respond_to do |format|
+                  format.js {render 'insert'}
+              end
+          else
+              respond_to do |format|
+                  format.js
+              end
+              #render '/customer_service/index'
+          end
         end
     end
 
     def update
         @message = Message.find(params[:id])
-        
+
         if @message.update(message_params)
             redirect_to @message
         else
@@ -46,8 +48,8 @@ class MessagesController < ApplicationController
 
       @message = Message.find(params[:id])
       @message.destroy
-        
-      redirect_to "/customer_service/index"
+      redirect_back(fallback_location: root_path)
+      #redirect_to request.referrer, notice: "You're being redirected"
     end
 
 private

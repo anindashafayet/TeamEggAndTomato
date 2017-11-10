@@ -1,6 +1,8 @@
 class Account < ApplicationRecord
 	belongs_to :accountable, :polymorphic => true
-	validates_uniqueness_of :username 
+	validates_uniqueness_of :username
 	#belongs_to :client
-	has_one :message
+	has_many :messages, dependent: :destroy
+	has_many :applicants, dependent: :destroy
+	has_many :client_requests, dependent: :destroy
 end

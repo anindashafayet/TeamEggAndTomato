@@ -1,6 +1,15 @@
 require "ice_cube"
 include ActionView::Helpers::NumberHelper
 class ClientRequestsController < ApplicationController
+
+  def match_applicant
+    @client_request = ClientRequest.find(params[:id])
+    if @client_request.update_attribute("matched_user", params[:matched_id])
+      @client_request.applicants.clear()
+    end
+    redirect_to client_request_path(@client_request)
+  end
+
   def index
 	@filterrific =  initialize_filterrific(ClientRequest,params[:filterrific],
 		select_options: {
@@ -11,14 +20,21 @@ class ClientRequestsController < ApplicationController
       default_filter_params: {},
       available_filters: [],
 	) or return
+<<<<<<< HEAD
 	
 	@client_requests = @filterrific.find.page(params[:page])
 	
+=======
+
+	#@client_requests = ClientRequest.find.page(params[:page])
+	@client_requests = ClientRequest.all
+
+>>>>>>> 2e7cc666780603fc793b00f842c6722bd4359650
 	respond_to do |format|
 		format.html
 		format.js
 	end
-	
+
   end
 
   def new
@@ -67,6 +83,14 @@ class ClientRequestsController < ApplicationController
     @matched_offerings = match_offerings(@client_request)
     @message = Message.new()
     @messages = @client_request.messages
+    if @client_request.matched_user?
+      @matched_user = Account.find(@client_request.matched_user)
+    end
+    if session[:user_id]
+      @username = current_user().username
+    else
+      @username = "Please log in first."
+    end
   end
 
   def edit
@@ -91,15 +115,18 @@ class ClientRequestsController < ApplicationController
   end
 
   def create
-    @client_request = ClientRequest.new(client_request_params)
+    if auth_user()
+      @client_request = ClientRequest.new(client_request_params)
+      @client_request.account_id = current_user.id
 
-    if @client_request.save
-      redirect_to @client_request
-    else
-      render 'new'
+      if @client_request.save
+        redirect_to @client_request
+      else
+        render 'new'
+      end
     end
   end
-   
+
   private
   def client_request_params
     params.require(:client_request).permit(:service_type_id, :period, :detail, :period_detail)

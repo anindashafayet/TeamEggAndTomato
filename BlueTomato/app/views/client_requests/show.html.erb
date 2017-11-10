@@ -19,31 +19,99 @@
   <%= @client_request.detail %>
 </p>
 
-<table id="public_messages">
-    <tr>
-        <th>User</th>
-        <th>Message</th>
-    </tr>
-    <%= render @messages %>
-</table>
+<div class="row">
+  <div class="col-sm-6">
+    <h3>Comments:</h3>
+    <table id="public_messages" class="table table-striped">
+        <tr>
+            <th>User</th>
+            <th>Message</th>
+        </tr>
+        <%= render @messages %>
+    </table>
 
-<%= form_with model: @message, controller: "messages", method: "post" ,remote: true do |form| %>
-  <div id="error"></div>
-  <p>
-    <%= form.label :name %><br>
-    <%= form.text_field :name, value: current_user().username, readonly: true%>
-  </p>
-  <p>
-    <%= form.label :text %><br>
-    <%= form.text_area :text %>
-  </p>
- 
-  <%= form.text_field :client_request_id, value: @client_request.id, readonly: true, type: "hidden" %>
- 
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
+    <%= form_with model: @message, controller: "messages", method: "post" ,remote: true do |form| %>
+      <div id="error"></div>
+      <p>
+        <%= form.label :name %><br>
+        <%= form.text_field :name, value: @username, readonly: true%>
+      </p>
+      <p>
+        <%= form.label :text %><br>
+        <%= form.text_area :text, class: "form-control" %>
+      </p>
+
+      <%= form.text_field :client_request_id, value: @client_request.id, readonly: true, type: "hidden" %>
+
+      <p>
+        <%= form.submit class: "btn btn-primary"%>
+      </p>
+    <% end %>
+  </div>
+  <div class="col-sm-1"></div>
+  <div class="well col-sm-5">
+    <h3>Applicants</h3><br>
+    <% if @matched_user %>
+
+      <h4>Matched With: <%=@matched_user.username%> </h4>
+      <% if current_user.id == @matched_user.id %>
+        <%= form_with do |form| %>
+          <%=form.label :progress%>
+          <%=form.text_field :progress, class: "form-control"%>
+          <%=form.label :fullfillment%>
+          <%=form.text_area :fullfillment, class: "form-control"%>
+          <br>
+          <%=form.submit "Update Progress", class: "form-control btn btn-success"%>
+        <%end%>
+      <%else%>
+        <p>
+          <h5>Progress: 100%</h5>
+        </p>
+        <p>
+          <h5>Fullfillment: Well Done!</h5>
+        </p>
+      <%end%>
+      <hr>
+      <% if current_user.id == @client_request.account_id && current_user.accountable_type == "Client" %>
+        <%= form_with do |form| %>
+          <%=form.label :rating%>
+          <%=form.text_field :rating, class: "form-control"%>
+          <%=form.label :feedback%>
+          <%=form.text_area :feedback, class: "form-control"%>
+          <hr>
+          <%=form.submit "Pay", class: "form-control btn btn-warning"%>
+        <%end%>
+      <%else%>
+        <p>
+          <h5>Rating: 100%</h5>
+        </p>
+        <p>
+          <h5>Feedback: Well Done!</h5>
+        </p>
+      <%end%>
+
+    <%else%>
+
+      <%= form_for [@client_request, @client_request.applicants.build] do |form| %>
+        <div class="row">
+          <strong class="col-sm-6">User: <%= current_user.username %></strong>
+          <!--label class="col-sm-4"><%= current_user.username %></label-->
+          <%= form.submit "Apply For The Job!", class: "btn btn-primary"%>
+        </div>
+      <% end %>
+      <br>
+      <table class="table">
+        <tr> <th>Applicants</th> <th> Date </th> <tr>
+        <% if @client_request.applicants.size() > 1 %>
+          <%= render @client_request.applicants %>
+        <%else%>
+          <tr> <td> No Applicant Yet! </td> <td> Be The First One! </td> </tr>
+        <%end%>
+      </table>
+
+    <%end%>
+  </div>
+</div>
 
 <!-- Display the matched offerings. TODO: extract a subview-->
 <p>

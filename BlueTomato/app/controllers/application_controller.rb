@@ -11,7 +11,13 @@ class ApplicationController < ActionController::Base
 	end
 
   def current_user
-    Account.find(session[:user_id])
+    if session[:user_id]
+      return Account.find(session[:user_id])
+    else
+      guest = Account.new()
+      guest.username = "Guest"
+      return guest
+    end
 	end
 
 	helper_method :current_user, :auth_user
