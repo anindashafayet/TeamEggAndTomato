@@ -5,15 +5,14 @@ class ClientRequestsController < ApplicationController
 	@filterrific =  initialize_filterrific(ClientRequest,params[:filterrific],
 		select_options: {
 			sorted_by: ClientRequest.options_for_sorted_by,
-			with_service_type_id: ServiceType.options_for_sorted_by
+			with_service_type_id: ServiceType.options_for_select
 		},
 	  persistence_id: 'shared_key',
       default_filter_params: {},
       available_filters: [],
 	) or return
 	
-	#@client_requests = ClientRequest.find.page(params[:page])
-	@client_requests = ClientRequest.all
+	@client_requests = @filterrific.find.page(params[:page])
 	
 	respond_to do |format|
 		format.html

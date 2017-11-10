@@ -30,10 +30,14 @@ class ClientRequest < ApplicationRecord
 
 		]
 	)
+	#filter on 'name' column on service_type table
 	scope :with_service_type_id, lambda { |c|
 		where(service_type_id: [*c])
 	}
-  scope :sorted_by, lambda { |sort_option|
+	
+	
+	
+	scope :sorted_by, lambda { |sort_option|
 	  # extract the sort direction from the param value.
 	  direction = (sort_option =~ /desc$/) ? 'desc' : 'asc'
 	  case sort_option.to_s
@@ -78,7 +82,7 @@ class ClientRequest < ApplicationRecord
 		num_or_conds = 1
 		where(
 			terms.map { |term|
-			  "(LOWER(ServiceTypes.name) LIKE ?)"
+			  "((ServiceTypes.name) LIKE ?)"
 			}.join(' AND '),
 			*terms.map { |e| [e] * num_or_conds }.flatten
 		)
