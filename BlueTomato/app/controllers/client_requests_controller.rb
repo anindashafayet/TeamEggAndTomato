@@ -14,21 +14,23 @@ class ClientRequestsController < ApplicationController
 	@filterrific =  initialize_filterrific(ClientRequest,params[:filterrific],
 		select_options: {
 			sorted_by: ClientRequest.options_for_sorted_by,
-			with_service_type_id: ServiceType.options_for_sorted_by
+			with_service_type_id: ServiceType.options_for_select
 		},
 	  persistence_id: 'shared_key',
       default_filter_params: {},
       available_filters: [],
 	) or return
-
-	#@client_requests = ClientRequest.find.page(params[:page])
-	@client_requests = ClientRequest.all
+	
+	@client_requests = @filterrific.find.page(params[:page])
 
 	respond_to do |format|
 		format.html
 		format.js
 	end
-
+	rescue ActiveRecord::RecordNotFound => e
+	# There is an issue with the persisted param_set. Reset it.
+	puts "Had to reset filterrific params: #{ e.message }"
+	redirect_to(reset_filterrific_url(format: :html)) and return
   end
 
   def new

@@ -16,3 +16,4 @@
 //= require turbolinks
 //= require recurring_select
 //= require_tree .
+//= require filterrific/filterrific-jquery

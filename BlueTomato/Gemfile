@@ -64,3 +64,5 @@ gem 'recurring_select', github: "RundownApp/recurring_select"
 
 gem 'jquery-rails'
 gem 'filterrific'
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
