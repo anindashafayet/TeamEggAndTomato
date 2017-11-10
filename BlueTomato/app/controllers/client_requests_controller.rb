@@ -20,16 +20,9 @@ class ClientRequestsController < ApplicationController
       default_filter_params: {},
       available_filters: [],
 	) or return
-<<<<<<< HEAD
 	
 	@client_requests = @filterrific.find.page(params[:page])
-	
-=======
 
-	#@client_requests = ClientRequest.find.page(params[:page])
-	@client_requests = ClientRequest.all
-
->>>>>>> 2e7cc666780603fc793b00f842c6722bd4359650
 	respond_to do |format|
 		format.html
 		format.js
