@@ -1,7 +1,7 @@
 <tr>
   <td><%=applicant.try(:account).try(:username)%></td>
   <td><%=applicant.try(:created_at).try(:strftime, "%b %d, %Y")%></td>
-  <% if applicant.account && current_user().accountable_type == "Client" %>
+  <% if applicant.account && current_user.id == @client_request.account_id && current_user().accountable_type == "Client" %>
     <td><%=link_to "Choose Applicant", match_path(@client_request, applicant.account_id), method: :post%></td>
   <%end%>
 </tr>
