@@ -14,3 +14,67 @@
  *= require_self
  *= require recurring_select
  */
+ .breakall {
+   word-break:break-all;
+ }
+
+ .bgbluetomato {
+   background-image: url("/assets/btomato.png");
+ }
+
+ .bgbrighttomato {
+   background-image: url("/assets/bizzare.png");
+   background-color: rgba(255, 255, 255, 0.8);
+   background-blend-mode: exclusion;
+   border-radius: 25px;
+   /*opacity: 0.9;*/
+ }
+
+ .jumbotronb {
+   background-size: 90%;
+   background-position: top;
+   background-attachment: fixed;
+   min-height: 500px;
+ }
+
+ .shading {
+   background-color: rgba(255, 255, 255, 0.7);
+ }
+
+ .strongshading {
+   background-color: rgba(255, 255, 255, 0.95);
+ }
+
+ .bluetext {
+   color: rgb(80, 180, 200);
+ }
+
+ .fixing {
+   position: fixed;
+   width: 30em;
+ }
+
+@media only screen and (max-width: 1000px) {
+  .container {
+
+  }
+  .jumbotronb {
+   min-height: 300px;
+  }
+
+  .fixing {
+   width: 20em;
+   min-width: 100px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  [class*="col-"] {
+    width: 100%;
+  }
+  .fixing {
+    top: 10px;
+    position: relative;
+    width: 100%;
+  }
+}

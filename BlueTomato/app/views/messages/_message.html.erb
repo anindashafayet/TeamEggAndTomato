@@ -1,6 +1,7 @@
-<tr class='well'>
+<tr class='well bigger'>
+
     <td><%= message.name %></td>
-    <td><%= message.text %></td>
+    <td class="breakall"><%= message.text %></td>
     <td><%= link_to 'Edit', edit_message_path(message) %></td>
     <td><%= link_to 'Show', message_path(message) %></td>
     <td><%= link_to 'Delete', message_path(message),
