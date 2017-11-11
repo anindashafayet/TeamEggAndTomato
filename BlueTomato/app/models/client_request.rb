@@ -28,17 +28,20 @@ class ClientRequest < ApplicationRecord
 		default_filter_params: { sorted_by: 'created_at_desc' },
 		available_filters:[
 			:sorted_by,
-			:with_service_type_id,
-			:search_query
+			:with_name,
+			:search_query,
+			:with_detail
 
 		]
 	)
 	#filter on 'name' column on service_type table
-	scope :with_service_type_id, lambda { |c|
-		where(service_type_id: [c])
+	scope :with_name, lambda { |c|
+		where('service_name = ?', c)
 	}
 	
-	
+	scope :with_detail, lambda { |d|
+		where(detail: [d])
+	}
 	
 	scope :sorted_by, lambda { |sort_option|
 	  # extract the sort direction from the param value.
@@ -62,7 +65,11 @@ class ClientRequest < ApplicationRecord
 
 		]
 	end
-
+	
+	def self.options_for_select
+		order('LOWER(detail)').map { |e| [e.detail] }
+	end
+	
 	scope :search_query, lambda { |query|
 		# Searches the students table on the 'first_name' and 'last_name' columns.
 		# Matches using LIKE, automatically appends '%' to each term.

@@ -41,7 +41,7 @@ class ServiceType < ApplicationRecord
 	end
 	
 	def self.options_for_select
-		order('LOWER(name)').map { |e| [e.name, e.id] }
+		order('LOWER(name)').map { |e| [e.name] }
 	end
 		scope :search_query, lambda { |query|
 		# Searches the students table on the 'first_name' and 'last_name' columns.

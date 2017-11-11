@@ -14,11 +14,10 @@ class ClientRequestsController < ApplicationController
 	@filterrific =  initialize_filterrific(ClientRequest,params[:filterrific],
 		select_options: {
 			sorted_by: ClientRequest.options_for_sorted_by,
-			with_service_type_id: ServiceType.options_for_select
+			with_name: ServiceType.options_for_select
 		},
 	  persistence_id: 'shared_key',
       default_filter_params: {},
-      available_filters: [],
 	) or return
 	
 	@client_requests = @filterrific.find.page(params[:page])
@@ -114,7 +113,7 @@ class ClientRequestsController < ApplicationController
     if auth_user()
       @client_request = ClientRequest.new(client_request_params)
       @client_request.account_id = current_user.id
-
+	  @client_request.service_name = ServiceType.find(@client_request.service_type_id).name
       if @client_request.save
         redirect_to @client_request
       else
