@@ -53,7 +53,9 @@ class ClientRequest < ApplicationRecord
 		# Joining on other tables is quite common in Filterrific, and almost
 		# every ActiveRecord table has a 'created_at' column.
 		order("client_requests.created_at #{ direction }")
-
+	  when /^period/
+	    order("client_requests.period #{ direction }")
+	  
 	  else
 		raise(ArgumentError, "Invalid sort option: #{ sort_option.inspect }")
 	  end
