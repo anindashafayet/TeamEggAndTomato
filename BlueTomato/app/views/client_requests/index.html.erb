@@ -4,12 +4,7 @@
 <%= link_to 'New client request', new_client_request_path %>
 
 <%= form_for_filterrific @filterrific do |f| %>
-	<div>
-    Sorted by
-    <%= f.text_field(:search_query, 
-	class: 'filterrific-periodically-observed')
-	%>
-    </div>
+	<h3>Filter</h3>
 	
 	<div>
 	Service Type
