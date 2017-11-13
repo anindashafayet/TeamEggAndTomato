@@ -1,7 +1,6 @@
 require "ice_cube"
 include ActionView::Helpers::NumberHelper
 class ClientRequestsController < ApplicationController
-
   def match_applicant
     @client_request = ClientRequest.find(params[:id])
     if @client_request.update_attribute("matched_user", params[:matched_id])

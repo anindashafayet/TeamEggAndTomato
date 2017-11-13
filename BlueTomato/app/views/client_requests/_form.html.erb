@@ -29,11 +29,11 @@
     </p>
 
     <p>
-      <%= form.label :detail %><br>
-      <%= form.text_field :detail %><br>
+      <%= form.label 'Description' %><br>
+      <%= form.text_area :detail, class: "form-control" %><br>
     </p>
 
     <p>
-      <%= form.submit %>
+      <%= form.submit 'Submit' %>
     </p>
 <% end %>

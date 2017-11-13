@@ -20,28 +20,37 @@
     </p>
 
     <p class="breakall">
-      <strong>Detail:</strong>
+      <strong>Description:</strong>
       <%= @client_request.detail %>
     </p>
   </div>
 
     <h3>Comments:</h3>
     <table id="public_messages" class="table table-striped">
-        <tr>
-            <th>User</th>
-            <th>Message</th>
-        </tr>
-        <%= render @messages %>
+		<% if @messages.count != 0 %>
+			<tr>
+				<th>User</th>
+				<th>Message</th>
+			</tr>
+			
+			<%= render @messages %>
+		
+		<% else %>
+			No comments! Be the first to comment!
+		<% end %>
+		
     </table>
-
+	
+	<h3>Leave a comment as:</h3>
     <%= form_with model: @message, controller: "messages", method: "post" ,remote: true do |form| %>
       <div id="error"></div>
       <p>
-        <%= form.label :name %><br>
-        <%= form.text_field :name, value: @username, readonly: true%>
+        <%= form.label 'Username' %><br>
+        <%= form.text_field :name, value: @username, readonly: true, type: "hidden" %>
+		<%= @username %>
       </p>
       <p>
-        <%= form.label :text %><br>
+        <%= form.label 'Description' %><br>
         <%= form.text_area :text, class: "form-control" %>
       </p>
 
@@ -50,6 +59,7 @@
       <p>
         <%= form.submit class: "btn btn-primary"%>
       </p>
+
     <% end %>
   </div>
   <div class="col-sm-1"></div>

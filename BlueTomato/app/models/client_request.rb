@@ -14,7 +14,7 @@ class ClientRequest < ApplicationRecord
       super(nil)
     end
   end
-
+  
   # Extract the IceCube rule from serialize persistent period_detail
   def rule
     if period_detail.empty?
