@@ -32,15 +32,15 @@
 				<th>User</th>
 				<th>Message</th>
 			</tr>
-			
+
 			<%= render @messages %>
-		
+
 		<% else %>
 			No comments! Be the first to comment!
 		<% end %>
-		
+
     </table>
-	
+
 	<h3>Leave a comment as:</h3>
     <%= form_with model: @message, controller: "messages", method: "post" ,remote: true do |form| %>
       <div id="error"></div>
@@ -94,7 +94,17 @@
             <%=form.label :feedback%>
             <%=form.text_area :feedback, class: "form-control"%>
             <hr>
-            <%=form.submit "Pay", class: "form-control btn btn-warning"%>
+            <!-- %=form.submit "Pay", class: "form-control btn btn-warning"% -->
+
+			<form class="form-control btn btn-warning" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"%>
+				<input type="hidden" name="cmd" value="_s-xclick">
+				<input type="hidden" name="hosted_button_id" value="VRDB54ENGD2X8">
+				<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif"
+					border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+				<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+			</form>
+
+
           <%end%>
         <%else%>
           <p>
