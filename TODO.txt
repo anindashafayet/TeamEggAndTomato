@@ -1,0 +1,4 @@
+[] Remove usage of Teenager/Client/Account (now replaced by User) - would've preferred Account, but it was harder to rename than create a new class.
+
+[Ramon] 
+Profile has an address and phone fields, which are already in User (address is its own table, with User having a reference to it) - we should clean this up. One way to do it is leaving all essential information for login in User (i.e. username, email, password, etc.), and move all other things to Profile (it would get a reference to an Address, which the user could fill in at any point in the Profile page). Permissions would probably use the Profile data (date_of_birth, address, etc.)
