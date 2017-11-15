@@ -1,6 +1,7 @@
 class Client < ApplicationRecord
 	has_one :account, as: :accountable, dependent: :destroy
 	has_one :address, as: :addressable, dependent: :destroy
+	has_one :profile, as: :profilable, dependent: :destroy
 	
 	validate do |client|
 		client.account do |account|

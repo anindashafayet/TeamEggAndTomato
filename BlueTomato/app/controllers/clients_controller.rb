@@ -4,6 +4,7 @@ class ClientsController < ApplicationController
   	@client=Client.new
   	@client.build_account
   	@client.build_address
+	@client.build_profile
 
   end
   def create
@@ -11,10 +12,7 @@ class ClientsController < ApplicationController
   	#@account=@client.build_account(params_account).save
 	if @client.build_account(params_account).save
 		@address=@client.build_address(params_address).save
-		# @address=@client.address
-		#@account=Account.new
-		# @client.save
-		#redirect_to root
+		@profile=@client.build_profile.save
 		render plain:  params_client.inspect + "\n" +params[:client].inspect + "\n" +
 		params_address.inspect + #@client.fname.inspect + @address.line1.inspect #params[:client].inspect
 		@account.inspect
@@ -54,7 +52,10 @@ class ClientsController < ApplicationController
   end
 
   private
-
+  def params_profile
+    params.require(:profile)
+	
+  end
   def params_client
   	params.require(:client).
   	permit(:fname, :lname, :birth_date, :cell_phone)

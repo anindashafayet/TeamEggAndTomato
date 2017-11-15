@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171111191449) do
+ActiveRecord::Schema.define(version: 20171115032716) do
 
   create_table "accounts", force: :cascade do |t|
     t.text "email"
@@ -93,6 +93,8 @@ ActiveRecord::Schema.define(version: 20171111191449) do
     t.integer "gender"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "profilable_id"
+    t.string "profilable_type"
   end
 
   create_table "service_types", force: :cascade do |t|

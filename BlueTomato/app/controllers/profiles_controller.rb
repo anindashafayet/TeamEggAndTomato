@@ -2,6 +2,10 @@ class ProfilesController < ApplicationController
   def new
 
   end
+  
+  def index
+    
+  end
 
   def create
     #we need to find whether this profile linked to the account infomation

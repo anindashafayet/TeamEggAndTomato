@@ -4,6 +4,7 @@ class TeenagersController < ApplicationController
   	@teenager=Teenager.new
   	@teenager.build_account
   	@teenager.build_address
+	@teenager.build_profile
   	
   end
   def create
@@ -11,6 +12,7 @@ class TeenagersController < ApplicationController
   	#@account=@teenager.build_account(params_account).save
 	if @teenager.build_account(params_account).save
 		@address=@teenager.build_address(params_address).save
+		@profile=@teenager.build_profile.save
 		# @address=@teenager.address
 		#@account=Account.new
 		# @teenager.save
