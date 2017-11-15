@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   def create
     @user = User.create(user_create_params)
     if @user.valid?
-      redirect_to '/login'
+      redirect_to login_path
     else
       render 'new' # TODO: Add error messages and repopulate form
     end

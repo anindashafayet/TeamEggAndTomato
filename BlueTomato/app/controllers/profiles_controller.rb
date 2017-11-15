@@ -1,26 +1,23 @@
 class ProfilesController < ApplicationController
-  def new
+  def new; end
 
-  end
-  
-  def index
-    
-  end
+  def index; end
 
   def create
-    #we need to find whether this profile linked to the account infomation
+    # we need to find whether this profile linked to the account infomation
     @profile = Profile.new(profile_params)
     @profile.save
     redirect_to @profile
   end
 
   def show
-    @profile = Profile.find(params[:id])
+    # TODO: Modify to actually show a Profile
+    @user = logged_in_user
   end
 
   private
-  def profile_params
-    params.require(:profile).permit(:description, :phone , :address)
-  end
 
+  def profile_params
+    params.require(:profile).permit(:description, :phone, :address)
+  end
 end

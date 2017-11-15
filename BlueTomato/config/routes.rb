@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
-  delete '/logout', to: 'sessions#destroy'
+  delete '/logout', to: 'sessions#destroy', as: 'logout'
 
   get 'home/home', to: "home#home", as: "home"
   get 'home/signup', to: "home#signup", as: "signup"
   get 'home/login', to: "home#login"
   get 'home/aboutus', to: "home#aboutus", as: "aboutus"
-  get 'home/profile', to: "home#profile", as: "profile"
+  get 'home/profile', to: 'profiles#show', as: 'profile'
   get 'home/services', to: "home#services", as: "services"
   get 'home/faq', to: "home#faq", as: "faq"
   get 'home/tos', to: "home#tos", as: "tos"
