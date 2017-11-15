@@ -26,6 +26,8 @@ class ApplicationController < ActionController::Base
     nil
   end
 
+  # TODO: I feel like these should be here, but when I tried to put them in
+  # TODO: the helpers I get problems with 'session'
   def session_nav_element_label
     user = logged_in_user
     if !user.nil?
