@@ -20,12 +20,14 @@ Rails.application.routes.draw do
   get 'customer_service/index'
   post 'customer_service/submit_feedback'#, to: 'customer_service#submit_feedback'
   #get 'customer_service/submit_feedback'#, to: 'customer_service#submit_feedback'
+  get 'users/new'
   get 'teenagers/new'
   get 'teenagers/sign_in'
   post 'teenagers/sign_in', to: 'teenagers#verify'
   get 'clients/sign_in'
   post 'clients/sign_in', to: 'clients#verify'
   get 'clients/sign_out'
+  resources :users
   resources :teenagers
   resources :clients
   resources :profiles

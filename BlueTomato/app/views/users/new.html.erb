@@ -1,0 +1,36 @@
+<h1>Register a new Blue Tomato user!</h1>
+
+<p><%= link_to 'Back Home', home_path%></p>
+
+<% if @user.errors.any? %>
+    <div id="error_explanation">
+      <div class="alert alert-danger">
+        The form contains <%= pluralize(@user.errors.count, 'error') %>.
+      </div>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+
+<%= form_for @user do |form| %>
+    <p>
+      <%= form.label :AccountInfo,'Account Information' %><br>
+      User Name: <%= form.text_field :username %><br>
+      Email: <%= form.text_field :email %><br>
+      Password: <%= form.password_field :password %><br>
+      Confirm Password: <%= form.password_field :password_confirmation %>
+    </p>
+    <p>
+      <%= form.label :PersonalInfo,'Personal Information' %><br>
+      First Name: <%= form.text_field :fname %><br>
+      Last Name: <%= form.text_field :lname %><br>
+      Cell Phone: <%= form.text_field :phone %><br>
+    </p>
+
+    <p>
+      <%= form.submit 'Register Now!' %>
+    </p>
+<% end %>
