@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
 
   get 'home/home', to: "home#home", as: "home"
   get 'home/signup', to: "home#signup", as: "signup"
-  get 'home/login', to: "home#login", as: "login"
+  get 'home/login', to: "home#login"
   get 'home/aboutus', to: "home#aboutus", as: "aboutus"
   get 'home/profile', to: "home#profile", as: "profile"
   get 'home/services', to: "home#services", as: "services"

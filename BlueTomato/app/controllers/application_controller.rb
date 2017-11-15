@@ -18,8 +18,32 @@ class ApplicationController < ActionController::Base
       guest.username = "Guest"
       return guest
     end
-	end
+  end
 
-	helper_method :current_user, :auth_user
-	include SessionsHelper
+  def logged_in_user
+    User.find(session[:user_id])
+  rescue ActiveRecord::RecordNotFound
+    nil
+  end
+
+  def session_nav_element_label
+    user = logged_in_user
+    if !user.nil?
+      user.fname
+    else
+      'Login'
+    end
+  end
+
+  def session_nav_element_link
+    if !logged_in_user.nil?
+      profile_path
+    else
+      login_path
+    end
+  end
+
+  helper_method :current_user, :auth_user
+  helper_method :session_nav_element_label
+  helper_method :session_nav_element_link
 end
