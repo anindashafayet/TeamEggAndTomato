@@ -1,15 +1,44 @@
+<% if @profile.profilable_type == "Client" %>
+<! display page for client >
+
+<h3>Welcome to your page,
+<%= Client.find(@profile.profilable_id).fname %>
+!
+</h3>
+
 <p>
-  <strong>Description</strong>>
+  <strong>Description</strong>
   <%= @profile.description %>
 </p>
 
 <p>
   <strong> Phone </strong>
-  <%= @profile.phone %>
+  <%= Client.find(@profile.profilable_id).cell_phone %>
 </p>
 
 <p>
   <strong> Address </strong>
-  <%= @profile.address %>
-  <%= @profile.address %>
+  <%= Address.find_by_addressable_id(@profile.profilable_id).line1 %>
 </p>
+<% else %>
+
+<h3>Welcome to your page,
+<%= Teenager.find(@profile.profilable_id).fname %>
+!
+</h3>
+<! display page for teenager>
+
+<p>
+  <strong>Description</strong>
+  <%= @profile.description %>
+</p>
+
+<p>
+  <strong> Phone </strong>
+  <%= Teenager.find(@profile.profilable_id).cell_phone %>
+</p>
+
+<p>
+  <strong> Address </strong>
+  <%= Address.find_by_addressable_id(@profile.profilable_id).line1 %>
+<% end %>

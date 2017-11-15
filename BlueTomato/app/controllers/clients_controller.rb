@@ -54,7 +54,7 @@ class ClientsController < ApplicationController
   private
   def params_profile
     params.require(:profile)
-	
+	permit(:address)
   end
   def params_client
   	params.require(:client).

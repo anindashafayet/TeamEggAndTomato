@@ -49,7 +49,10 @@ class TeenagersController < ApplicationController
 
         
   private
-
+  def params_profile
+    params.require(:profile)
+	permit(:address)
+  end
   def params_teenager
   	params.require(:teenager).
   	permit(:fname, :lname, :birth_date, :cell_phone)
