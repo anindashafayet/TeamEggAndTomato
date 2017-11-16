@@ -12,7 +12,7 @@ class ProfilesController < ApplicationController
 
   def show
     # TODO: Modify to actually show a Profile
-    @user = logged_in_user
+    @user = logged_in_user if logged_in?
   end
 
   private

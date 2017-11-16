@@ -46,7 +46,7 @@ class TeenOfferingsController < ApplicationController
   end
 
   def show
-	  if auth_user
+	  if require_logged_in
 		@teen_offering = TeenOffering.find(params[:id])
 		@matched_requests = match_requests(@teen_offering)
 	  else

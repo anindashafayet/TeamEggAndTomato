@@ -34,7 +34,7 @@ class ClientsController < ApplicationController
     if @account!=nil
       #@client=client.find(0)
       session[:user_id]=@account.id
-      if auth_user
+      if require_logged_in
         #render plain: "client login successfully"
         redirect_to home_path
         flash[:alert] = 'Client successful login'

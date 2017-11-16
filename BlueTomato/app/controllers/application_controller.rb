@@ -1,51 +1,52 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  def auth_user
-  	if session[:user_id]
-  		@current_user=Account.find session[:user_id]
-  		return true
-  	else
-  		redirect_to '/home/login' and return false
-  	end
-	end
+  def require_logged_in
+    redirect_to login_path unless logged_in?
+    true
+  end
 
-  def current_user
-    if session[:user_id]
-      return Account.find(session[:user_id])
+  # TODO: I think we should manually handle the case of no user logged in,
+  # TODO: as opposed to returning 'Guest'
+  def logged_in_user_or_guest
+    if logged_in?
+      logged_in_user
     else
-      guest = Account.new()
-      guest.username = "Guest"
-      return guest
+      guest = User.new
+      guest.username = 'Guest'
+      guest
     end
   end
 
-  def logged_in_user
-    User.find(session[:user_id])
-  rescue ActiveRecord::RecordNotFound
-    nil
+  def logged_in?
+    User.exists?(session[:user_id])
   end
 
-  # TODO: I feel like these should be here, but when I tried to put them in
-  # TODO: the helpers I get problems with 'session'
+  # It may raise ActiveRecord::RecordNotFound, call logged_in? first
+  def logged_in_user
+    User.find(session[:user_id])
+  end
+
+  # TODO: I feel like these shouldn't be here, but when I tried to put them in
+  # TODO: the helpers I got problems with 'session'
   def session_nav_element_label
-    user = logged_in_user
-    if !user.nil?
-      user.fname
+    if logged_in?
+      logged_in_user.fname
     else
       'Login'
     end
   end
 
   def session_nav_element_link
-    if !logged_in_user.nil?
+    if logged_in?
       profile_path
     else
       login_path
     end
   end
 
-  helper_method :current_user, :auth_user
+  helper_method :logged_in?, :logged_in_user
+  helper_method :require_logged_in, :logged_in_user_or_guest
   helper_method :session_nav_element_label
   helper_method :session_nav_element_link
 end

@@ -32,7 +32,7 @@ class ClientRequestsController < ApplicationController
   end
 
   def new
-    auth_user()
+    require_logged_in()
     @client_request = ClientRequest.new
   end
   # An IceCube rule(period_detail) and a start date (period) is used to denote the days that an offering or request are
@@ -81,7 +81,7 @@ class ClientRequestsController < ApplicationController
       @matched_user = Account.find(@client_request.matched_user)
     end
     if session[:user_id]
-      @username = current_user().username
+      @username = logged_in_user_or_guest().username
     else
       @username = "Please log in first."
     end
@@ -109,9 +109,9 @@ class ClientRequestsController < ApplicationController
   end
 
   def create
-    if auth_user()
+    if require_logged_in()
       @client_request = ClientRequest.new(client_request_params)
-      @client_request.account_id = current_user.id
+      @client_request.account_id = logged_in_user_or_guest.id
 	  @client_request.service_name = ServiceType.find(@client_request.service_type_id).name
       if @client_request.save
         redirect_to @client_request

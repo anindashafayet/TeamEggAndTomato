@@ -38,7 +38,7 @@ class TeenagersController < ApplicationController
     if @account.first!=nil
       #@teenager=Teenager.find(0)
       session[:user_id]=@account.first.id
-      if auth_user
+      if require_logged_in
         redirect_to "/home/home"
       end
     else

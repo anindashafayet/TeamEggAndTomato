@@ -1,4 +1,4 @@
-<% if !@user.nil?%>
+<% if logged_in?%>
     <h3>Welcome to your page, <%= @user.fname%> <%= @user.lname %>!</h3>
     <p>
       <strong>Email </strong>

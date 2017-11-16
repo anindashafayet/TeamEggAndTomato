@@ -69,7 +69,7 @@
       <% if @matched_user %>
 
         <h4>Matched With: <%=@matched_user.username%> </h4>
-        <% if current_user.id == @matched_user.id %>
+        <% if logged_in_user_or_guest.id == @matched_user.id %>
           <%= form_with do |form| %>
             <%=form.label :progress%>
             <%=form.text_field :progress, class: "form-control"%>
@@ -87,7 +87,7 @@
           </p>
         <%end%>
         <hr>
-        <% if current_user.id == @client_request.account_id && current_user.accountable_type == "Client" %>
+        <% if logged_in_user_or_guest.id == @client_request.account_id && logged_in_user_or_guest.accountable_type == "Client" %>
           <%= form_with do |form| %>
             <%=form.label :rating%>
             <%=form.text_field :rating, class: "form-control"%>
@@ -120,9 +120,9 @@
         <%= form_for [@client_request, @client_request.applicants.build] do |form| %>
 
           <div class="container">
-            <strong class="">User: <%= current_user.username %></strong>
+            <strong class="">User: <%= logged_in_user_or_guest.username %></strong>
             <span class="divider"></span>
-            <!--label class="col-sm-4"><%= current_user.username %></label-->
+            <!--label class="col-sm-4"><%= logged_in_user_or_guest.username %></label-->
             <%= form.submit "Apply For The Job!", class: "btn btn-primary"%>
 
         </div>
