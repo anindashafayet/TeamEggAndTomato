@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171115071213) do
+ActiveRecord::Schema.define(version: 20171116210506) do
 
   create_table "accounts", force: :cascade do |t|
     t.text "email"
@@ -27,16 +27,15 @@ ActiveRecord::Schema.define(version: 20171115071213) do
   end
 
   create_table "addresses", force: :cascade do |t|
+    t.integer "profile_id"
     t.string "line1"
     t.string "line2"
     t.string "city"
     t.string "state"
     t.string "zip"
-    t.integer "addressable_id"
-    t.string "addressable_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable_type_and_addressable_id", unique: true
+    t.index ["profile_id"], name: "index_addresses_on_profile_id"
   end
 
   create_table "applicants", force: :cascade do |t|
@@ -86,15 +85,14 @@ ActiveRecord::Schema.define(version: 20171115071213) do
   end
 
   create_table "profiles", force: :cascade do |t|
-    t.time "date_of_birth"
-    t.text "description"
-    t.text "phone"
-    t.text "address"
-    t.integer "gender"
+    t.integer "user_id"
+    t.date "date_of_birth"
+    t.string "about_me"
+    t.string "phone"
+    t.string "gender"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "profilable_id"
-    t.string "profilable_type"
+    t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
   create_table "service_types", force: :cascade do |t|
@@ -127,13 +125,11 @@ ActiveRecord::Schema.define(version: 20171115071213) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email"
-    t.string "username"
-    t.string "password"
-    t.string "fname"
-    t.string "lname"
-    t.date "birth_date"
-    t.string "phone"
+    t.string "email", null: false
+    t.string "username", null: false
+    t.string "password", null: false
+    t.string "fname", null: false
+    t.string "lname", null: false
     t.binary "salt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
