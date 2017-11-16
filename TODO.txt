@@ -3,7 +3,8 @@
 [Ramon] 
 Profile has an address and phone fields, which are already in User (address is its own table, with User having a reference to it) - we should clean this up. One way to do it is leaving all essential information for login in User (i.e. username, email, password, etc.), and move all other things to Profile (it would get a reference to an Address, which the user could fill in at any point in the Profile page). Permissions would probably use the Profile data (date_of_birth, address, etc.)
 
-[]
-Remove links in the home page to 'Sign Up' and 'Login', as it is all handled now in the 'Login' at the end.
+[] Figure out if there is a better place for session_nav_element_lable/link than in ApplicationController.
 
-[] Clean up the methods in ApplicationController (i.e. not sure where auth_user and current_user are used, these have to me changed to use User, I feel like the nav_element methods shouldn't be there, etc.)
+[] Figure out the usage of ApplicationController.logged_in_user_or_guest, I think the case of no user logged in should be handled manually.
+
+[] Implement password hashing+salt, or most likely use third-party library. 
