@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
 
   def session_nav_element_link
     if logged_in?
-      profile_path
+      profile_path(logged_in_user)
     else
       login_path
     end

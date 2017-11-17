@@ -1,15 +1,18 @@
 <% if logged_in?%>
-    <h3>Welcome to your page, <%= @user.fname%> <%= @user.lname %>!</h3>
+    <h3>Welcome to your page, <%= logged_in_user.fname%> <%= logged_in_user.lname %>!</h3>
     <p>
       <strong>Email </strong>
-      <%= @user.email %>
-    </p>
-    <p>
-      <strong>Phone </strong>
-      <%= @user.phone %>
+      <%= logged_in_user.email %>
     </p>
 
-    <p><%= link_to 'Logout', logout_path, :method => :delete %>
-<% else %>
-    <p> Please <%= link_to 'sign in', login_path%> to see your profile.</p>
+    <% if logged_in_user.profile.nil?%>
+        <%= link_to 'Complete profile', new_profile_path%>
+    <% else %>
+        <p>Personal Information</p><br/>
+        <p><%= logged_in_user.profile.about_me%></p>
+
+        <p><%= link_to 'Edit', edit_profile_path%> profile</p>
+    <% end %>
+
+    <p> <%= link_to 'Logout', logout_path, :method => :delete %> </p>
 <% end %>

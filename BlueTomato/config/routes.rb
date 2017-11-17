@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   get 'home/signup', to: "home#signup", as: "signup"
   get 'home/login', to: "home#login"
   get 'home/aboutus', to: "home#aboutus", as: "aboutus"
-  get 'home/profile', to: 'profiles#show', as: 'profile'
   get 'home/services', to: "home#services", as: "services"
   get 'home/faq', to: "home#faq", as: "faq"
   get 'home/tos', to: "home#tos", as: "tos"
@@ -22,7 +21,6 @@ Rails.application.routes.draw do
   get 'customer_service/index'
   post 'customer_service/submit_feedback'#, to: 'customer_service#submit_feedback'
   #get 'customer_service/submit_feedback'#, to: 'customer_service#submit_feedback'
-  get 'users/new'
   get 'teenagers/new'
   get 'teenagers/sign_in'
   post 'teenagers/sign_in', to: 'teenagers#verify'

@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     # TODO: Add password hashing or third-party library
     if !@user.nil? && @user.password == login_params[:password]
       log_in(@user)
-      redirect_to '/home/profile'
+      redirect_to profile_path(@user)
     else
       render 'new'
     end

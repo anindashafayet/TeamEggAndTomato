@@ -1,23 +1,36 @@
 class ProfilesController < ApplicationController
-  def new; end
-
-  def index; end
-
-  def create
-    # we need to find whether this profile linked to the account infomation
-    @profile = Profile.new(profile_params)
-    @profile.save
-    redirect_to @profile
+  def show
+    # This will raise if no user is logged in, but it shouldn't be called
+    # if no user is logged in (there are no links for it in the page)
+    @user = logged_in_user
   end
 
-  def show
-    # TODO: Modify to actually show a Profile
-    @user = logged_in_user if logged_in?
+  def new
+    @profile = Profile.new
+  end
+
+  def create
+    profile = logged_in_user.create_profile(profile_params)
+    if profile.valid?
+      redirect_to profile_path(profile)
+    else
+      redirect_to new_profile_path
+    end
+  end
+
+  def edit
+    @profile = logged_in_user.profile
+    render 'new'
+  end
+
+  def update
+    logged_in_user.profile.update(profile_params)
+    redirect_to profile_path(logged_in_user.profile)
   end
 
   private
 
   def profile_params
-    params.require(:profile).permit(:description, :phone, :address)
+    params.require(:profile).permit(:date_of_birth, :about_me, :phone, :gender)
   end
 end
