@@ -20,6 +20,9 @@
 /node_modules
 /yarn-error.log
 
+# ignroe env vars
+.env
+
 .byebug_history
 
 .DS_Store

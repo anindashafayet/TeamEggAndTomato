@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'charges/new'
+
+  get 'charges/create'
+
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy', as: 'logout'
@@ -28,6 +32,7 @@ Rails.application.routes.draw do
   post 'clients/sign_in', to: 'clients#verify'
   get 'clients/sign_out'
   resources :users
+  resources :charges, only: [:new, :create]
   resources :teenagers
   resources :clients
   resources :profiles

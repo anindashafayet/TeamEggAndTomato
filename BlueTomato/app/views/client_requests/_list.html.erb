@@ -20,7 +20,7 @@
 	<table>
 	  <tr>
 		<th>Service Type</th>
-		<th><%= filterrific_sorting_link(@filterrific, :period, 
+		<th><%= filterrific_sorting_link(@filterrific, :period,
 		opts = { :label => 'Start Date' }) %>
 		</th>
 		<th>Client username</th>
@@ -31,7 +31,7 @@
 		  <tr>
 			<td><%= ServiceType.find(client_request.service_type_id).name %></td>
 			<td><%= client_request.period %></td>
-			<td><%= Account.find(client_request.account_id).username %></td>
+			<!--td><%= Account.find(client_request.account_id).username %></td-->
 			<td><%= link_to 'Show', client_request_path(client_request) %></td>
 			<td><%= link_to 'Edit', edit_client_request_path(client_request) %></td>
 			<td><%= link_to 'Delete', client_request_path(client_request),
