@@ -6,7 +6,6 @@ before_install:
   - "rm ${BUNDLE_GEMFILE}.lock"
 
 script:
-  - "cd BlueTomato"
   - "bundle exec rake db:migrate"
   - "bundle exec rake"
 
