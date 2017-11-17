@@ -3,7 +3,7 @@ cache: bundler
 sudo: false
 
 before_install:
-  - "rm BlueTomato/${BUNDLE_GEMFILE}.lock"
+  - "rm ${BUNDLE_GEMFILE}.lock"
 
 script:
   - "cd BlueTomato"
