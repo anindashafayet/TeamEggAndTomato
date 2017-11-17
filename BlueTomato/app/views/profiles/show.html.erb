@@ -8,10 +8,11 @@
     <% if logged_in_user.profile.nil?%>
         <%= link_to 'Complete profile', new_profile_path%>
     <% else %>
-        <p>Personal Information</p><br/>
+        <strong>Personal Information</strong><br/>
         <p><%= logged_in_user.profile.about_me%></p>
-
-        <p><%= link_to 'Edit', edit_profile_path%> profile</p>
+		<strong>Gender</strong><br>
+		<p><%= logged_in_user.profile.gender%></p><br>
+        <p><%= link_to 'Edit Profile', edit_profile_path%></p>
     <% end %>
 
     <p> <%= link_to 'Logout', logout_path, :method => :delete %> </p>

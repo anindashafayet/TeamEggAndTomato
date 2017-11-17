@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(version: 20171116210506) do
     t.integer "account_id"
     t.integer "service_type_id"
     t.date "period"
-    t.string "period_detail", default: "N/A"
+    t.string "period_detail"
     t.text "detail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
