@@ -1,0 +1,14 @@
+language: ruby
+cache: bundler
+sudo: false
+
+before_install:
+  - "rm ${BUNDLE_GEMFILE}.lock"
+
+script:
+  - "bundle exec rake db:migrate"
+  - "bundle exec rake"
+
+rvm:
+  - 2.3.5
+  - 2.4.1
