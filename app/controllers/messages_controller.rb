@@ -49,8 +49,11 @@ class MessagesController < ApplicationController
 
       @message = Message.find(params[:id])
       @message.destroy
-      redirect_back(fallback_location: root_path)
-      #redirect_to request.referrer, notice: "You're being redirected"
+      if !params[:prevPage].include?("show") && !params[:prevPage].include?("edit")
+        redirect_to params[:prevPage]
+      else
+        redirect_to :root
+      end
     end
 
 private
