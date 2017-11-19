@@ -6,5 +6,14 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-service_types = ServiceType.create([{name: 'Laundry', description: 'Laundry service'},
-                                   {name: 'Cleaning', description: 'Cleaning service'}])
+service_types = ServiceType.create([{name: 'Babysitting', description: 'Babysitting service'},
+                                   {name: 'Yard Work', description: 'Yard Work service'},
+								   {name: 'Snow Shovelling', description: 'Snow Shovelling service'},
+								   {name: 'Furniture Moving', description: 'Furniture Moving service'},
+								   {name: 'Cleaning', description: 'Cleaning service'},
+								   {name: 'Pet feeding', description: 'Pet feeding service'},
+								   {name: 'Dog walking', description: 'Dog walking service'},
+								   {name: 'Tutoring', description: 'Tutoring service'},
+								   {name: 'Computer Help', description: 'Computer Help Services'}
+								   ])
+								   
