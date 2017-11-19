@@ -135,8 +135,6 @@ ActiveRecord::Schema.define(version: 20171119195636) do
     t.binary "salt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "account_id"
-    t.index ["account_id"], name: "index_users_on_account_id"
   end
 
 end
