@@ -18,7 +18,7 @@ class MessagesController < ApplicationController
           #@cid = params[:page_id]
           @message = Message.new(message_params)
           #@message.client_request = ClientRequest.find(@cid)
-          @message.account = logged_in_user_or_guest()
+          @message.user = logged_in_user_or_guest()
 
           if @message.save
               #redirect_to @message
