@@ -2,21 +2,24 @@
   <strong>Sender Name:</strong>
   <%= @message.name %>
 </p>
- 
+
 <p>
   <strong>Sender Email Address:</strong>
   <%= @message.email %>
 </p>
- 
+
 <p>
   <strong>Message Title:</strong>
   <%= @message.title %>
 </p>
- 
+
 <p>
   <strong>Message Content:</strong>
   <%= @message.text %>
 </p>
 <!links>
 <%= link_to 'Edit', edit_message_path(@message) %> |
-<%= link_to 'Back', "/customer_service/index" %>
+<%= link_to 'Delete', message_path(@message),
+            method: :delete,
+            data: {confirm: 'Are you sure to delete?'}%>
+<%= link_to 'Back', "" %>
