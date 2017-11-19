@@ -18,7 +18,7 @@ class ClientRequestsController < ApplicationController
 	  persistence_id: 'shared_key',
       default_filter_params: {},
 	) or return
-	
+
 	@client_requests = @filterrific.find.page(params[:page])
 
 	respond_to do |format|
@@ -78,7 +78,7 @@ class ClientRequestsController < ApplicationController
     @message = Message.new()
     @messages = @client_request.messages
     if @client_request.matched_user?
-      @matched_user = Account.find(@client_request.matched_user)
+      @matched_user = User.find(@client_request.matched_user)
     end
     if session[:user_id]
       @username = logged_in_user_or_guest().username
@@ -111,8 +111,8 @@ class ClientRequestsController < ApplicationController
   def create
     if require_logged_in()
       @client_request = ClientRequest.new(client_request_params)
-      @client_request.account_id = logged_in_user_or_guest.id
-	  @client_request.service_name = ServiceType.find(@client_request.service_type_id).name
+      @client_request.user_id = logged_in_user_or_guest.id
+	    @client_request.service_name = ServiceType.find(@client_request.service_type_id).name
       if @client_request.save
         redirect_to @client_request
       else

@@ -7,4 +7,7 @@ class User < ApplicationRecord
   validates :lname, presence: true
 
   has_one :profile, dependent: :destroy
+	has_many :messages, dependent: :destroy
+	has_many :applicants, dependent: :destroy
+	has_many :client_requests, dependent: :destroy
 end

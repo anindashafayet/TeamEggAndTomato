@@ -3,9 +3,9 @@ class ClientRequest < ApplicationRecord
   serialize :period_detail, Hash
   has_many :messages, dependent: :destroy
   has_many :applicants, dependent: :destroy
-  has_one :account
+  has_one :user
   belongs_to :service_type
-  
+
   # The model serialize input period_detail with the hash method from RecurringSelect
   def period_detail=(value)
     if RecurringSelect.is_valid_rule?(value) and value != "null"
@@ -14,7 +14,7 @@ class ClientRequest < ApplicationRecord
       super(nil)
     end
   end
-  
+
   # Extract the IceCube rule from serialize persistent period_detail
   def rule
     if period_detail.empty?
@@ -38,11 +38,11 @@ class ClientRequest < ApplicationRecord
 	scope :with_name, lambda { |c|
 		where('service_name = ?', c)
 	}
-	
+
 	scope :with_detail, lambda { |d|
 		where(detail: [d])
 	}
-	
+
 	scope :sorted_by, lambda { |sort_option|
 	  # extract the sort direction from the param value.
 	  direction = (sort_option =~ /desc$/) ? 'desc' : 'asc'
@@ -55,7 +55,7 @@ class ClientRequest < ApplicationRecord
 		order("client_requests.created_at #{ direction }")
 	  when /^period/
 	    order("client_requests.period #{ direction }")
-	  
+
 	  else
 		raise(ArgumentError, "Invalid sort option: #{ sort_option.inspect }")
 	  end
@@ -67,11 +67,11 @@ class ClientRequest < ApplicationRecord
 
 		]
 	end
-	
+
 	def self.options_for_select
 		order('LOWER(detail)').map { |e| [e.detail] }
 	end
-	
+
 	scope :search_query, lambda { |query|
 		# Searches the students table on the 'first_name' and 'last_name' columns.
 		# Matches using LIKE, automatically appends '%' to each term.

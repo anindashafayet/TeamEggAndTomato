@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171116210506) do
+ActiveRecord::Schema.define(version: 20171119170828) do
 
   create_table "accounts", force: :cascade do |t|
     t.text "email"
@@ -40,24 +40,25 @@ ActiveRecord::Schema.define(version: 20171116210506) do
 
   create_table "applicants", force: :cascade do |t|
     t.integer "client_request_id"
-    t.integer "account_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["account_id"], name: "index_applicants_on_account_id"
     t.index ["client_request_id"], name: "index_applicants_on_client_request_id"
+    t.index ["user_id"], name: "index_applicants_on_user_id"
   end
 
   create_table "client_requests", force: :cascade do |t|
-    t.integer "account_id"
     t.integer "service_type_id"
     t.date "period"
     t.string "period_detail"
     t.text "detail"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "trigger"
     t.integer "matched_user"
     t.string "service_name"
+    t.index ["user_id"], name: "index_client_requests_on_user_id"
   end
 
   create_table "clients", force: :cascade do |t|
@@ -78,10 +79,10 @@ ActiveRecord::Schema.define(version: 20171116210506) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "ispublic"
-    t.integer "account_id"
+    t.integer "user_id"
     t.integer "client_request_id"
-    t.index ["account_id"], name: "index_messages_on_account_id"
     t.index ["client_request_id"], name: "index_messages_on_client_request_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -106,7 +107,7 @@ ActiveRecord::Schema.define(version: 20171116210506) do
     t.integer "account_id"
     t.integer "service_type_id"
     t.date "period"
-    t.string "period_detail"
+    t.string "period_detail", default: "N/A"
     t.text "detail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -133,6 +134,8 @@ ActiveRecord::Schema.define(version: 20171116210506) do
     t.binary "salt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "account_id"
+    t.index ["account_id"], name: "index_users_on_account_id"
   end
 
 end

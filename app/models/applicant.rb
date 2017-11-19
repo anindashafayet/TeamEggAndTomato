@@ -1,4 +1,4 @@
 class Applicant < ApplicationRecord
   belongs_to :client_request
-  belongs_to :account
+  belongs_to :user
 end
