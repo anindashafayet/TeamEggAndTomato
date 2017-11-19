@@ -113,7 +113,7 @@ class ClientRequestsController < ApplicationController
       @client_request = ClientRequest.new(client_request_params)
       @address = Address.new(address_params)
       @client_request.user_id = logged_in_user_or_guest.id
-	    #@client_request.service_name = ServiceType.find(@client_request.service_type_id).name
+	  @client_request.service_name = ServiceType.find(@client_request.service_type_id).name
       if @address.save
         @client_request.address_id = @address.id
         if @client_request.save
