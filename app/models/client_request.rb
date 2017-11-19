@@ -6,6 +6,7 @@ class ClientRequest < ApplicationRecord
   has_many :applicants, dependent: :destroy
   has_one :user
   belongs_to :service_type
+  has_one :address, dependent: :destroy
 
   # The model serialize input period_detail with the hash method from RecurringSelect
   def period_detail=(value)

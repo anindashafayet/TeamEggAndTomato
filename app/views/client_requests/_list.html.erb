@@ -21,6 +21,7 @@
 	  <tr>
 		<th>Catagory</th>
 		<th>Title</th>
+		<th>City</th>
 		<th><%= filterrific_sorting_link(@filterrific, :period,
 		opts = { :label => 'Start Date' }) %>
 		</th>
@@ -31,7 +32,8 @@
 	  <% client_requests.each do |client_request| %>
 		  <tr>
 			<td><%= ServiceType.find(client_request.service_type_id).name %></td>
-			<td><%= client_request.title %></td>
+			<td class="breakall"><%= client_request.title %></td>
+			<td><%= Address.find(client_request.address_id).city %></td>
 			<td><%= client_request.period %></td>
 			<td><%= User.find(client_request.user_id).username %></td>
 			<td><%= link_to 'Show', client_request_path(client_request) %></td>

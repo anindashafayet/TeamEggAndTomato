@@ -111,10 +111,18 @@ class ClientRequestsController < ApplicationController
   def create
     if require_logged_in()
       @client_request = ClientRequest.new(client_request_params)
+      @address = Address.new(address_params)
       @client_request.user_id = logged_in_user_or_guest.id
-	    @client_request.service_name = ServiceType.find(@client_request.service_type_id).name
-      if @client_request.save
-        redirect_to @client_request
+	    #@client_request.service_name = ServiceType.find(@client_request.service_type_id).name
+      if @address.save
+        @client_request.address_id = @address.id
+        if @client_request.save
+  		    #@address=@client_request.build_address(address_params).save
+          redirect_to @client_request
+        else
+          @address.delete
+          render 'new'
+        end
       else
         render 'new'
       end
@@ -124,5 +132,8 @@ class ClientRequestsController < ApplicationController
   private
   def client_request_params
     params.require(:client_request).permit(:service_type_id, :title, :period, :detail, :period_detail)
+  end
+  def address_params
+    params.require(:client_request).permit(:state, :city, :zip)
   end
 end

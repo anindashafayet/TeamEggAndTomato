@@ -8,9 +8,9 @@ class CreateAddresses < ActiveRecord::Migration[5.1]
 	  t.string :zip
 	  t.integer :addressable_id
 	  t.string :addressable_type
-	 
+
   	  t.timestamps
-	end 
+	end
 	add_index :addresses, [:addressable_type, :addressable_id], :unique => true
 
   end

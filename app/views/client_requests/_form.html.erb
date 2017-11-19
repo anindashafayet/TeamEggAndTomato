@@ -1,5 +1,5 @@
 <%= form_with scope: :client_request, url: client_requests_path, local: true do |form| %>
-    <% if @client_request.errors.any? %>
+    <% if @client_request && @client_request.errors.any? %>
         <div id="error_explanation", class= "alert alert-warning" >
           <h2>
             <%= pluralize(@client_request.errors.count, "error") %> prohibited
@@ -7,6 +7,19 @@
           </h2>
           <ul>
             <% @client_request.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <% if @address && @address.errors.any? %>
+        <div id="error_explanation", class= "alert alert-warning" >
+          <h2>
+            <%= pluralize(@address.errors.count, "error") %> prohibited
+            this request from being saved:
+          </h2>
+          <ul>
+            <% @address.errors.full_messages.each do |msg| %>
                 <li><%= msg %></li>
             <% end %>
           </ul>
@@ -31,6 +44,15 @@
     <p>
       <%= form.label :period_detail %><br>
       <%= form.select_recurring :period_detail, nil, allow_blank: true %><br>
+    </p>
+
+    <p>
+      <%= form.label 'State' %><br>
+      <%= form.text_field :state, class: "" %><br>
+      <%= form.label 'City' %><br>
+      <%= form.text_field :city, class: "" %><br>
+      <%= form.label 'Postal Code' %><br>
+      <%= form.text_field :zip, class: "" %><br>
     </p>
 
     <p>

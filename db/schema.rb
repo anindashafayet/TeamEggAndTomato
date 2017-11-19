@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171119195636) do
+ActiveRecord::Schema.define(version: 20171119203414) do
 
   create_table "accounts", force: :cascade do |t|
     t.text "email"
@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20171119195636) do
   end
 
   create_table "addresses", force: :cascade do |t|
-    t.integer "profile_id"
     t.string "line1"
     t.string "line2"
     t.string "city"
@@ -35,7 +34,6 @@ ActiveRecord::Schema.define(version: 20171119195636) do
     t.string "zip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["profile_id"], name: "index_addresses_on_profile_id"
   end
 
   create_table "applicants", force: :cascade do |t|
@@ -59,6 +57,8 @@ ActiveRecord::Schema.define(version: 20171119195636) do
     t.integer "matched_user"
     t.string "service_name"
     t.string "title"
+    t.integer "address_id"
+    t.index ["address_id"], name: "index_client_requests_on_address_id"
     t.index ["user_id"], name: "index_client_requests_on_user_id"
   end
 
@@ -135,8 +135,6 @@ ActiveRecord::Schema.define(version: 20171119195636) do
     t.binary "salt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "account_id"
-    t.index ["account_id"], name: "index_users_on_account_id"
   end
 
 end

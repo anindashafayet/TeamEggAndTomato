@@ -5,12 +5,16 @@
 <% @client_requests.each do |client_request| %>
     <div class = "well">
       <p><h4><%= client_request.title %></h4></p>
-      <p>
-        <%= ServiceType.find(client_request.service_type_id).name %>
-        <span class="divider"></span>
-        <%= client_request.period %>
-        <span class="divider"></span>
-        <%= link_to 'Read More', client_request_path(client_request), class:"btn btn-default" %>
+      <hr>
+      <% address = Address.find(client_request.address_id) %>
+      <p class="row">
+        <span class="col-sm-2">Type: <%= ServiceType.find(client_request.service_type_id).name %></span>
+        <span class="col-sm-4">
+          Localtion: <%= address.city %>
+          <%= address.zip %>
+        </span>
+        <span class="col-sm-2"><%= client_request.period %></span>
+        <%= link_to 'Read More', client_request_path(client_request), class:"col-sm-2 btn btn-default" %>
       </p>
     </div>
 <% end %>
