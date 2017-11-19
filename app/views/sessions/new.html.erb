@@ -3,6 +3,11 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
+    <% if flash[:notice] %>
+      <div class="alert alert-danger">
+        <%=flash[:notice]%>
+      </div>
+    <% end %>
     <%= form_for(:login_data) do |f| %>
 
       <%= f.label :username %>
@@ -10,8 +15,8 @@
 
       <%= f.label :password %>
       <%= f.password_field :password, class: 'form-control' %>
-
-      <%= f.submit 'Log in', class: 'btn btn-primary' %>
+      <br>
+      <p><%= f.submit 'Log in', class: 'btn btn-primary' %></p>
     <% end %>
 
     <p>New user? <%= link_to 'Sign up now!', '/users/new' %></p>

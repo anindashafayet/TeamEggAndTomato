@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
   # TODO: the helpers I got problems with 'session'
   def session_nav_element_label
     if logged_in?
-      logged_in_user.fname
+      "Welcome, "+logged_in_user.fname+"!"
     else
       'Login'
     end

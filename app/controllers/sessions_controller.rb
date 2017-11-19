@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
       log_in(@user)
       redirect_to profile_path(@user)
     else
+      flash[:notice] = "Wrong password or username."
       render 'new'
     end
   end
