@@ -18,12 +18,14 @@
   <strong>Message Content:</strong>
   <%= @message.text %>
 </p>
-<%= link_to 'Edit', edit_message_path(@message) %> |
-<%= link_to 'Delete', message_path(@message, prevPage:url_for(:back)),
-            #option: {:prevPage => url_for(:back)},
-            method: :delete,
-            data: {confirm: 'Are you sure to delete?'}%>
+<% if logged_in_user_or_guest.id == @message.user_id%>
+  <%= link_to 'Edit', edit_message_path(@message) %> |
+  <%= link_to 'Delete', message_path(@message, prevPage:url_for(:back)),
+              #option: {:prevPage => url_for(:back)},
+              method: :delete,
+              data: {confirm: 'Are you sure to delete?'}%>
 
-            |
-<%= link_to 'Back', url_for(:back) %>
+              |
+<%end%>
+<%= link_to 'Back', :back %>
 </div>

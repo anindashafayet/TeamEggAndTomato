@@ -37,11 +37,16 @@ class MessagesController < ApplicationController
 
     def update
         @message = Message.find(params[:id])
+        if logged_in_user_or_guest.id == @message.user_id
 
-        if @message.update(message_params)
-            redirect_to @message
+          if @message.update(message_params)
+              redirect_to @message
+          else
+              render 'edit'
+          end
         else
-            render 'edit'
+          @message.errors.add(:base, :invalid, message: "Not creater of message.")
+          redirect_to @message
         end
     end
 

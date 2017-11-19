@@ -2,8 +2,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def require_logged_in
-    redirect_to login_path unless logged_in?
-    true
+    if logged_in?
+      return true
+    else
+      redirect_to login_path and return false
+    end
   end
 
   # TODO: I think we should manually handle the case of no user logged in,
