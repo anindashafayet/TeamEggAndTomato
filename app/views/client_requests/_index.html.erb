@@ -4,8 +4,13 @@
 
 <% @client_requests.each do |client_request| %>
     <div class = "well">
-      <p><%= ServiceType.find(client_request.service_type_id).name %></p>
-      <p><%= client_request.period %></p>
-      <%= link_to 'Read More', client_request_path(client_request), class:"btn btn-default" %>
+      <p><h4><%= client_request.title %></h4></p>
+      <p>
+        <%= ServiceType.find(client_request.service_type_id).name %>
+        <span class="divider"></span>
+        <%= client_request.period %>
+        <span class="divider"></span>
+        <%= link_to 'Read More', client_request_path(client_request), class:"btn btn-default" %>
+      </p>
     </div>
 <% end %>

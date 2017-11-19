@@ -9,6 +9,11 @@
       <%= ServiceType.find(@client_request.service_type_id).name %>
     </p>
 
+    <p class="breakall">
+      <strong>Title:</strong>
+      <%= @client_request.title %>
+    </p>
+
     <p>
       <strong>Start from:</strong>
       <%= @client_request.period %>
@@ -25,9 +30,9 @@
     </p>
   </div>
 
-    <h3>Comments:</h3>
+    <h3 class="shading">Comments:</h3>
     <table id="public_messages" class="table table-striped">
-		<% if @messages.count != 0 %>
+		<!---% if @messages.count != 0 %-->
 			<tr>
 				<th>User</th>
 				<th>Message</th>
@@ -35,22 +40,21 @@
 
 			<%= render @messages %>
 
-		<% else %>
+		<!--% else %>
 			No comments! Be the first to comment!
-		<% end %>
+		< end %-->
 
     </table>
 
-	<h3>Leave a comment as:</h3>
+	<h3 class="shading">Leave a comment as:</h3>
     <%= form_with model: @message, controller: "messages", method: "post" ,remote: true do |form| %>
       <div id="error"></div>
-      <p>
-        <%= form.label 'Username' %><br>
+      <p class="shading">
+        <%= form.label 'Username:' %>
         <%= form.text_field :name, value: @username, readonly: true, type: "hidden" %>
 		<%= @username %>
-      </p>
-      <p>
-        <%= form.label 'Description' %><br>
+        <br>
+        <%= form.label 'Description:', class: ""%><br>
         <%= form.text_area :text, class: "form-control" %>
       </p>
 

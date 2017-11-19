@@ -123,6 +123,6 @@ class ClientRequestsController < ApplicationController
 
   private
   def client_request_params
-    params.require(:client_request).permit(:service_type_id, :period, :detail, :period_detail)
+    params.require(:client_request).permit(:service_type_id, :title, :period, :detail, :period_detail)
   end
 end

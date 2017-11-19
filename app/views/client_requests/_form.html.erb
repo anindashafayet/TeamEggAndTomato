@@ -1,6 +1,6 @@
 <%= form_with scope: :client_request, url: client_requests_path, local: true do |form| %>
     <% if @client_request.errors.any? %>
-        <div id="error_explanation">
+        <div id="error_explanation", class= "alert alert-warning" >
           <h2>
             <%= pluralize(@client_request.errors.count, "error") %> prohibited
             this request from being saved:
@@ -16,6 +16,11 @@
     <p>
       <%= form.label :service_type %><br>
       <%= form.collection_select :service_type_id, ServiceType.all, :id, :name, prompt: true %>
+    </p>
+
+    <p>
+      <%= form.label 'Title' %><br>
+      <%= form.text_field :title, class: "form-control" %><br>
     </p>
 
     <p>

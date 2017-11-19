@@ -1,5 +1,6 @@
 class ClientRequest < ApplicationRecord
   validates :service_type_id, presence: true
+  validates :title, presence: true, length: { minimum: 5 }
   serialize :period_detail, Hash
   has_many :messages, dependent: :destroy
   has_many :applicants, dependent: :destroy

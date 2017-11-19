@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171119170828) do
+ActiveRecord::Schema.define(version: 20171119195636) do
 
   create_table "accounts", force: :cascade do |t|
     t.text "email"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20171119170828) do
     t.text "trigger"
     t.integer "matched_user"
     t.string "service_name"
+    t.string "title"
     t.index ["user_id"], name: "index_client_requests_on_user_id"
   end
 

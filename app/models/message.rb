@@ -1,5 +1,5 @@
 class Message < ApplicationRecord
-    validates :text, presence: true, length: { minimum: 5 }
+    validates :text, presence: true
     validates_presence_of :user
     belongs_to :user
     #validates :email, presence: true
