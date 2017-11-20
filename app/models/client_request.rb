@@ -96,7 +96,7 @@ class ClientRequest < ApplicationRecord
 		num_or_conds = 1
 		where(
 			terms.map { |term|
-			  "((ServiceTypes.name) LIKE ?)"
+			  "((client_requests.title) LIKE ?)"
 			}.join(' AND '),
 			*terms.map { |e| [e] * num_or_conds }.flatten
 		)

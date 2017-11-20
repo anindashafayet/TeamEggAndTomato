@@ -5,7 +5,14 @@
 
 <%= form_for_filterrific @filterrific do |f| %>
 	<h3>Filter</h3>
-	
+	<div>
+    Search
+    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+    <%= f.text_field(
+      :search_query,
+      class: 'filterrific-periodically-observed'
+    ) %>
+    </div>
 	<div>
 	Service Type
 	<%= f.select(:with_name,
