@@ -106,7 +106,7 @@
           </p>
         <%end%>
         <hr>
-        <% if logged_in_user_or_guest.id == @client_request.user_id %>
+        <% if logged_in_user_or_guest.id == @client_request.user_id && !@client_request.rating %>
           <%= form_for @client_request, :url=>rating_path do |form| %>
             <%=form.label :rating%>
             <%=form.text_field :rating, class: "form-control", type: "number", min:"0", max:"5"%>
@@ -115,16 +115,6 @@
             <br>
             <%=form.submit "Submit Feedback", class: "form-control btn btn-warning"%>
           <%end%>
-          <br>
-    			<form class="" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"%>
-    				<input type="hidden" name="cmd" value="_s-xclick">
-    				<input type="hidden" name="hosted_button_id" value="VRDB54ENGD2X8">
-    				<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif"
-    					border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-    				<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-    			</form>
-
-
         <%else%>
           <p>
             <h5>Rating:</h5>
@@ -136,6 +126,17 @@
             <h5>Feedback:</h5>
             <p class = "well"><%= @client_request.feedback%></p>
           </p>
+        <%end%>
+        <% if logged_in_user_or_guest.id == @client_request.user_id %>
+          <hr>
+    			<form class="" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"%>
+            Payment: <input type="" name="value", class="">
+    				<input type="hidden" name="cmd" value="_s-xclick">
+    				<input type="hidden" name="hosted_button_id" value="VRDB54ENGD2X8">
+    				<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif"
+    					border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    				<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    			</form>
         <%end%>
 
       <%else%>
