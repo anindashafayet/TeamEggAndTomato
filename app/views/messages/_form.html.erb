@@ -35,6 +35,8 @@
   <%= form.hidden_field :ispublic, :value => true%>
 
   <p>
-    <%= form.submit class: "btn btn-primary" %>
+    <%= form.button class: "btn btn-info btn-lg" do %>
+      Leave A Message <span class="glyphicon glyphicon-comment"></span>
+    <%end%>
   </p>
 <% end %>

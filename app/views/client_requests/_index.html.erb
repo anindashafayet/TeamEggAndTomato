@@ -1,7 +1,11 @@
 
-<h1>Listing Client Requests</h1>
+<h1>
+  See What's New And Awesome Service
+  <span class="glyphicon glyphicon-fire"></span>
+  <span class="glyphicon glyphicon-heart"></span>
+  <span class="glyphicon glyphicon-thumbs-up"></span>
+</h1>
 <%= link_to 'New client request', new_client_request_path %>
-
 <% @client_requests.each do |client_request| %>
     <div class = "well">
       <p><h4><%= client_request.title %></h4></p>
