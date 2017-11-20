@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171120015122) do
+ActiveRecord::Schema.define(version: 20171120033746) do
 
   create_table "accounts", force: :cascade do |t|
     t.text "email"
@@ -60,6 +60,8 @@ ActiveRecord::Schema.define(version: 20171120015122) do
     t.integer "address_id"
     t.integer "progress"
     t.text "fullfillment"
+    t.integer "rating"
+    t.text "feedback"
     t.index ["address_id"], name: "index_client_requests_on_address_id"
     t.index ["user_id"], name: "index_client_requests_on_user_id"
   end
@@ -137,6 +139,8 @@ ActiveRecord::Schema.define(version: 20171120015122) do
     t.binary "salt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "rating"
+    t.integer "rating_count"
   end
 
 end

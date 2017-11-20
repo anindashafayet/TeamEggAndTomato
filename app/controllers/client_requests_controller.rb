@@ -120,6 +120,27 @@ class ClientRequestsController < ApplicationController
     redirect_back(:fallback_location=>root_path)
   end
 
+  def update_rating
+    @client_request = ClientRequest.find(params[:id])
+    if @client_request
+      @matched_user = User.find(@client_request.matched_user)
+      @client_request.rating = params[:client_request][:rating].to_i
+      @client_request.feedback = params[:client_request][:feedback]
+      if @client_request.save()
+        count = @matched_user.rating_count || 0
+        @matched_user.rating ||= 0
+        @matched_user.rating = (@matched_user.rating * count + @client_request.rating)/(count+1)
+        @matched_user.rating_count = count+1
+        if !@matched_user.save()
+            @client_request.rating=0
+            @client_request.feedback=""
+            @client_request.save()
+        end
+      end
+    end
+    redirect_back(:fallback_location=>root_path)
+  end
+
   def create
     if require_logged_in()
       @client_request = ClientRequest.new(client_request_params)
