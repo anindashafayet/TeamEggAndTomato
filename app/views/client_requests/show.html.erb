@@ -81,9 +81,9 @@
 
         <h4>Matched With: <%=@matched_user.username%> </h4>
         <% if logged_in_user_or_guest.id == @matched_user.id %>
-          <%= form_with do |form| %>
+          <%= form_for @client_request, :url=>progress_path do |form| %>
             <%=form.label :progress%>
-            <%=form.text_field :progress, class: "form-control"%>
+            <%=form.text_field :progress, class: "form-control", type: "number", min: "0", max: "100"%>
             <%=form.label :fullfillment%>
             <%=form.text_area :fullfillment, class: "form-control"%>
             <br>
@@ -91,10 +91,18 @@
           <%end%>
         <%else%>
           <p>
-            <h5>Progress: 100%</h5>
+            <h5>Progress:</h5>
+            <% progress = @client_request.progress %>
+            <div class="progress">
+              <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="<%=progress%>"
+              aria-valuemin="0" aria-valuemax="100" style="width:<%=@client_request.progress%>%">
+                <%=@client_request.progress%>%
+              </div>
+            </div>
           </p>
           <p>
-            <h5>Fullfillment: Well Done!</h5>
+            <h5>Fullfillment:</h5>
+            <p class = "well"><%= @client_request.fullfillment%></p>
           </p>
         <%end%>
         <hr>

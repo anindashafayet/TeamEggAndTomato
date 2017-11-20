@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'teenagers/new', to: "teenagers#new", as: "new"
 
   post 'client_requests/:id/match_applicant/:matched_id', to: 'client_requests#match_applicant', as: :match
+  patch 'client_requests/:id/progress', to: 'client_requests#update_progress', as: :progress
 
   root "home#home"
 

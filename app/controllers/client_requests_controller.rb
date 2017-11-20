@@ -108,6 +108,18 @@ class ClientRequestsController < ApplicationController
     end
   end
 
+  def update_progress
+    @client_request = ClientRequest.find(params[:id])
+    if @client_request
+      @client_request.progress = params[:client_request][:progress].to_i
+      @client_request.fullfillment = params[:client_request][:fullfillment]
+      if !@client_request.save()
+        logger.debug @client_request
+      end
+    end
+    redirect_back(:fallback_location=>root_path)
+  end
+
   def create
     if require_logged_in()
       @client_request = ClientRequest.new(client_request_params)
