@@ -1,5 +1,5 @@
 <h1>Listing Client Requests</h1>
-<div id="map" class="largepic"></div>
+<div id="map" class="jumbotron largepic"></div>
 <%= link_to 'New client request', new_client_request_path %>
 
 <%= form_for_filterrific @filterrific do |f| %>
@@ -41,16 +41,16 @@
 	var geocoder;
 	var map;
 	function initMap() {
-		var uluru = {lat: 43.6532, lng: -79.3832};
+		var uluru = {lat: 43.66, lng: -79.66};
 		var map = new google.maps.Map(document.getElementById('map'), {
 			zoom: 10,
 			center: uluru
 		});
 		var geocoder = new google.maps.Geocoder;
-		var marker = new google.maps.Marker({
-			position: uluru,
-			map: map
-		});
+		// var marker = new google.maps.Marker({
+		// 	position: uluru,
+		// 	map: map
+		// });
 		$('.addr').each(function(i,obj) {
 			codeAddress(obj, geocoder, map);
 		});
