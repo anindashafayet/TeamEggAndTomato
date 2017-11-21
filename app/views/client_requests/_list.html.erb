@@ -19,7 +19,9 @@
 
 	<table class="table">
 	  <tr>
-		<th>Service Type</th>
+		<th>Catagory</th>
+		<th>Title</th>
+		<th>City</th>
 		<th><%= filterrific_sorting_link(@filterrific, :period,
 		opts = { :label => 'Start Date' }) %>
 		</th>
@@ -35,7 +37,7 @@
 			<td><%= address.city %></td>
 			<td class="addr hidden"><%= address.zip %></td>
 			<td><%= client_request.period %></td>
-			<!--td><%= Account.find(client_request.account_id).username %></td-->
+			<td><%= User.find(client_request.user_id).username %></td>
 			<td><%= link_to 'Show', client_request_path(client_request) %></td>
 			<!--td><%= link_to 'Edit', edit_client_request_path(client_request) %></td>
 			<td><%= link_to 'Delete', client_request_path(client_request),
