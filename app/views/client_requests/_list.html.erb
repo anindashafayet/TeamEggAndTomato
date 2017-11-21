@@ -33,7 +33,9 @@
 		  <tr>
 			<td><%= ServiceType.find(client_request.service_type_id).name %></td>
 			<td class="breakall"><%= client_request.title %></td>
-			<td><%= Address.find(client_request.address_id).city %></td>
+			<% address =  Address.find(client_request.address_id) %>
+			<td><%= address.city %></td>
+			<td class="addr hidden"><%= address.zip %></td>
 			<td><%= client_request.period %></td>
 			<td><%= User.find(client_request.user_id).username %></td>
 			<td><%= link_to 'Show', client_request_path(client_request) %></td>

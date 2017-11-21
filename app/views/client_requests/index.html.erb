@@ -1,6 +1,5 @@
-
-<%= render "shared/links"%>
 <h1>Listing Client Requests</h1>
+<div id="map" class="largepic"></div>
 <%= link_to 'New client request', new_client_request_path %>
 
 <%= form_for_filterrific @filterrific do |f| %>
@@ -21,7 +20,7 @@
 	)
 	%>
 	</div>
-		
+
   <div>
     <%= link_to(
       'Reset filters',
@@ -38,3 +37,39 @@
   partial: 'client_requests/list',
   locals: { client_requests: @client_requests }
 ) %>
+<script>
+	var geocoder;
+	var map;
+	function initMap() {
+		var uluru = {lat: 43.6532, lng: -79.3832};
+		var map = new google.maps.Map(document.getElementById('map'), {
+			zoom: 10,
+			center: uluru
+		});
+		var geocoder = new google.maps.Geocoder;
+		var marker = new google.maps.Marker({
+			position: uluru,
+			map: map
+		});
+		$('.addr').each(function(i,obj) {
+			codeAddress(obj, geocoder, map);
+		});
+	}
+	function codeAddress(elem, geocoder, map) {
+		var address = elem.innerHTML + ", CA";
+		geocoder.geocode( { 'address': address}, function(results, status) {
+			if (status == 'OK') {
+				//map.setCenter(results[0].geometry.location);
+				var marker = new google.maps.Marker({
+						map: map,
+						position: results[0].geometry.location
+				});
+			} else {
+				//alert('Geocode was not successful for the following reason: ' + status + " " + address);
+			}
+		});
+	}
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnZj7M2mHbfak_giRNh_VjjVBFSAlSa4E&callback=initMap">
+</script>
