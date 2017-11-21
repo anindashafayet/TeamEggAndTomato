@@ -1,8 +1,8 @@
 class ProfilesController < ApplicationController
   def show
-    # This will raise if no user is logged in, but it shouldn't be called
-    # if no user is logged in (there are no links for it in the page)
-    @user = logged_in_user
+    # should allow other to view the page
+    # @profile = Profile.find(params[:id])
+    @profile_user = User.find(params[:id])
   end
 
   def new

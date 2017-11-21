@@ -1,13 +1,21 @@
-<% if logged_in?%>
+<% if logged_in? && logged_in_user.id == @profile_user.id%>
     <h3>Welcome to your page, <%= logged_in_user.fname%> <%= logged_in_user.lname %>!</h3>
-    <p>
-      <strong>Email: </strong>
-      <%= logged_in_user.email %>
-      <br>
-      <strong>Cummulative Rating: </strong>
-      <%= sprintf('%.2f', logged_in_user.rating) %>
-    </p>
+<%end%>
+<p class="well">
+  <strong>Full Name: </strong>
+  <%= @profile_user.fname + " " + @profile_user.lname %>
+  <br>
+  <strong>Username: </strong>
+  <%= @profile_user.username%>
+  <br>
+  <strong>Email: </strong>
+  <%= @profile_user.email %>
+  <br>
+  <strong>Cummulative Rating: </strong>
+  <%= sprintf('%.2f', @profile_user.rating||0) %>
+</p>
 
+<% if logged_in? && logged_in_user.id == @profile_user.id%>
     <% if logged_in_user.profile.nil?%>
         <%= link_to 'Complete profile', new_profile_path%>
     <% else %>

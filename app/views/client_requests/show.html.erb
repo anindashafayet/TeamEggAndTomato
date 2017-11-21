@@ -79,7 +79,7 @@
       <h3>Applicants</h3><br>
       <% if @matched_user %>
 
-        <h4>Matched With: <%=@matched_user.username%> </h4>
+        <h4>Matched With: <%=link_to @matched_user.username, profile_path(@matched_user)%> </h4>
         <% if logged_in_user_or_guest.id == @matched_user.id %>
           <%= form_for @client_request, :url=>progress_path do |form| %>
             <%=form.label :progress%>
