@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  service_type_id: 1
+  periods_type: MyString
+  period: 2017-10-08
+  period_detail: MyString
+  detail: MyText
+
+two:
+  user_id: 1
+  service_type_id: 1
+  periods_type: MyString
+  period: 2017-10-08
+  period_detail: MyString
+  detail: MyText

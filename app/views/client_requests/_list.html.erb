@@ -1,0 +1,47 @@
+<div id="filterrific_results">
+	<style type="text/css">
+	td
+	{
+		padding:0 15px 0 15px;
+	}
+	</style>
+
+	<style type="text/css">
+	th
+	{
+		padding:0 15px 0 15px;
+	}
+	</style>
+
+	<div>
+		<%= page_entries_info client_requests %>
+	</div>
+
+	<table class="table">
+	  <tr>
+		<th>Service Type</th>
+		<th><%= filterrific_sorting_link(@filterrific, :period,
+		opts = { :label => 'Start Date' }) %>
+		</th>
+		<th>Client username</th>
+		<th colspan="3"></th>
+	  </tr>
+
+	  <% client_requests.each do |client_request| %>
+		  <tr>
+			<td><%= ServiceType.find(client_request.service_type_id).name %></td>
+			<td class="breakall"><%= client_request.title %></td>
+			<td><%= Address.find(client_request.address_id).city %></td>
+			<td><%= client_request.period %></td>
+			<!--td><%= Account.find(client_request.account_id).username %></td-->
+			<td><%= link_to 'Show', client_request_path(client_request) %></td>
+			<!--td><%= link_to 'Edit', edit_client_request_path(client_request) %></td>
+			<td><%= link_to 'Delete', client_request_path(client_request),
+							method: :delete,
+							data: { confirm: 'Are you sure?' } %></td>
+		  </tr-->
+	  <% end %>
+	</table>
+</div>
+
+<%= will_paginate client_requests %>

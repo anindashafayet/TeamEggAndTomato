@@ -1,0 +1,13 @@
+<tr>
+  <% if applicant.user %>
+    <td>
+      <%=link_to profile_path(applicant.user) do%>
+      <%=applicant.user.try(:username)%> <i class="glyphicon glyphicon-info-sign"></i>
+      <%end%>
+    </td>
+    <td><%=applicant.try(:created_at).try(:strftime, "%b %d, %Y")%></td>
+  <%end%>
+  <% if applicant.user && logged_in_user_or_guest.id == @client_request.user_id %>
+    <td><%=link_to "Choose Applicant", match_path(@client_request, applicant.user_id), method: :post%></td>
+  <%end%>
+</tr>

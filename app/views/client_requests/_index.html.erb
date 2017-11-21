@@ -1,0 +1,24 @@
+
+<h1>
+  See New And Awesome Service Requests
+  <span class="glyphicon glyphicon-fire"></span>
+  <span class="glyphicon glyphicon-heart"></span>
+  <span class="glyphicon glyphicon-thumbs-up"></span>
+</h1>
+<%= link_to 'New client request', new_client_request_path %>
+<% @client_requests.each do |client_request| %>
+    <div class = "well">
+      <p><h4><%= client_request.title %></h4></p>
+      <hr>
+      <% address = Address.find(client_request.address_id) %>
+      <p class="row">
+        <span class="col-sm-2">Type: <%= ServiceType.find(client_request.service_type_id).name %></span>
+        <span class="col-sm-4">
+          Localtion: <%= address.city %>
+          <%= address.zip %>
+        </span>
+        <span class="col-sm-2"><%= client_request.period %></span>
+        <%= link_to 'Read More', client_request_path(client_request), class:"col-sm-2 btn btn-default" %>
+      </p>
+    </div>
+<% end %>

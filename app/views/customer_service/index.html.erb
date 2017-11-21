@@ -1,0 +1,15 @@
+<%= render "shared/links"%>
+<h1>
+  Customer Service
+</h1>
+
+<h2>Leave Feedback</h2>
+<%= render "messages/form" %>
+<br><br>
+<table id="public_messages" class="table table-hover table-responsive spacer">
+    <tr>
+        <th>User</th>
+        <th>Preview</th>
+    </tr>
+    <%= render @messages %>
+</table>

@@ -1,0 +1,36 @@
+class ProfilesController < ApplicationController
+  def show
+    # should allow other to view the page
+    # @profile = Profile.find(params[:id])
+    @profile_user = User.find(params[:id])
+  end
+
+  def new
+    @profile = Profile.new
+  end
+
+  def create
+    profile = logged_in_user.create_profile(profile_params)
+    if profile.valid?
+      redirect_to profile_path(profile)
+    else
+      redirect_to new_profile_path
+    end
+  end
+
+  def edit
+    @profile = logged_in_user.profile
+    render 'new'
+  end
+
+  def update
+    logged_in_user.profile.update(profile_params)
+    redirect_to profile_path(logged_in_user.profile)
+  end
+
+  private
+
+  def profile_params
+    params.require(:profile).permit(:date_of_birth, :about_me, :phone, :gender)
+  end
+end

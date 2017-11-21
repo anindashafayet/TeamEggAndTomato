@@ -24,5 +24,8 @@
 
 .DS_Store
 
+# Ignore environment variables
+.env
+
 # Ignore RM project files
 .idea

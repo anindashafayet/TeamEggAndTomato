@@ -1,0 +1,211 @@
+<%= render "shared/links" %>
+
+<div class="row">
+  <div class="col-sm-6 jumbotronb bgbrighttomato">
+    <br><br>
+    <div class="strongshading well">
+    <p class="breakall">
+      <strong>Service type:</strong>
+      <%= ServiceType.find(@client_request.service_type_id).name %>
+    </p>
+
+    <p class="breakall">
+      <strong>Title:</strong>
+      <%= @client_request.title %>
+    </p>
+
+    <p class="breakall">
+      <strong>Location:</strong>
+      <% address = Address.find(@client_request.address_id) %>
+      <%= address.city %>
+      <%= address.zip %>
+    </p>
+
+    <p>
+      <strong>Start from:</strong>
+      <%= @client_request.period %>
+    </p>
+
+    <p class="breakall">
+      <strong>Period detail:</strong>
+      <%= @client_request.rule.to_s %>
+    </p>
+
+    <p class="breakall">
+      <strong>Description:</strong>
+      <%= @client_request.detail %>
+    </p>
+  </div>
+
+    <h3 class="shading">Comments:</h3>
+    <table id="public_messages" class="table table-striped">
+		<!---% if @messages.count != 0 %-->
+			<tr>
+				<th>User</th>
+				<th>Message</th>
+			</tr>
+
+			<%= render @messages %>
+
+		<!--% else %>
+			No comments! Be the first to comment!
+		< end %-->
+
+    </table>
+
+	<h3 class="shading">Leave a comment as:</h3>
+    <%= form_with model: @message, controller: "messages", method: "post" ,remote: true do |form| %>
+      <div id="error"></div>
+      <p class="shading">
+        <%= form.label 'Username:' %>
+        <%= form.text_field :name, value: @username, readonly: true, type: "hidden" %>
+		<%= @username %>
+        <br>
+        <%= form.label 'Description:', class: ""%><br>
+        <%= form.text_area :text, class: "form-control" %>
+      </p>
+
+      <%= form.text_field :client_request_id, value: @client_request.id, readonly: true, type: "hidden" %>
+
+      <p>
+        <%= form.submit class: "btn btn-primary"%>
+      </p>
+
+    <% end %>
+  </div>
+  <div class="col-sm-1"></div>
+  <div class="col-sm-5">
+    <div class="fixing well">
+      <h3>Applicants</h3><br>
+      <% if @matched_user %>
+
+        <h4>Matched With: <%=link_to @matched_user.username, profile_path(@matched_user)%> </h4>
+        <% if logged_in_user_or_guest.id == @matched_user.id %>
+          <%= form_for @client_request, :url=>progress_path do |form| %>
+            <%=form.label :progress%>
+            <%=form.text_field :progress, class: "form-control", type: "number", min: "0", max: "100"%>
+            <%=form.label :fullfillment%>
+            <%=form.text_area :fullfillment, class: "form-control"%>
+            <br>
+            <%=form.submit "Update Progress", class: "form-control btn btn-success"%>
+          <%end%>
+        <%else%>
+          <p>
+            <h5>Progress:</h5>
+            <% progress = @client_request.progress %>
+            <div class="progress">
+              <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="<%=progress%>"
+              aria-valuemin="0" aria-valuemax="100" style="width:<%=@client_request.progress%>%">
+                <%=@client_request.progress%>%
+              </div>
+            </div>
+          </p>
+          <p>
+            <h5>Fullfillment:</h5>
+            <p class = "well"><%= @client_request.fullfillment%></p>
+          </p>
+        <%end%>
+        <hr>
+        <% if logged_in_user_or_guest.id == @client_request.user_id && !@client_request.rating %>
+          <%= form_for @client_request, :url=>rating_path do |form| %>
+            <%=form.label :rating%>
+            <%=form.text_field :rating, class: "form-control", type: "number", min:"0", max:"5"%>
+            <%=form.label :feedback%>
+            <%=form.text_area :feedback, class: "form-control"%>
+            <br>
+            <%=form.submit "Submit Feedback", class: "form-control btn btn-warning"%>
+          <%end%>
+        <%else%>
+          <p>
+            <h5>Rating:</h5>
+            <% for i in 1..(@client_request.rating||0)%>
+              <span class="glyphicon glyphicon-apple"></span>
+            <%end%>
+          </p>
+          <p>
+            <h5>Feedback:</h5>
+            <p class = "well"><%= @client_request.feedback%></p>
+          </p>
+        <%end%>
+        <% if logged_in_user_or_guest.id == @client_request.user_id %>
+          <hr>
+    			<form class="" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"%>
+            Payment: <input type="" name="value", class="">
+    				<input type="hidden" name="cmd" value="_s-xclick">
+    				<input type="hidden" name="hosted_button_id" value="VRDB54ENGD2X8">
+    				<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif"
+    					border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    				<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    			</form>
+        <%end%>
+
+      <%else%>
+
+        <%= form_for [@client_request, @client_request.applicants.build] do |form| %>
+          <% if flash[:notice] %>
+              <div class='alert alert-danger'>
+                <h3> Error Message </h3>
+                <%= flash[:notice] %>
+              </div>
+          <%end%>
+          <div class="container">
+            <strong class="">User: <%= logged_in_user_or_guest.username %></strong>
+            <span class="divider"></span>
+            <!--label class="col-sm-4"><%= logged_in_user_or_guest.username %></label-->
+            <%= form.submit "Apply For The Job!", class: "btn btn-primary"%>
+
+          </div>
+          <% end %>
+          <br>
+          <table class="table">
+            <tr> <th>Applicants</th> <th> Date </th> <tr>
+            <% if @client_request.applicants.size() > 1 %>
+              <%= render @client_request.applicants %>
+            <%else%>
+              <tr> <td> No Applicant Yet! </td> <td> Be The First One! </td> </tr>
+            <%end%>
+          </table>
+
+      <%end%>
+    </div>
+  </div>
+</div>
+
+<!-- Display the matched offerings. TODO: extract a subview-->
+<p>
+  <strong>Matched Offerings:</strong>
+  <ul>
+  <% @matched_offerings.each do |offer_item| %>
+    <% offer = offer_item[:offering]; occur_date = offer_item[:occur_date] %>
+    <li>
+    <p>
+      <strong>Service type:</strong>
+      <%= ServiceType.find(offer.service_type_id).name %>
+    </p>
+
+    <p>
+      <strong>Start from:</strong>
+      <%= offer.period %>
+    </p>
+
+    <p>
+      <strong>Period detail:</strong>
+      <%= offer.rule.to_s %>
+    </p>
+
+    <p>
+      <strong>Detail:</strong>
+      <%= offer.detail %>
+    </p>
+
+    <p>
+      <strong> Recent available date:</strong>
+      <%= occur_date %>
+    </p>
+
+  <% end %>
+  </ul>
+</p>
+
+<%= link_to 'Edit', edit_client_request_path(@client_request) %> |
+<%= link_to 'Back', client_requests_path %>

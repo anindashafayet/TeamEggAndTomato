@@ -1,0 +1,66 @@
+<%= form_with scope: :client_request, url: client_requests_path, local: true do |form| %>
+    <% if @client_request && @client_request.errors.any? %>
+        <div id="error_explanation", class= "alert alert-warning" >
+          <h2>
+            <%= pluralize(@client_request.errors.count, "error") %> prohibited
+            this request from being saved:
+          </h2>
+          <ul>
+            <% @client_request.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <% if @address && @address.errors.any? %>
+        <div id="error_explanation", class= "alert alert-warning" >
+          <h2>
+            <%= pluralize(@address.errors.count, "error") %> prohibited
+            this request from being saved:
+          </h2>
+          <ul>
+            <% @address.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <p>
+      <%= form.label :service_type %><br>
+      <%= form.collection_select :service_type_id, ServiceType.all, :id, :name, prompt: true %>
+    </p>
+
+    <p>
+      <%= form.label 'Title' %><br>
+      <%= form.text_field :title, class: "form-control" %><br>
+    </p>
+
+    <p>
+      <%= form.label :start_from %><br>
+      <%= date_select :client_request, :period %>
+    </p>
+
+    <p>
+      <%= form.label :period_detail %><br>
+      <%= form.select_recurring :period_detail, nil, allow_blank: true %><br>
+    </p>
+
+    <p>
+      <%= form.label 'State' %><br>
+      <%= form.text_field :state, class: "" %><br>
+      <%= form.label 'City' %><br>
+      <%= form.text_field :city, class: "" %><br>
+      <%= form.label 'Postal Code' %><br>
+      <%= form.text_field :zip, class: "" %><br>
+    </p>
+
+    <p>
+      <%= form.label 'Description' %><br>
+      <%= form.text_area :detail, class: "form-control" %><br>
+    </p>
+
+    <p>
+      <%= form.submit 'Submit' %>
+    </p>
+<% end %>
