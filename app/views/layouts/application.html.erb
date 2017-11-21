@@ -54,11 +54,18 @@
                 </ul>
               </div>
             </li>
-            <li class="navbar-right"><%= link_to session_nav_element_label, session_nav_element_link%></li>
+            <li><%= link_to session_nav_element_label, session_nav_element_link%></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
+
+	<% if notice %>
+  		<p class="alert alert-success"><%= notice %></p>
+	<% end %>
+	<% if alert %>
+  		<p class="alert alert-danger"><%= alert %></p>
+	<% end %>
 
     <div class="container">
       <%= yield %>
