@@ -1,9 +1,3 @@
-<h1>Charges#new</h1>
-<p>Find me in app/views/charges/new.html.erb</p>
-
-<!-- app/views/charges/new.html.erb -->
-
-
 
 <%= form_tag charges_path do %>
   <article>
@@ -15,13 +9,13 @@
     <label class="amount">
       <span>
 		  Payment
-		  <%= pretty_amount(200) %>
+		  <%= @amount %>
 	  </span>
     </label>
   </article>
 
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="<%= Stipe.api_key %>"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
           data-description="<%= @description %>"
           data-amount="<%= @amount %>"
           data-locale="auto"></script>
