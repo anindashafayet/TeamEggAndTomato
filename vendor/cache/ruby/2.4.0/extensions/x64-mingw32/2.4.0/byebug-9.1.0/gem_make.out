@@ -1,0 +1,20 @@
+current directory: C:/Users/Elton Wong/Documents/Fourth Year/CSC444/TeamEggAndTomato/vendor/cache/ruby/2.4.0/gems/byebug-9.1.0/ext/byebug
+C:/Ruby24-x64/bin/ruby.exe -r ./siteconf20171122-4712-1984tty.rb extconf.rb
+creating Makefile
+
+current directory: C:/Users/Elton Wong/Documents/Fourth Year/CSC444/TeamEggAndTomato/vendor/cache/ruby/2.4.0/gems/byebug-9.1.0/ext/byebug
+make "DESTDIR=" clean
+
+current directory: C:/Users/Elton Wong/Documents/Fourth Year/CSC444/TeamEggAndTomato/vendor/cache/ruby/2.4.0/gems/byebug-9.1.0/ext/byebug
+make "DESTDIR="
+generating byebug-x64-mingw32.def
+compiling breakpoint.c
+compiling byebug.c
+compiling context.c
+compiling locker.c
+compiling threads.c
+linking shared-object byebug/byebug.so
+
+current directory: C:/Users/Elton Wong/Documents/Fourth Year/CSC444/TeamEggAndTomato/vendor/cache/ruby/2.4.0/gems/byebug-9.1.0/ext/byebug
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 byebug.so ./.gem.20171122-4712-1h44ubr/byebug

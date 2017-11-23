@@ -1,0 +1,50 @@
+current directory: C:/Users/Elton Wong/Documents/Fourth Year/CSC444/TeamEggAndTomato/vendor/cache/ruby/2.4.0/gems/nio4r-2.1.0/ext/nio4r
+C:/Ruby24-x64/bin/ruby.exe -r ./siteconf20171122-4712-1kgo3ki.rb extconf.rb
+checking for unistd.h... yes
+checking for sys/select.h... no
+checking for poll.h... no
+checking for sys/epoll.h... no
+checking for sys/event.h... no
+checking for port.h... no
+checking for sys/resource.h... no
+creating Makefile
+
+current directory: C:/Users/Elton Wong/Documents/Fourth Year/CSC444/TeamEggAndTomato/vendor/cache/ruby/2.4.0/gems/nio4r-2.1.0/ext/nio4r
+make "DESTDIR=" clean
+
+current directory: C:/Users/Elton Wong/Documents/Fourth Year/CSC444/TeamEggAndTomato/vendor/cache/ruby/2.4.0/gems/nio4r-2.1.0/ext/nio4r
+make "DESTDIR="
+generating nio4r_ext-x64-mingw32.def
+compiling bytebuffer.c
+compiling monitor.c
+compiling nio4r_ext.c
+In file included from nio4r_ext.c:7:0:
+../libev/ev.c:1836:31: warning: 'ev_default_loop_ptr' initialized and declared 'extern'
+   EV_API_DECL struct ev_loop *ev_default_loop_ptr = 0; /* needs to be initialised to make it a definition despite extern */
+                               ^~~~~~~~~~~~~~~~~~~
+../libev/ev.c: In function 'evpipe_write':
+../libev/ev.c:2481:19: warning: assignment from incompatible pointer type [-Wincompatible-pointer-types]
+           buf.buf = &buf;
+                   ^
+In file included from nio4r_ext.c:7:0:
+../libev/ev.c: In function 'ev_run':
+../libev/ev.c:3750:36: warning: passing argument 1 of 'rb_thread_call_without_gvl' from incompatible pointer type [-Wincompatible-pointer-types]
+         rb_thread_call_without_gvl(ev_backend_poll, (void *)&poll_args, RUBY_UBF_IO, 0);
+                                    ^~~~~~~~~~~~~~~
+In file included from ../libev/ev.c:42:0,
+                 from nio4r_ext.c:7:
+C:/Ruby24-x64/include/ruby-2.4.0/ruby/thread.h:28:7: note: expected 'void * (*)(void *)' but argument is of type 'VALUE (*)(void *) {aka long long unsigned int (*)(void *)}'
+ void *rb_thread_call_without_gvl(void *(*func)(void *), void *data1,
+       ^~~~~~~~~~~~~~~~~~~~~~~~~~
+compiling selector.c
+selector.c: In function 'NIO_Selector_allocate':
+selector.c:94:8: warning: implicit declaration of function 'pipe'; did you mean '_pipe'? [-Wimplicit-function-declaration]
+     if(pipe(fds) < 0) {
+        ^~~~
+        _pipe
+linking shared-object nio4r_ext.so
+C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: warning: cannot find entry symbol xport-all; defaulting to 0000000061741000
+
+current directory: C:/Users/Elton Wong/Documents/Fourth Year/CSC444/TeamEggAndTomato/vendor/cache/ruby/2.4.0/gems/nio4r-2.1.0/ext/nio4r
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 nio4r_ext.so ./.gem.20171122-4712-1ntqa8i

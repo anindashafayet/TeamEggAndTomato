@@ -1,0 +1,135 @@
+have_header: checking for unistd.h... -------------------- yes
+
+"x86_64-w64-mingw32-gcc -o conftest.exe -IC:/Ruby24-x64/include/ruby-2.4.0/x64-mingw32 -IC:/Ruby24-x64/include/ruby-2.4.0/ruby/backward -IC:/Ruby24-x64/include/ruby-2.4.0 -I. -D_FORTIFY_SOURCE=2 -D__USE_MINGW_ANSI_STDIO=1 -DFD_SETSIZE=2048 -IC:/msys64/mingw64/lib/libffi-3.2.1/include -D_WIN32_WINNT=0x0501 -D__MINGW_USE_VC2005_COMPAT -D_FILE_OFFSET_BITS=64  -march=x86-64 -mtune=generic -O2 -pipe -IC:/msys64/mingw64/lib/libffi-3.2.1/include conftest.c  -L. -LC:/Ruby24-x64/lib -L. -pipe     -lx64-msvcrt-ruby240  -lgmp -lshell32 -lws2_32 -liphlpapi -limagehlp -lshlwapi  "
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <winsock2.h>
+4: #include <windows.h>
+5: int main(int argc, char **argv)
+6: {
+7:   return 0;
+8: }
+/* end */
+
+"x86_64-w64-mingw32-gcc -E -IC:/Ruby24-x64/include/ruby-2.4.0/x64-mingw32 -IC:/Ruby24-x64/include/ruby-2.4.0/ruby/backward -IC:/Ruby24-x64/include/ruby-2.4.0 -I. -D_FORTIFY_SOURCE=2 -D__USE_MINGW_ANSI_STDIO=1 -DFD_SETSIZE=2048 -IC:/msys64/mingw64/lib/libffi-3.2.1/include -D_WIN32_WINNT=0x0501 -D__MINGW_USE_VC2005_COMPAT -D_FILE_OFFSET_BITS=64  -march=x86-64 -mtune=generic -O2 -pipe -IC:/msys64/mingw64/lib/libffi-3.2.1/include  conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <winsock2.h>
+4: #include <windows.h>
+5: #include <unistd.h>
+/* end */
+
+--------------------
+
+have_header: checking for sys/select.h... -------------------- no
+
+"x86_64-w64-mingw32-gcc -E -IC:/Ruby24-x64/include/ruby-2.4.0/x64-mingw32 -IC:/Ruby24-x64/include/ruby-2.4.0/ruby/backward -IC:/Ruby24-x64/include/ruby-2.4.0 -I. -D_FORTIFY_SOURCE=2 -D__USE_MINGW_ANSI_STDIO=1 -DFD_SETSIZE=2048 -IC:/msys64/mingw64/lib/libffi-3.2.1/include -D_WIN32_WINNT=0x0501 -D__MINGW_USE_VC2005_COMPAT -D_FILE_OFFSET_BITS=64  -march=x86-64 -mtune=generic -O2 -pipe -IC:/msys64/mingw64/lib/libffi-3.2.1/include  conftest.c -o conftest.i"
+conftest.c:5:10: fatal error: sys/select.h: No such file or directory
+ #include <sys/select.h>
+          ^~~~~~~~~~~~~~
+compilation terminated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <winsock2.h>
+4: #include <windows.h>
+5: #include <sys/select.h>
+/* end */
+
+--------------------
+
+have_header: checking for poll.h... -------------------- no
+
+"x86_64-w64-mingw32-gcc -E -IC:/Ruby24-x64/include/ruby-2.4.0/x64-mingw32 -IC:/Ruby24-x64/include/ruby-2.4.0/ruby/backward -IC:/Ruby24-x64/include/ruby-2.4.0 -I. -D_FORTIFY_SOURCE=2 -D__USE_MINGW_ANSI_STDIO=1 -DFD_SETSIZE=2048 -IC:/msys64/mingw64/lib/libffi-3.2.1/include -D_WIN32_WINNT=0x0501 -D__MINGW_USE_VC2005_COMPAT -D_FILE_OFFSET_BITS=64  -march=x86-64 -mtune=generic -O2 -pipe -IC:/msys64/mingw64/lib/libffi-3.2.1/include  conftest.c -o conftest.i"
+conftest.c:5:10: fatal error: poll.h: No such file or directory
+ #include <poll.h>
+          ^~~~~~~~
+compilation terminated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <winsock2.h>
+4: #include <windows.h>
+5: #include <poll.h>
+/* end */
+
+--------------------
+
+have_header: checking for sys/epoll.h... -------------------- no
+
+"x86_64-w64-mingw32-gcc -E -IC:/Ruby24-x64/include/ruby-2.4.0/x64-mingw32 -IC:/Ruby24-x64/include/ruby-2.4.0/ruby/backward -IC:/Ruby24-x64/include/ruby-2.4.0 -I. -D_FORTIFY_SOURCE=2 -D__USE_MINGW_ANSI_STDIO=1 -DFD_SETSIZE=2048 -IC:/msys64/mingw64/lib/libffi-3.2.1/include -D_WIN32_WINNT=0x0501 -D__MINGW_USE_VC2005_COMPAT -D_FILE_OFFSET_BITS=64  -march=x86-64 -mtune=generic -O2 -pipe -IC:/msys64/mingw64/lib/libffi-3.2.1/include  conftest.c -o conftest.i"
+conftest.c:5:10: fatal error: sys/epoll.h: No such file or directory
+ #include <sys/epoll.h>
+          ^~~~~~~~~~~~~
+compilation terminated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <winsock2.h>
+4: #include <windows.h>
+5: #include <sys/epoll.h>
+/* end */
+
+--------------------
+
+have_header: checking for sys/event.h... -------------------- no
+
+"x86_64-w64-mingw32-gcc -E -IC:/Ruby24-x64/include/ruby-2.4.0/x64-mingw32 -IC:/Ruby24-x64/include/ruby-2.4.0/ruby/backward -IC:/Ruby24-x64/include/ruby-2.4.0 -I. -D_FORTIFY_SOURCE=2 -D__USE_MINGW_ANSI_STDIO=1 -DFD_SETSIZE=2048 -IC:/msys64/mingw64/lib/libffi-3.2.1/include -D_WIN32_WINNT=0x0501 -D__MINGW_USE_VC2005_COMPAT -D_FILE_OFFSET_BITS=64  -march=x86-64 -mtune=generic -O2 -pipe -IC:/msys64/mingw64/lib/libffi-3.2.1/include  conftest.c -o conftest.i"
+conftest.c:5:10: fatal error: sys/event.h: No such file or directory
+ #include <sys/event.h>
+          ^~~~~~~~~~~~~
+compilation terminated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <winsock2.h>
+4: #include <windows.h>
+5: #include <sys/event.h>
+/* end */
+
+--------------------
+
+have_header: checking for port.h... -------------------- no
+
+"x86_64-w64-mingw32-gcc -E -IC:/Ruby24-x64/include/ruby-2.4.0/x64-mingw32 -IC:/Ruby24-x64/include/ruby-2.4.0/ruby/backward -IC:/Ruby24-x64/include/ruby-2.4.0 -I. -D_FORTIFY_SOURCE=2 -D__USE_MINGW_ANSI_STDIO=1 -DFD_SETSIZE=2048 -IC:/msys64/mingw64/lib/libffi-3.2.1/include -D_WIN32_WINNT=0x0501 -D__MINGW_USE_VC2005_COMPAT -D_FILE_OFFSET_BITS=64  -march=x86-64 -mtune=generic -O2 -pipe -IC:/msys64/mingw64/lib/libffi-3.2.1/include  conftest.c -o conftest.i"
+conftest.c:5:10: fatal error: port.h: No such file or directory
+ #include <port.h>
+          ^~~~~~~~
+compilation terminated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <winsock2.h>
+4: #include <windows.h>
+5: #include <port.h>
+/* end */
+
+--------------------
+
+have_header: checking for sys/resource.h... -------------------- no
+
+"x86_64-w64-mingw32-gcc -E -IC:/Ruby24-x64/include/ruby-2.4.0/x64-mingw32 -IC:/Ruby24-x64/include/ruby-2.4.0/ruby/backward -IC:/Ruby24-x64/include/ruby-2.4.0 -I. -D_FORTIFY_SOURCE=2 -D__USE_MINGW_ANSI_STDIO=1 -DFD_SETSIZE=2048 -IC:/msys64/mingw64/lib/libffi-3.2.1/include -D_WIN32_WINNT=0x0501 -D__MINGW_USE_VC2005_COMPAT -D_FILE_OFFSET_BITS=64  -march=x86-64 -mtune=generic -O2 -pipe -IC:/msys64/mingw64/lib/libffi-3.2.1/include  conftest.c -o conftest.i"
+conftest.c:5:10: fatal error: sys/resource.h: No such file or directory
+ #include <sys/resource.h>
+          ^~~~~~~~~~~~~~~~
+compilation terminated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <winsock2.h>
+4: #include <windows.h>
+5: #include <sys/resource.h>
+/* end */
+
+--------------------
+
