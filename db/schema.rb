@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171120033746) do
+ActiveRecord::Schema.define(version: 20171123042002) do
 
   create_table "accounts", force: :cascade do |t|
     t.text "email"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20171120033746) do
     t.text "fullfillment"
     t.integer "rating"
     t.text "feedback"
+    t.string "city"
     t.index ["address_id"], name: "index_client_requests_on_address_id"
     t.index ["user_id"], name: "index_client_requests_on_user_id"
   end

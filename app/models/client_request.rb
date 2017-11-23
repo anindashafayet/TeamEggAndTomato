@@ -32,7 +32,8 @@ class ClientRequest < ApplicationRecord
 			:sorted_by,
 			:with_name,
 			:search_query,
-			:with_detail
+			:with_detail,
+			:search_city
 
 		]
 	)
@@ -88,7 +89,7 @@ class ClientRequest < ApplicationRecord
 		# replace "*" with "%" for wildcard searches,
 		# append '%', remove duplicate '%'s
 		terms = terms.map { |e|
-		('%' + e.gsub('*', '%') + '%').gsub(/%+/, '%')
+		(e.gsub('*', '%') + '%').gsub(/%+/, '%')
 		}
 		# configure number of OR conditions for provision
 		# of interpolation arguments. Adjust this if you
@@ -101,5 +102,22 @@ class ClientRequest < ApplicationRecord
 			*terms.map { |e| [e] * num_or_conds }.flatten
 		)
 	}
+	
+	scope :search_city, lambda { |query|
 
+		return nil  if query.blank?
+
+		terms = query.downcase.split(/\s+/)
+		terms = terms.map { |e|
+		(e.gsub('*', '%') + '%').gsub(/%+/, '%')
+		}
+
+		num_or_conds = 1
+		where(
+			terms.map { |term|
+			  "((client_requests.city) LIKE ?)"
+			}.join(' AND '),
+			*terms.map { |e| [e] * num_or_conds }.flatten
+		)
+	}
 end
