@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171125183232) do
+ActiveRecord::Schema.define(version: 20171125213541) do
 
   create_table "accounts", force: :cascade do |t|
     t.text "email"
@@ -142,6 +142,7 @@ ActiveRecord::Schema.define(version: 20171125183232) do
     t.datetime "updated_at", null: false
     t.float "rating"
     t.integer "rating_count"
+    t.string "city"
   end
 
 end

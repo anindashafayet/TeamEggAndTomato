@@ -15,6 +15,11 @@
     </p>
 
     <p class="breakall">
+      <strong>Posted by:</strong>
+      <%= User.find(@client_request.user_id).username %>
+    </p>
+
+    <p class="breakall">
       <strong>Location:</strong>
       <% address = Address.find(@client_request.address_id) %>
       <%= address.city %>
@@ -98,8 +103,8 @@
             <% progress = @client_request.progress %>
             <div class="progress">
               <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="<%=progress%>"
-              aria-valuemin="0" aria-valuemax="100" style="width:<%=@client_request.progress%>%">
-                <%=@client_request.progress%>%
+              aria-valuemin="0" aria-valuemax="100" style="width:<%=@client_request.progress||6%>%">
+                <%=@client_request.progress||0%>%
               </div>
             </div>
           </p>
@@ -144,30 +149,40 @@
 
       <%else%>
 
-        <%= form_for [@client_request, @client_request.applicants.build] do |form| %>
-          <% if flash[:notice] %>
+        <%if @client_request.user_id == logged_in_user_or_guest.id %>
+          <% if flash[:error] %>
               <div class='alert alert-danger'>
                 <h3> Error Message </h3>
-                <%= flash[:notice] %>
+                <%= flash[:error] %>
               </div>
           <%end%>
-          <div class="container">
-            <strong class="">User: <%= logged_in_user_or_guest.username %></strong>
-            <span class="divider"></span>
-            <!--label class="col-sm-4"><%= logged_in_user_or_guest.username %></label-->
-            <%= form.submit "Apply For The Job!", class: "btn btn-primary"%>
-
-          </div>
-          <% end %>
-          <br>
-          <table class="table">
-            <tr> <th>Applicants</th> <th> Date </th> <tr>
-            <% if @client_request.applicants.size() > 1 %>
-              <%= render @client_request.applicants %>
-            <%else%>
-              <tr> <td> No Applicant Yet! </td> <td> Be The First One! </td> </tr>
+          <%= button_to "Auto Match?", auto_match_path, class: "btn btn-info"%>
+        <%else%>
+          <%= form_for [@client_request, @client_request.applicants.build] do |form| %>
+            <% if flash[:error] %>
+                <div class='alert alert-danger'>
+                  <h3> Error Message </h3>
+                  <%= flash[:error] %>
+                </div>
             <%end%>
-          </table>
+            <div class="container">
+              <strong class="">User: <%= logged_in_user_or_guest.username %></strong>
+              <span class="divider"></span>
+              <!--label class="col-sm-4"><%= logged_in_user_or_guest.username %></label-->
+              <%= form.submit "Apply For The Job!", class: "btn btn-primary"%>
+
+            </div>
+          <% end %>
+        <%end%>
+        <br>
+        <table class="table">
+          <tr> <th>Applicants</th> <th> Date </th> <tr>
+          <% if @applicants.size() > 0 %>
+            <%= render @applicants %>
+          <%else%>
+            <tr> <td> No Applicant Yet! </td> <td> Be The First One! </td> </tr>
+          <%end%>
+        </table>
 
       <%end%>
     </div>

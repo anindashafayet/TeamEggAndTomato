@@ -85,6 +85,7 @@ class ClientRequestsController < ApplicationController
     else
       @username = "Please log in first."
     end
+    @applicants = @client_request.applicants.where.not(:id=>nil)
   end
 
   def edit
@@ -141,6 +142,24 @@ class ClientRequestsController < ApplicationController
     redirect_back(:fallback_location=>root_path)
   end
 
+  def auto_match
+    @client_request = ClientRequest.find(params[:id]) #.where("city=? or city=nil",@client_request.city).
+    @matched_user = User.joins("INNER JOIN client_requests \
+      ON client_requests.matched_user = users.id").
+        where("(users.city IS ? or users.city = ?) AND users.id != ? AND client_requests.period != ?",
+        nil, @client_request.city, @client_request.user_id, @client_request.period.to_s).first
+
+    if !@matched_user
+      flash[:error] = "Cannot find any potential user to match! Please wait for applicants or try again later."
+      redirect_to @client_request
+    else
+      _match_applicant(@client_request, @matched_user.id)
+      #post_to match_path(@client_request, @matched_user)
+    end
+
+
+  end
+
   def create
     if require_logged_in()
       @client_request = ClientRequest.new(client_request_params)
@@ -178,4 +197,12 @@ class ClientRequestsController < ApplicationController
   def address_params
     params.require(:client_request).permit(:state, :city, :zip)
   end
+  def _match_applicant(client_request, matched_id)
+    #@client_request = ClientRequest.find(params[:id])
+    if client_request.update_attribute("matched_user", matched_id)
+      client_request.applicants.clear()
+    end
+    redirect_to client_request_path(client_request)
+  end
+
 end

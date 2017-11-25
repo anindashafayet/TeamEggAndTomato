@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   post 'client_requests/:id/match_applicant/:matched_id', to: 'client_requests#match_applicant', as: :match
   patch 'client_requests/:id/progress', to: 'client_requests#update_progress', as: :progress
   patch 'client_requests/:id/rating', to: 'client_requests#update_rating', as: :rating
+  post 'client_requests/:id/auto_match', to: 'client_requests#auto_match', as: :auto_match
 
   root "home#home"
 
