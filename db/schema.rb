@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171123042002) do
+ActiveRecord::Schema.define(version: 20171125183232) do
 
   create_table "accounts", force: :cascade do |t|
     t.text "email"
@@ -38,9 +38,9 @@ ActiveRecord::Schema.define(version: 20171123042002) do
 
   create_table "applicants", force: :cascade do |t|
     t.integer "client_request_id"
-    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
     t.index ["client_request_id"], name: "index_applicants_on_client_request_id"
     t.index ["user_id"], name: "index_applicants_on_user_id"
   end
@@ -50,7 +50,6 @@ ActiveRecord::Schema.define(version: 20171123042002) do
     t.date "period"
     t.string "period_detail"
     t.text "detail"
-    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "trigger"
@@ -63,6 +62,7 @@ ActiveRecord::Schema.define(version: 20171123042002) do
     t.integer "rating"
     t.text "feedback"
     t.string "city"
+    t.integer "user_id"
     t.index ["address_id"], name: "index_client_requests_on_address_id"
     t.index ["user_id"], name: "index_client_requests_on_user_id"
   end
@@ -85,8 +85,8 @@ ActiveRecord::Schema.define(version: 20171123042002) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "ispublic"
-    t.integer "user_id"
     t.integer "client_request_id"
+    t.integer "user_id"
     t.index ["client_request_id"], name: "index_messages_on_client_request_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
