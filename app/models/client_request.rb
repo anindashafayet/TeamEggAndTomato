@@ -33,7 +33,8 @@ class ClientRequest < ApplicationRecord
 			:with_name,
 			:search_query,
 			:with_detail,
-			:search_city
+			:search_city,
+			:has_matched_user
 
 		]
 	)
@@ -41,7 +42,12 @@ class ClientRequest < ApplicationRecord
 	scope :with_name, lambda { |c|
 		where('service_name = ?', c)
 	}
-
+	
+	scope :has_matched_user, lambda { |flag|
+		return nil  if 0 == flag # checkbox unchecked
+		where(matched_user: nil)
+	}
+	
 	scope :with_detail, lambda { |d|
 		where(detail: [d])
 	}

@@ -28,7 +28,12 @@
 	)
 	%>
 	</div>
-
+	<div>
+	Filter Matches
+	<%=
+	f.check_box :has_matched_user
+	%>
+	</div>
   <div>
     <%= link_to(
       'Reset filters',
