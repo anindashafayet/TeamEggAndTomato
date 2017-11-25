@@ -1,0 +1,6 @@
+/stripe-*.gem
+/Gemfile.lock
+.rvmrc
+Gemfile.lock
+tags
+/.bundle/

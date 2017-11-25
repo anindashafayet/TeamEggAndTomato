@@ -32,7 +32,9 @@ class ClientRequest < ApplicationRecord
 			:sorted_by,
 			:with_name,
 			:search_query,
-			:with_detail
+			:with_detail,
+			:search_city,
+			:has_matched_user
 
 		]
 	)
@@ -40,7 +42,12 @@ class ClientRequest < ApplicationRecord
 	scope :with_name, lambda { |c|
 		where('service_name = ?', c)
 	}
-
+	
+	scope :has_matched_user, lambda { |flag|
+		return nil  if 0 == flag # checkbox unchecked
+		where(matched_user: nil)
+	}
+	
 	scope :with_detail, lambda { |d|
 		where(detail: [d])
 	}
@@ -101,5 +108,22 @@ class ClientRequest < ApplicationRecord
 			*terms.map { |e| [e] * num_or_conds }.flatten
 		)
 	}
+	
+	scope :search_city, lambda { |query|
 
+		return nil  if query.blank?
+
+		terms = query.downcase.split(/\s+/)
+		terms = terms.map { |e|
+		(e.gsub('*', '%') + '%').gsub(/%+/, '%')
+		}
+
+		num_or_conds = 1
+		where(
+			terms.map { |term|
+			  "((client_requests.city) LIKE ?)"
+			}.join(' AND '),
+			*terms.map { |e| [e] * num_or_conds }.flatten
+		)
+	}
 end

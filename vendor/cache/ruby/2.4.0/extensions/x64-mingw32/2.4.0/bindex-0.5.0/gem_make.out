@@ -1,0 +1,16 @@
+current directory: C:/Users/Elton Wong/Documents/Fourth Year/CSC444/TeamEggAndTomato/vendor/cache/ruby/2.4.0/gems/bindex-0.5.0/ext/bindex
+C:/Ruby24-x64/bin/ruby.exe -r ./siteconf20171122-4712-1k38fz1.rb extconf.rb
+creating Makefile
+
+current directory: C:/Users/Elton Wong/Documents/Fourth Year/CSC444/TeamEggAndTomato/vendor/cache/ruby/2.4.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR=" clean
+
+current directory: C:/Users/Elton Wong/Documents/Fourth Year/CSC444/TeamEggAndTomato/vendor/cache/ruby/2.4.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR="
+generating cruby-x64-mingw32.def
+compiling cruby.c
+linking shared-object bindex/cruby.so
+
+current directory: C:/Users/Elton Wong/Documents/Fourth Year/CSC444/TeamEggAndTomato/vendor/cache/ruby/2.4.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 cruby.so ./.gem.20171122-4712-68s1zq/bindex
