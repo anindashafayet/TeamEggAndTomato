@@ -189,11 +189,13 @@
   </div>
 
 </div>
-  <div class="container">
-  <%= link_to 'Edit', edit_client_request_path(@client_request) %> |
-  <%= link_to 'Delete', client_request_path(@client_request),
-                method: :delete,
-                data: { confirm: 'Are you sure?' } %> |
+<div class="container">
+  <% if @client_request.user_id == logged_in_user_or_guest.id%>
+    <%= link_to 'Edit', edit_client_request_path(@client_request) %> |
+    <%= link_to 'Delete', client_request_path(@client_request),
+                  method: :delete,
+                  data: { confirm: 'Are you sure?' } %> |
+  <%end%>
   <%= link_to 'Back', client_requests_path %>
   <br>
   <br>
