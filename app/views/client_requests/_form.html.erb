@@ -1,4 +1,5 @@
-<%= form_with scope: :client_request, url: client_requests_path, local: true do |form| %>
+<%= form_with model: @client_request, remote: true do |form| %>
+
     <% if @client_request && @client_request.errors.any? %>
         <div id="error_explanation", class= "alert alert-warning" >
           <h2>

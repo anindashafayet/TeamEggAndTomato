@@ -187,9 +187,18 @@
       <%end%>
     </div>
   </div>
-</div>
 
-<!-- Display the matched offerings. TODO: extract a subview-->
+</div>
+  <div class="container">
+  <%= link_to 'Edit', edit_client_request_path(@client_request) %> |
+  <%= link_to 'Delete', client_request_path(@client_request),
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %> |
+  <%= link_to 'Back', client_requests_path %>
+  <br>
+  <br>
+</div>
+<!-- Display the matched offerings. TODO: extract a subview>
 <p>
   <strong>Matched Offerings:</strong>
   <ul>
@@ -223,7 +232,4 @@
 
   <% end %>
   </ul>
-</p>
-
-<%= link_to 'Edit', edit_client_request_path(@client_request) %> |
-<%= link_to 'Back', client_requests_path %>
+</p-->

@@ -90,6 +90,7 @@ class ClientRequestsController < ApplicationController
 
   def edit
     @client_request = ClientRequest.find(params[:id])
+    @address = Address.find(@client_request.address_id)
   end
 
   def destroy
@@ -101,8 +102,11 @@ class ClientRequestsController < ApplicationController
 
   def update
     @client_request = ClientRequest.find(params[:id])
+    @address = Address.find(@client_request.address_id)
 
-    if @client_request.update(client_request_params)
+    if @address.update(address_params) && @client_request.update(client_request_params)
+      @client_request.city = @address.city
+      @client_request.save()
       redirect_to @client_request
     else
       render 'edit'

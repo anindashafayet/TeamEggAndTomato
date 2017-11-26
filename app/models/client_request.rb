@@ -42,12 +42,12 @@ class ClientRequest < ApplicationRecord
 	scope :with_name, lambda { |c|
 		where('service_name = ?', c)
 	}
-	
+
 	scope :has_matched_user, lambda { |flag|
 		return nil  if 0 == flag # checkbox unchecked
 		where(matched_user: nil)
 	}
-	
+
 	scope :with_detail, lambda { |d|
 		where(detail: [d])
 	}
@@ -108,7 +108,7 @@ class ClientRequest < ApplicationRecord
 			*terms.map { |e| [e] * num_or_conds }.flatten
 		)
 	}
-	
+
 	scope :search_city, lambda { |query|
 
 		return nil  if query.blank?
