@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   resources :teenagers
   resources :clients
   resources :profiles
+  resources :addresses
   resources :teen_offerings
   resources :client_requests do
     resources :applicants

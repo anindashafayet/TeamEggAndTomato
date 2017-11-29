@@ -8,3 +8,14 @@ Profile has an address and phone fields, which are already in User (address is i
 [] Figure out the usage of ApplicationController.logged_in_user_or_guest, I think the case of no user logged in should be handled manually.
 
 [] Implement password hashing+salt, or most likely use third-party library. 
+
+
+BUGS --------------------------------------
+[] Deleting a client request fails
+SQLite3::SQLException: no such column: addresses.client_request_id: SELECT "addresses".* FROM "addresses" WHERE "addresses"."client_request_id" = ? LIMIT ?
+def destroy
+    @client_request = ClientRequest.find(params[:id])
+    @client_request.destroy
+
+    redirect_to client_requests_path
+end

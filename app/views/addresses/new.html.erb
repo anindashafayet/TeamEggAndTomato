@@ -1,0 +1,36 @@
+<%= form_for @address do |form| %>
+    <% if @address.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(@address.errors.count, 'error') %> prohibited
+            this request from being saved:
+          </h2>
+          <ul>
+            <% @address.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <p>
+      <%= form.label :line1 %><br>
+      <%= form.text_area :line1%><br>
+
+      <%= form.label :line2 %><br>
+      <%= form.text_area :line2 %><br>
+
+      <%= form.label :city %><br>
+      <%= form.text_area :city%><br>
+
+      <%= form.label :state %><br>
+      <%= form.text_area :state %><br>
+
+      <%= form.label :zip %><br>
+      <%= form.text_area :zip %><br>
+    </p>
+
+    <p>
+      <%= form.submit %>
+    </p>
+<% end %>

@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     if @user.valid?
       redirect_to login_path
     else
-      render 'new' # TODO: Add error messages and repopulate form
+      render 'new'
     end
   end
 

@@ -2,7 +2,7 @@
     <% if @profile.errors.any? %>
         <div id="error_explanation">
           <h2>
-            <%= pluralize(@profile.errors.count, "error") %> prohibited
+            <%= pluralize(@profile.errors.count, 'error') %> prohibited
             this request from being saved:
           </h2>
           <ul>
@@ -26,6 +26,22 @@
 	  <%= form.label :gender %><br>
 	  <%= form.select :gender, Profile::GENDER_TYPES %><br>
     </p>
+
+    <% if @profile.persisted? %>
+      <% if @profile.address.nil? %>
+        <p><%= link_to 'Add address', new_address_path %></p>
+      <% else %>
+          <strong>Address</strong><br>
+          <%= logged_in_user.profile.address.line1 %><br>
+          <%= logged_in_user.profile.address.line2 %><br>
+          <%= logged_in_user.profile.address.city + ', ' +
+                  logged_in_user.profile.address.state + '  ' +
+                  logged_in_user.profile.address.zip %><br>
+
+          <p><%= link_to 'Edit address', edit_address_path %></p>
+      <% end %>
+    <% end %>
+
     <p>
       <%= form.submit %>
     </p>

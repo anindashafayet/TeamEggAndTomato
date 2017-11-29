@@ -8,9 +8,10 @@ class User < ApplicationRecord
   before_save :downcase_zip
 
   has_one :profile, dependent: :destroy
-	has_many :messages, dependent: :destroy
-	has_many :applicants, dependent: :destroy
-	has_many :client_requests, dependent: :destroy
+  has_many :messages, dependent: :destroy
+  has_many :applicants, dependent: :destroy
+  has_many :client_requests, dependent: :destroy
+
   def downcase_zip
     self.city = self.city.titleize
   end
