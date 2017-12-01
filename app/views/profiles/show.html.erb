@@ -41,6 +41,17 @@
             </p>
         <% end %>
 
+        <p>
+          <strong>Permissions</strong><br>
+          <% if logged_in_user.has_teenager_requirements? %>
+              <%= 'Teenager' %><br>
+          <% end %>
+          <% if logged_in_user.has_client_requirements? %>
+              <%= 'Client' %><br>
+          <% end %>
+        </p>
+
+        <br><br>
         <p><%= link_to 'Edit Profile', edit_profile_path%></p>
     <% end %>
 
