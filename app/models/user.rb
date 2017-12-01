@@ -23,4 +23,18 @@ class User < ApplicationRecord
   def has_address?
     has_profile? && !profile.address.nil?
   end
+
+  def has_teenager_requirements?
+    has_profile? && age(profile.date_of_birth).between?(13, 19)
+  end
+
+  def has_client_requirements?
+    has_profile? && has_address? && age(profile.date_of_birth) >= 18
+  end
+
+  private
+
+  def age(date_of_birth)
+    Date.today.year - date_of_birth.year
+  end
 end
