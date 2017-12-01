@@ -26,15 +26,19 @@
         <strong>Personal Information</strong><br/>
         <p><%= logged_in_user.profile.about_me%></p>
 		    <strong>Gender</strong><br>
-		    <p><%= logged_in_user.profile.gender%></p><br>
+		    <p><%= logged_in_user.profile.gender%></p>
 
-        <% if !logged_in_user.profile.address.nil? %>
-            <strong>Address</strong><br>
-            <%= logged_in_user.profile.address.line1 %><br>
-            <%= logged_in_user.profile.address.line2 %><br>
-            <%= logged_in_user.profile.address.city + ', ' +
-                    logged_in_user.profile.address.state + '  ' +
-                    logged_in_user.profile.address.zip %>
+        <% if logged_in_user.has_address? %>
+            <p>
+              <strong>Address</strong><br>
+              <%= logged_in_user.profile.address.line1 %><br>
+              <% if !logged_in_user.profile.address.line2.nil? && !logged_in_user.profile.address.line2.empty? %>
+                  <%= logged_in_user.profile.address.line2 %><br>
+              <% end %>
+              <%= logged_in_user.profile.address.city + ', ' +
+                      logged_in_user.profile.address.state + '  ' +
+                      logged_in_user.profile.address.zip %><br>
+            </p>
         <% end %>
 
         <p><%= link_to 'Edit Profile', edit_profile_path%></p>

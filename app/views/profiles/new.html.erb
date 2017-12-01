@@ -31,14 +31,19 @@
       <% if @profile.address.nil? %>
         <p><%= link_to 'Add address', new_address_path %></p>
       <% else %>
-          <strong>Address</strong><br>
-          <%= logged_in_user.profile.address.line1 %><br>
-          <%= logged_in_user.profile.address.line2 %><br>
-          <%= logged_in_user.profile.address.city + ', ' +
-                  logged_in_user.profile.address.state + '  ' +
-                  logged_in_user.profile.address.zip %><br>
+            <p>
+              <strong>Address</strong><br>
+              <%= logged_in_user.profile.address.line1 %><br>
+              <% if !logged_in_user.profile.address.line2.nil? && !logged_in_user.profile.address.line2.empty? %>
+                  <%= logged_in_user.profile.address.line2 %><br>
+              <% end %>
+              <%= logged_in_user.profile.address.city + ', ' +
+                      logged_in_user.profile.address.state + '  ' +
+                      logged_in_user.profile.address.zip %><br>
+            </p>
 
-          <p><%= link_to 'Edit address', edit_address_path %></p>
+            <br/>
+            <p><%= link_to 'Edit address', edit_address_path %></p>
       <% end %>
     <% end %>
 
