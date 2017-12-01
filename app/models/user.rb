@@ -15,4 +15,12 @@ class User < ApplicationRecord
   def downcase_zip
     self.city = self.city.titleize
   end
+
+  def has_profile?
+    !profile.nil?
+  end
+
+  def has_address?
+    has_profile? && !profile.address.nil?
+  end
 end
