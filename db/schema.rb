@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171129222224) do
+ActiveRecord::Schema.define(version: 20171203070525) do
 
   create_table "accounts", force: :cascade do |t|
     t.text "email"
@@ -40,11 +40,13 @@ ActiveRecord::Schema.define(version: 20171129222224) do
 
   create_table "applicants", force: :cascade do |t|
     t.integer "client_request_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
+    t.integer "users_id"
     t.index ["client_request_id"], name: "index_applicants_on_client_request_id"
     t.index ["user_id"], name: "index_applicants_on_user_id"
+    t.index ["users_id"], name: "index_applicants_on_users_id"
   end
 
   create_table "client_requests", force: :cascade do |t|
@@ -52,6 +54,7 @@ ActiveRecord::Schema.define(version: 20171129222224) do
     t.date "period"
     t.string "period_detail"
     t.text "detail"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "trigger"
@@ -64,9 +67,10 @@ ActiveRecord::Schema.define(version: 20171129222224) do
     t.integer "rating"
     t.text "feedback"
     t.string "city"
-    t.integer "user_id"
+    t.integer "users_id"
     t.index ["address_id"], name: "index_client_requests_on_address_id"
     t.index ["user_id"], name: "index_client_requests_on_user_id"
+    t.index ["users_id"], name: "index_client_requests_on_users_id"
   end
 
   create_table "clients", force: :cascade do |t|
@@ -87,10 +91,12 @@ ActiveRecord::Schema.define(version: 20171129222224) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "ispublic"
-    t.integer "client_request_id"
     t.integer "user_id"
+    t.integer "client_request_id"
+    t.integer "users_id"
     t.index ["client_request_id"], name: "index_messages_on_client_request_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+    t.index ["users_id"], name: "index_messages_on_users_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -129,6 +135,14 @@ ActiveRecord::Schema.define(version: 20171129222224) do
     t.string "home_address"
     t.string "email_address"
     t.string "cell_phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "transaction_type"
+    t.string "transaction_method"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

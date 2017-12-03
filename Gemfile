@@ -23,6 +23,9 @@ gem 'uglifier', '>= 1.3.0'
 # authorization of stripe api
 gem 'omniauth-stripe-connect'
 gem 'stripe'
+# paypal
+gem 'paypal-sdk-rest'
+
 # secure env vars
 gem 'dotenv-rails', :groups => [:development, :test]
 # devise for authentication handling

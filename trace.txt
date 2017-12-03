@@ -1,0 +1,15 @@
+== 20171125183232 AddUserToApplicants: migrating ==============================
+-- add_reference(:applicants, :users, {:foreign_key=>true})
+   -> 0.0027s
+== 20171125183232 AddUserToApplicants: migrated (0.0028s) =====================
+
+== 20171125213541 AddCityToUser: migrating ====================================
+-- add_column(:users, :city, :string)
+   -> 0.0007s
+== 20171125213541 AddCityToUser: migrated (0.0007s) ===========================
+
+== 20171129222224 AddProfileReferencesToAddresses: migrating ==================
+-- add_reference(:addresses, :profile, {:foreign_key=>true})
+   -> 0.0032s
+== 20171129222224 AddProfileReferencesToAddresses: migrated (0.0034s) =========
+
