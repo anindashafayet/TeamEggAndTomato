@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171203070525) do
+ActiveRecord::Schema.define(version: 20171203213759) do
 
   create_table "accounts", force: :cascade do |t|
     t.text "email"
@@ -68,6 +68,8 @@ ActiveRecord::Schema.define(version: 20171203070525) do
     t.text "feedback"
     t.string "city"
     t.integer "users_id"
+    t.integer "payment"
+    t.string "payment_status"
     t.index ["address_id"], name: "index_client_requests_on_address_id"
     t.index ["user_id"], name: "index_client_requests_on_user_id"
     t.index ["users_id"], name: "index_client_requests_on_users_id"
@@ -140,11 +142,14 @@ ActiveRecord::Schema.define(version: 20171203070525) do
   end
 
   create_table "transactions", force: :cascade do |t|
-    t.integer "user_id"
+    t.integer "from"
     t.string "transaction_type"
     t.string "transaction_method"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "transaction_amount"
+    t.integer "target"
+    t.integer "creq_id"
   end
 
   create_table "users", force: :cascade do |t|

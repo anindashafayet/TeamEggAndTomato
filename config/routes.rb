@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'charges/new'
   get 'charges/create'
   get 'transactions/create'
+  get 'client_requests/transactions/:id', to: 'transactions#create'
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
@@ -36,7 +37,7 @@ Rails.application.routes.draw do
   get 'clients/sign_out'
   resources :users
   resources :charges, only: [:new, :create]
-  resources :transactions, only: [:create]
+  resources :transactions
   #devise_for :users
   resources :teenagers
   resources :clients

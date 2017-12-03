@@ -2,12 +2,12 @@ class Transaction < ApplicationRecord
 
 	def paypal_url(return_path)
     values = {
-        business: "merchant@gotealeaf.com",
+        business: "verybluetomatos-facilitator@gmail.com",
         cmd: "_xclick",
         upload: 1,
         return: "#{Rails.application.secrets.app_host}#{return_path}",
         invoice: id,
-        amount: 1,
+        amount: '100',
         item_name: "Teen Service",
         item_number: 1,
         quantity: '1'
