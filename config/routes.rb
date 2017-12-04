@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'charges/create'
   get 'transactions/create'
   post 'transactions/create'
+  post 'transactions/pay'
   post "/hook", to: "transactions#hook"
 
   get '/login', to: 'sessions#new'

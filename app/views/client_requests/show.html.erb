@@ -97,6 +97,19 @@
             <br>
             <%=form.submit "Update Progress", class: "form-control btn btn-success"%>
           <%end%>
+
+		  <br>
+
+		  <!-- receive payments -->
+		  <center>
+		  <% if @client_request.payment_status == "Complete" %>
+			  <%= form_tag transactions_pay_path do %>
+				  Payments: <%= @client_request.payment %> USD <br>
+				  <%= hidden_field_tag :client_req_id, @client_request.id %>
+				  <%= submit_tag("Receive Payment") %>
+			  <% end %>
+		  <%end%>
+	  </center>
         <%else%>
           <p>
             <h5>Progress:</h5>
