@@ -3,7 +3,8 @@ class ProfilesController < ApplicationController
     # should allow other to view the page
     # @profile = Profile.find(params[:id])
     @profile_user = User.find(params[:id])
-	@transactions = Transaction.all
+	  @transactions = Transaction.all
+    @client_requests = ClientRequest.where(user_id: @profile_user.id)
   end
 
   def new
