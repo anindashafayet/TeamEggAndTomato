@@ -45,7 +45,9 @@
                 <li><%= link_to 'FAQ', faq_path, class: "dropdown-item"%></li>
                 <li><%= link_to 'Privacy Policy', pp_path, class: "dropdown-item" %></li>
                 <li><%= link_to 'Terms of Services', tos_path, class: "dropdown-item"%></li>
-                <li><%= link_to 'SiteMap', sitemap_path, class: "dropdown-item"%></li>
+                <% if logged_in_user_or_guest.username == "admin"%>
+                  <li><%= link_to 'Admin Page', users_path, class: "dropdown-item"%></li>
+                <%end%>
                 </ul>
               </div>
             </li>
@@ -55,9 +57,6 @@
       </div>
     </nav>
 
-	<% if notice %>
-  		<p class="alert alert-success"><%= notice %></p>
-	<% end %>
 	<% if alert %>
   		<p class="alert alert-danger"><%= alert %></p>
 	<% end %>

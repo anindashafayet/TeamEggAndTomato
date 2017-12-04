@@ -13,6 +13,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def index
+    @users = User.all()
+  end
+
+  def destroy
+    if logged_in_user_or_guest.username == "admin"
+      @user = User.find(params[:id])
+      @user.destroy
+      redirect_to "/users"
+    end
+  end
+
   private
 
   def user_create_params
