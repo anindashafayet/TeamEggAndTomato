@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171203213759) do
+ActiveRecord::Schema.define(version: 20171204043323) do
 
   create_table "accounts", force: :cascade do |t|
     t.text "email"
@@ -150,6 +150,10 @@ ActiveRecord::Schema.define(version: 20171203213759) do
     t.integer "transaction_amount"
     t.integer "target"
     t.integer "creq_id"
+    t.string "status"
+    t.text "notification_params"
+    t.string "transaction_id"
+    t.datetime "purchased_at"
   end
 
   create_table "users", force: :cascade do |t|
