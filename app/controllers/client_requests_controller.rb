@@ -171,6 +171,7 @@ class ClientRequestsController < ApplicationController
       logger.debug @address.state
       @client_request.user_id = logged_in_user_or_guest.id
       if @address.save
+        logger.debug "save success address"
         @client_request.address_id = @address.id
         if @client_request.save
   		    #@address=@client_request.build_address(address_params).save
@@ -181,15 +182,18 @@ class ClientRequestsController < ApplicationController
           if @client_request.save
             redirect_to @client_request
           else
-            @client_request.delete
             @address.delete
             render 'new'
           end
         else
-          @address.delete
+          logger.debug "save not client request"
+          logger.debug @client_request.errors.any?
           render 'new'
+          @address.delete
         end
       else
+        logger.debug "save not address"
+        logger.debug @address.errors
         render 'new'
       end
     end
