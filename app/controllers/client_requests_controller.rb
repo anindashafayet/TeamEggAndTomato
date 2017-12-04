@@ -168,6 +168,7 @@ class ClientRequestsController < ApplicationController
     if require_logged_in()
       @client_request = ClientRequest.new(client_request_params)
       @address = Address.new(address_params)
+      logger.debug @address.state
       @client_request.user_id = logged_in_user_or_guest.id
       if @address.save
         @client_request.address_id = @address.id
