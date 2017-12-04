@@ -94,16 +94,16 @@ class ClientRequestsController < ApplicationController
   end
 
   def destroy
+    @client_request = ClientRequest.find(params[:id])
     if @client_request.user_id == logged_in_user_or_guest.id || logged_in_user_or_guest.username == "admin"
-      @client_request = ClientRequest.find(params[:id])
       @client_request.destroy
       redirect_to client_requests_path
     end
   end
 
   def update
+    @client_request = ClientRequest.find(params[:id])
     if @client_request.user_id == logged_in_user_or_guest.id || logged_in_user_or_guest.username == "admin"
-      @client_request = ClientRequest.find(params[:id])
       @address = FreeAddress.find(@client_request.address_id)
 
         if @address.update(address_params) && @client_request.update(client_request_params)

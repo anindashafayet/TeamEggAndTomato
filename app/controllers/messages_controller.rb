@@ -51,8 +51,8 @@ class MessagesController < ApplicationController
     end
 
     def destroy
+      @message = Message.find(params[:id])
       if logged_in_user_or_guest.id == @message.user_id || logged_in_user_or_guest.username == "admin"
-        @message = Message.find(params[:id])
         @message.destroy
         if !params[:prevPage].include?("show") && !params[:prevPage].include?("edit")
           redirect_to params[:prevPage]
