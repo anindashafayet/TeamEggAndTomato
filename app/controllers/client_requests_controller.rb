@@ -113,7 +113,6 @@ class ClientRequestsController < ApplicationController
         render 'edit'
       end
     end
-  end
 
   def update_progress
     @client_request = ClientRequest.find(params[:id])
@@ -215,5 +214,4 @@ class ClientRequestsController < ApplicationController
     end
     redirect_to client_request_path(client_request)
   end
-
 end

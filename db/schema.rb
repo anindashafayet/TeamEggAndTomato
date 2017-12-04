@@ -34,13 +34,15 @@ ActiveRecord::Schema.define(version: 20171204054829) do
     t.string "zip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "profile_id"
+    t.index ["profile_id"], name: "index_addresses_on_profile_id"
   end
 
   create_table "applicants", force: :cascade do |t|
     t.integer "client_request_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
+    t.integer "users_id"
     t.index ["client_request_id"], name: "index_applicants_on_client_request_id"
     t.index ["users_id"], name: "index_applicants_on_users_id"
   end
@@ -62,7 +64,7 @@ ActiveRecord::Schema.define(version: 20171204054829) do
     t.integer "rating"
     t.text "feedback"
     t.string "city"
-    t.integer "user_id"
+    t.integer "users_id"
     t.integer "payment"
     t.string "payment_status"
     t.integer "free_address_id"
@@ -100,7 +102,7 @@ ActiveRecord::Schema.define(version: 20171204054829) do
     t.datetime "updated_at", null: false
     t.boolean "ispublic"
     t.integer "client_request_id"
-    t.integer "user_id"
+    t.integer "users_id"
     t.index ["client_request_id"], name: "index_messages_on_client_request_id"
     t.index ["users_id"], name: "index_messages_on_users_id"
   end
