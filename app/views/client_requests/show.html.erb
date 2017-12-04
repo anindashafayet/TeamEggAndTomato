@@ -138,14 +138,13 @@
         <% if logged_in_user_or_guest.id == @client_request.user_id %>
           <hr>
 		  		<center>
-				<!-- <%= link_to :controller => "transactions", :action => "create" do%> -->
-				<%= link_to image_tag("https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif"), transactions_create_path(:details => @client_request) %>
 
-				<%end%>
-
-				<div style="float:left">
-				<%= render "charges/new"%>
-				</div>
+					<%= form_tag(transactions_create_path) do %>
+						<%= label_tag(:cost, "Payment: ") %>
+						<%= text_field_tag(:cost) %>
+						<%= hidden_field_tag :client_req_id, @client_request.id %>
+						<%= image_submit_tag("https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif") %>
+					<% end %>
 			</center>
         <%end%>
 

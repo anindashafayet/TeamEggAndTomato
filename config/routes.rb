@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   get 'charges/new'
   get 'charges/create'
   get 'transactions/create'
-  get 'client_requests/transactions/:id', to: 'transactions#create'
+  post 'transactions/create'
+  post "/hook", to: "transactions#hook"
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
