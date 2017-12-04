@@ -16,7 +16,7 @@
 
     <p class="breakall">
       <strong>Posted by:</strong>
-      <%= User.find(@client_request.users_id).username %>
+      <%= User.find(@client_request.user_id).username %>
     </p>
 
     <p class="breakall">
@@ -131,7 +131,7 @@
           </p>
         <%end%>
         <hr>
-        <% if logged_in_user_or_guest.id == @client_request.users_id && !@client_request.rating %>
+        <% if logged_in_user_or_guest.id == @client_request.user_id && !@client_request.rating %>
           <%= form_for @client_request, :url=>rating_path do |form| %>
             <%=form.label :rating%>
             <%=form.text_field :rating, class: "form-control", type: "number", min:"0", max:"5"%>
@@ -152,7 +152,7 @@
             <p class = "well"><%= @client_request.feedback%></p>
           </p>
         <%end%>
-        <% if logged_in_user_or_guest.id == @client_request.users_id %>
+        <% if logged_in_user_or_guest.id == @client_request.user_id %>
           <hr>
 		  		<center>
 					<% if @client_request.payment_status != "Complete" %>
@@ -173,7 +173,7 @@
 
       <%else%>
 
-        <%if @client_request.users_id == logged_in_user_or_guest.id %>
+        <%if @client_request.user_id == logged_in_user_or_guest.id %>
           <% if flash[:error] %>
               <div class='alert alert-danger'>
                 <h3> Error Message </h3>
@@ -214,7 +214,7 @@
 
 </div>
 <div class="container">
-  <% if @client_request.users_id == logged_in_user_or_guest.id%>
+  <% if @client_request.user_id == logged_in_user_or_guest.id%>
     <%= link_to 'Edit', edit_client_request_path(@client_request) %> |
     <%= link_to 'Delete', client_request_path(@client_request),
                   method: :delete,
