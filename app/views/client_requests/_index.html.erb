@@ -10,7 +10,7 @@
     <div class = "well">
       <p><h4><%= client_request.title %></h4></p>
       <hr>
-      <% address = Address.find(client_request.address_id) %>
+      <% address = FreeAddress.find(client_request.address_id) %>
       <p class="row">
         <span class="col-sm-2">Type: <%= ServiceType.find(client_request.service_type_id).name %></span>
         <span class="col-sm-4">

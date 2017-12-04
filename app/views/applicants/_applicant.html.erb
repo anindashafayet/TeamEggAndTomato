@@ -7,7 +7,7 @@
     </td>
     <td><%=applicant.try(:created_at).try(:strftime, "%b %d, %Y")%></td>
   <%end%>
-  <% if applicant.user && logged_in_user_or_guest.id == @client_request.user_id %>
+  <% if applicant.user && logged_in_user_or_guest.id == @client_request.users_id %>
     <td><%=link_to "Choose Applicant", match_path(@client_request, applicant.user_id), method: :post%></td>
   <%end%>
 </tr>

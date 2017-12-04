@@ -5,7 +5,7 @@ class ApplicantsController < ApplicationController
   def create
     if require_logged_in()
       @client_request = ClientRequest.find(params[:client_request_id])
-      if @client_request.user_id == logged_in_user_or_guest().id
+      if @client_request.users_id == logged_in_user_or_guest().id
           @applicant = Applicant.new()
           @applicant.errors.add(:base, :invalid, message:"Cannot apply as request owner.")
           flash[:error] = "Cannot apply as request owner."

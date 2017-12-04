@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171204053926) do
+ActiveRecord::Schema.define(version: 20171204054829) do
 
   create_table "accounts", force: :cascade do |t|
     t.text "email"
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20171204053926) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.index ["client_request_id"], name: "index_applicants_on_client_request_id"
-    t.index ["user_id"], name: "index_applicants_on_user_id"
+    t.index ["users_id"], name: "index_applicants_on_users_id"
   end
 
   create_table "client_requests", force: :cascade do |t|
@@ -65,8 +65,10 @@ ActiveRecord::Schema.define(version: 20171204053926) do
     t.integer "user_id"
     t.integer "payment"
     t.string "payment_status"
+    t.integer "free_address_id"
     t.index ["address_id"], name: "index_client_requests_on_address_id"
-    t.index ["user_id"], name: "index_client_requests_on_user_id"
+    t.index ["free_address_id"], name: "index_client_requests_on_free_address_id"
+    t.index ["users_id"], name: "index_client_requests_on_users_id"
   end
 
   create_table "clients", force: :cascade do |t|
@@ -75,6 +77,16 @@ ActiveRecord::Schema.define(version: 20171204053926) do
     t.date "birth_date"
     t.string "email_address"
     t.string "cell_phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "free_addresses", force: :cascade do |t|
+    t.string "line1"
+    t.string "line2"
+    t.string "city"
+    t.string "state"
+    t.string "zip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -90,7 +102,7 @@ ActiveRecord::Schema.define(version: 20171204053926) do
     t.integer "client_request_id"
     t.integer "user_id"
     t.index ["client_request_id"], name: "index_messages_on_client_request_id"
-    t.index ["user_id"], name: "index_messages_on_user_id"
+    t.index ["users_id"], name: "index_messages_on_users_id"
   end
 
   create_table "profiles", force: :cascade do |t|

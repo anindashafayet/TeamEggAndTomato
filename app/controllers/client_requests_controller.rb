@@ -90,7 +90,7 @@ class ClientRequestsController < ApplicationController
 
   def edit
     @client_request = ClientRequest.find(params[:id])
-    @address = Address.find(@client_request.address_id)
+    @address = FreeAddress.find(@client_request.address_id)
   end
 
   def destroy
@@ -102,9 +102,8 @@ class ClientRequestsController < ApplicationController
   end
 
   def update
-    if @client_request.user_id == logged_in_user_or_guest.id || logged_in_user_or_guest.username == "admin"
-      @client_request = ClientRequest.find(params[:id])
-      @address = Address.find(@client_request.address_id)
+    @client_request = ClientRequest.find(params[:id])
+    @address = FreeAddress.find(@client_request.address_id)
 
       if @address.update(address_params) && @client_request.update(client_request_params)
         @client_request.city = @address.city
@@ -154,7 +153,7 @@ class ClientRequestsController < ApplicationController
     @matched_user = User.joins("INNER JOIN client_requests \
       ON client_requests.matched_user = users.id").
         where("(users.city IS ? or users.city = ?) AND users.id != ? AND client_requests.period != ?",
-        nil, @client_request.city, @client_request.user_id, @client_request.period.to_s).first
+        nil, @client_request.city, @client_request.users_id, @client_request.period.to_s).first
 
     if !@matched_user
       flash[:error] = "Cannot find any potential user to match! Please wait for applicants or try again later."
@@ -170,9 +169,9 @@ class ClientRequestsController < ApplicationController
   def create
     if require_logged_in()
       @client_request = ClientRequest.new(client_request_params)
-      @address = Address.new(address_params)
+      @address = FreeAddress.new(address_params)
       logger.debug @address.state
-      @client_request.user_id = logged_in_user_or_guest.id
+      @client_request.users_id = logged_in_user_or_guest.id
       if @address.save
         logger.debug "save success address"
         @client_request.address_id = @address.id

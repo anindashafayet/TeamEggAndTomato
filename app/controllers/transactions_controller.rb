@@ -12,7 +12,7 @@ class TransactionsController < ApplicationController
 
 	def create
 		@client_request = ClientRequest.find(params[:client_req_id])
-		@from_user = @client_request.user_id
+		@from_user = @client_request.users_id
 		@target_user = @client_request.matched_user
 		@client_request.payment = params[:cost].to_i
 		@client_request.save
