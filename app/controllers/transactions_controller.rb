@@ -4,7 +4,9 @@ class TransactionsController < ApplicationController
 	end
 
 	def index
-
+		logger.debug("Info session =================")
+		logger.debug(current_user.id)
+		@transactions = Transaction.all
 	end
 
 	def show
@@ -14,7 +16,7 @@ class TransactionsController < ApplicationController
 		@client_request = ClientRequest.find(params[:client_req_id])
 		logger.debug(@client_request.title)
 
-		@receive_email = 
+		@receive_email =
 
 		@payout = PayPal::SDK::REST::Payout.new(
 		  {

@@ -3,7 +3,7 @@ class Transaction < ApplicationRecord
 	serialize :notification_params, Hash
 	def paypal_url(return_path, transaction)
     values = {
-        business: "verbluetomatos@gmail.com",
+        business: "verybluetomatos@gmail.com",
         cmd: "_xclick",
         upload: 1,
         return: "#{Rails.application.secrets.app_host}#{return_path}",

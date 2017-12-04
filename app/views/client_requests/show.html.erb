@@ -151,12 +151,18 @@
         <% if logged_in_user_or_guest.id == @client_request.users_id %>
           <hr>
 		  		<center>
-
-					<%= form_tag(transactions_create_path) do %>
-						<%= label_tag(:cost, "Payment: ") %>
-						<%= text_field_tag(:cost) %>
-						<%= hidden_field_tag :client_req_id, @client_request.id %>
-						<%= image_submit_tag("https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif") %>
+					<% if @client_request.payment_status != "Complete" %>
+						<%= form_tag(transactions_create_path) do %>
+							<%= label_tag(:cost, "Payment: ") %>
+							<%= text_field_tag(:cost) %>
+							<%= hidden_field_tag :client_req_id, @client_request.id %>
+							<%= image_submit_tag("https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif") %>
+						<% end %>
+					<% else %>
+						<h4>
+						Payment of <%= @client_request.payment %> USD <br>
+						To <%= User.find(@client_request.matched_user).username %>
+						</h4>
 					<% end %>
 			</center>
         <%end%>

@@ -1,0 +1,19 @@
+<h3>
+Transaction History
+</h3>
+
+<% @transactions.each do |transaction| %>
+    <div class = "well">
+      <p><h5>Target: <%= User.find(transaction.target) %></h4></p>
+      <hr>
+      <% address = FreeAddress.find(client_request.address_id) %>
+      <p class="row">
+        <span class="col-sm-2">Amount: <%= transaction.transaction_amount %> USD</span>
+        <span class="col-sm-4">
+          Status: <%= transaction.city %>
+        </span>
+        <span class="col-sm-2"><%= client_request.period %></span>
+        <%= link_to 'Profile', profile_path(User.find(transaction.target)), class:"col-sm-2 btn btn-default" %>
+      </p>
+    </div>
+<% end %>
