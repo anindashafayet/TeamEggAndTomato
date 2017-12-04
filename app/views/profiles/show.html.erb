@@ -3,6 +3,10 @@
 <%end%>
 
 <p class="well">
+  <% if @profile_user.profile %>
+      <img src=<%= logged_in_user.profile.image %> align="left" style="margin-lef:5px;margin-right:15px;margin-bottom:10px;width:100px;height:110px;">
+  <% end %>
+
   <strong>Full Name: </strong>
   <%= @profile_user.fname + ' ' + @profile_user.lname %>
   <br>
@@ -23,9 +27,7 @@
     <% if logged_in_user.profile.nil?%>
         <%= link_to 'Complete profile', new_profile_path%>
     <% else %>
-        <img src= <%= logged_in_user.profile.image %>>
 
-        <br><br>
         <strong>Personal Information</strong><br/>
         <p><%= logged_in_user.profile.about_me%></p>
 		    <strong>Gender</strong><br>
