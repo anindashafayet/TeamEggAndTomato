@@ -40,13 +40,11 @@ ActiveRecord::Schema.define(version: 20171204184321) do
 
   create_table "applicants", force: :cascade do |t|
     t.integer "client_request_id"
-    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "users_id"
+    t.integer "user_id"
     t.index ["client_request_id"], name: "index_applicants_on_client_request_id"
     t.index ["user_id"], name: "index_applicants_on_user_id"
-    t.index ["users_id"], name: "index_applicants_on_users_id"
   end
 
   create_table "client_requests", force: :cascade do |t|
@@ -54,7 +52,6 @@ ActiveRecord::Schema.define(version: 20171204184321) do
     t.date "period"
     t.string "period_detail"
     t.text "detail"
-    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "trigger"
@@ -67,6 +64,7 @@ ActiveRecord::Schema.define(version: 20171204184321) do
     t.integer "rating"
     t.text "feedback"
     t.string "city"
+    t.integer "user_id"
     t.integer "payment"
     t.string "payment_status"
     t.integer "free_address_id"
@@ -104,12 +102,10 @@ ActiveRecord::Schema.define(version: 20171204184321) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "ispublic"
-    t.integer "user_id"
     t.integer "client_request_id"
-    t.integer "users_id"
+    t.integer "user_id"
     t.index ["client_request_id"], name: "index_messages_on_client_request_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
-    t.index ["users_id"], name: "index_messages_on_users_id"
   end
 
   create_table "profiles", force: :cascade do |t|
