@@ -24,9 +24,8 @@
 </p>
 
 <% if logged_in? && logged_in_user.id == @profile_user.id%>
-    <% if logged_in_user.profile.nil?%>
-        <%= link_to 'Complete profile', new_profile_path%>
-    <% else %>
+
+    <% if not logged_in_user.profile.nil? %>
 
         <strong>Personal Information</strong><br/>
         <p><%= logged_in_user.profile.about_me%></p>
@@ -55,9 +54,6 @@
               <%= 'Client' %><br>
           <% end %>
         </p>
-
-        <br>
-        <p><%= link_to 'Edit Profile', edit_profile_path%></p>
     <% end %>
 
 
@@ -94,6 +90,15 @@
 
 
     <%= render "transactions/index" %>
-	<p> <%= link_to 'Logout', logout_path, :method => :delete %> </p>
+
+	<hr>
+
+	<p>
+		<% if logged_in_user.profile.nil?%>
+	        <h4><%= link_to 'Complete profile', new_profile_path%></h4>
+		<% else %>
+			<h4><%= link_to 'Edit Profile', edit_profile_path%></h4>
+		<%end%>
+		 <h4><%= link_to 'Logout', logout_path, :method => :delete %> </h4>
 
 <% end %>

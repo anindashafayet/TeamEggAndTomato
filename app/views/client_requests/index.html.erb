@@ -1,52 +1,65 @@
 <% if logged_in? %>
-	
+
 	<h1>Listing Client Requests</h1>
 	<div id="map" class="jumbotron largepic"></div>
 	<%= link_to 'New client request', new_client_request_path %>
 
+	<table class="table">
+
 	<%= form_for_filterrific @filterrific do |f| %>
-		<h3>Filter</h3>
-		<div>
+
+		<tr>
+			<td>
+				<h3>Filter</h3>
+			</td>
+		</tr>
+
+		<tr>
+
+		<td>
+			Category
+			<%= f.select(:with_name,
+				@filterrific.select_options[:with_name],
+				{include_blank: '- Any -'}
+			)
+			%>
+		</td>
+
+		<td>
 		Title
 		<%# give the search field the 'filterrific-periodically-observed' class for live updates %>
 		<%= f.text_field(
 		  :search_query,
 		  class: 'filterrific-periodically-observed'
 		) %>
-		</div>
-		<div>
+		</td>
+		<td>
 		City
 		<%= f.text_field(
 		:search_city,
 		class: 'filterrific-periodically-observed'
 		) %>
-		
-		</div>
-		<div>
-		Service Type
-		<%= f.select(:with_name,
-		@filterrific.select_options[:with_name],
-		{include_blank: '- Any -'}
-		)
-		%>
-		</div>
-		<div>
+
+		</td>
+
+		<td>
 		Filter Matches
 		<%=
 		f.check_box :has_matched_user
 		%>
-		</div>
-	  <div>
+		</td>
+	  <td>
 		<%= link_to(
 		  'Reset filters',
 		  reset_filterrific_url,
 		) %>
-	  </div>
+		</td>
+	</tr>
 	  <%# add an automated spinner to your form when the list is refreshed %>
 	  <%= render_filterrific_spinner %>
 
 	<% end %>
-
+</table>
 
 	<%= render(
 	  partial: 'client_requests/list',
@@ -90,12 +103,12 @@
 	</script>
 
 <% else %>
-	
+
 	<h3>
 	Please log in first here: 	<%= link_to 'Login', login_path %>
 	<h3>
 	<h3>
 	If you're a new user, register here: <%= link_to 'Register', new_user_path %>
 	<h3>
-	
+
 <% end %>

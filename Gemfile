@@ -20,9 +20,6 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-# authorization of stripe api
-gem 'omniauth-stripe-connect'
-gem 'stripe'
 # paypal
 gem 'paypal-sdk-rest'
 
