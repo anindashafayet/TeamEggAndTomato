@@ -59,34 +59,34 @@
 
     <br>
     <strong>Listings</strong>
-      <style type="text/css">
-        td
-        {  padding:0 15px 0 15px;  }
-      </style>
+    <style type="text/css">
+      td
+      {  padding:0 15px 0 15px;  }
+    </style>
 
-      <style type="text/css">
-        th
-        {  padding:0 15px 0 15px;  }
-      </style>
+    <style type="text/css">
+      th
+      {  padding:0 15px 0 15px;  }
+    </style>
 
-      <table class="table">
-        <% @client_requests.each do |client_request| %>
-            <tr>
-              <td><%= ServiceType.find(client_request.service_type_id).name %></td>
-              <td class="breakall"><%= client_request.title %></td>
-              <% address = FreeAddress.find(client_request.address_id) %>
-              <td><%= address.city %></td>
-              <td class="addr hidden"><%= address.zip %></td>
-              <td><%= client_request.period %></td>
-              <td><%= User.find(client_request.user_id).username %></td>
-              <td><%= link_to 'Show', client_request_path(client_request) %></td>
-              <!--td><%= link_to 'Edit', edit_client_request_path(client_request) %></td>
-			<td><%= link_to 'Delete', client_request_path(client_request),
-                      method: :delete,
-                      data: { confirm: 'Are you sure?' } %></td>
-		  </tr-->
-        <% end %>
-      </table>
+    <table class="table">
+      <% @client_requests.each do |client_request| %>
+          <tr>
+            <td><%= ServiceType.find(client_request.service_type_id).name %></td>
+            <td class="breakall"><%= client_request.title %></td>
+            <% address = FreeAddress.find(client_request.address_id) %>
+            <td><%= address.city %></td>
+            <td class="addr hidden"><%= address.zip %></td>
+            <td><%= client_request.period %></td>
+            <td><%= User.find(client_request.user_id).username %></td>
+            <td><%= link_to 'Show', client_request_path(client_request) %></td>
+            <!--td><%= link_to 'Edit', edit_client_request_path(client_request) %></td>
+    <td><%= link_to 'Delete', client_request_path(client_request),
+                    method: :delete,
+                    data: { confirm: 'Are you sure?' } %></td>
+    </tr-->
+      <% end %>
+    </table>
 
 
     <%= render "transactions/index" %>
