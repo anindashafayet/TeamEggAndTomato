@@ -6,12 +6,18 @@ Transaction History
 	<% if transaction.from == @profile_user.id %>
 	    <div class = "well">
 		  <% username = User.find(transaction.target).username %>
+		  <% cq = ClientRequest.find(transaction.creq_id) %>
+		  <% service = cq.service_name %>
+		  <% title = cq.title %>
 	      <p><h5>Payment to: <%= link_to username, profile_path(User.find(transaction.target)) %></h4></p>
 	      <p class="row">
+			<span class="col-sm-4">Service: <%= service %></span>
+			<span class="col-sm-4">Title: <%= title %></span>
 	        <span class="col-sm-2">Amount: <%= transaction.transaction_amount %> USD</span>
 	        <span class="col-sm-4">
 	          Status: <%= transaction.status %>
 	        </span>
+
 	      </p>
 	    </div>
 	<% else %>
