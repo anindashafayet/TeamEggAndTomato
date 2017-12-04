@@ -5,6 +5,7 @@ class ProfilesController < ApplicationController
     @profile_user = User.find(params[:id])
 	  @transactions = Transaction.all
     @client_requests = ClientRequest.where(user_id: @profile_user.id)
+                           .or(ClientRequest.where(matched_user: @profile_user.id))
   end
 
   def new
