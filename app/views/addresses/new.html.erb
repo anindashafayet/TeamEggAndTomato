@@ -1,18 +1,17 @@
-<%= form_for @address do |form| %>
-    <% if @address.errors.any? %>
-        <div id="error_explanation">
-          <h2>
-            <%= pluralize(@address.errors.count, 'error') %> prohibited
-            this request from being saved:
-          </h2>
-          <ul>
-            <% @address.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
+<% if @address.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-danger">
+      The form contains <%= pluralize(@address.errors.count, 'error') %>.
+    </div>
+    <ul>
+      <% @address.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
+<%= form_for @address do |form| %>
     <p>
       <%= form.label :line1 %><br>
       <%= form.text_field :line1%><br>

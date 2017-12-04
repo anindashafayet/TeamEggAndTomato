@@ -4,11 +4,11 @@ class AddressesController < ApplicationController
   end
 
   def create
-    address = logged_in_user.profile.create_address(address_params)
-    if address.valid?
+    @address = logged_in_user.profile.create_address(address_params)
+    if @address.valid?
       redirect_to profile_path(logged_in_user.profile)
     else
-      redirect_to new_address_path
+      render 'new'
     end
   end
 
