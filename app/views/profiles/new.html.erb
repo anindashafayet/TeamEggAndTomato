@@ -1,18 +1,17 @@
+<% if @profile.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-danger">
+      The form contains <%= pluralize(@profile.errors.count, 'error') %>.
+    </div>
+    <ul>
+      <% @profile.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_for @profile do |form| %>
-    <% if @profile.errors.any? %>
-        <div id="error_explanation">
-          <h2>
-            <%= pluralize(@profile.errors.count, 'error') %> prohibited
-            this request from being saved:
-          </h2>
-          <ul>
-            <% @profile.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
-	<! add errors>
     <p>
       <%= form.label :about_me %><br>
       <%= form.text_area :about_me %><br>

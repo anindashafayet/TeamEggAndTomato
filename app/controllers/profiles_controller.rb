@@ -10,11 +10,11 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    profile = logged_in_user.create_profile(profile_params)
-    if profile.valid?
-      redirect_to profile_path(profile)
+    @profile = logged_in_user.create_profile(profile_params)
+    if @profile.valid?
+      redirect_to profile_path(@profile)
     else
-      redirect_to new_profile_path
+      render 'new'
     end
   end
 
