@@ -16,4 +16,13 @@ service_types = ServiceType.create([{name: 'Babysitting', description: 'Babysitt
 								   {name: 'Tutoring', description: 'Tutoring service'},
 								   {name: 'Computer Help', description: 'Computer Help Services'}
 								   ])
-								   
+
+
+users = User.create([{email: 'admin@admin.com', username: 'admin', password: 'admin', fname: 'Admin', lname: 'Admin', city:'Toronto'},
+                    {email: 'servie@admin.com', username: 'service', password: 'service', fname: 'Service', lname: 'Service', city:'Toronto'},
+                    {email: 'client1@gmail.com', username: 'client1', password: 'client1', fname: 'Sam', lname: 'Sung', city:'Toronto'},
+                    {email: 'teen1@gmail.com', username: 'teen1', password: 'teen1', fname: 'Amanda', lname: 'Ted', city:'Toronto'},
+                    {email: 'teen2@gmail.com', username: 'teen2', password: 'teen2', fname: 'Tommy', lname: 'Brad', city:'Toronto'},
+                    {email: 'teen3@gmail.com', username: 'tommybrad', password: 'tommybrad', fname: 'Tommy', lname: 'Brad', city:'Toronto'},
+                    {email: 'client2@gmail.com', username: 'bingding', password: 'bingding', fname: 'Bing', lname: 'Ding', city:'Toronto'}
+                    ])

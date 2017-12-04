@@ -1,0 +1,19 @@
+<h2>Users List</h2>
+<% @users.each do |user| %>
+    <% if user.username != "admin" %>
+      <div class = "well">
+        <p><h4>User Name: <%= user.username %></h4></p>
+        <hr>
+        <p class="row">
+          <span class="col-sm-4">
+            Localtion: <%= user.city %>
+          </span>
+          <%= link_to 'Info', profile_path(user), class:"col-sm-2 btn btn-default" %>
+          <%= link_to 'Delete', user_path(user),
+                      #option: {:prevPage => url_for(:back)},
+                      method: :delete,
+                      data: {confirm: 'Are you sure to delete?'}, class:"col-sm-2 btn btn-default"%>
+        </p>
+      </div>
+    <%end%>
+<% end %>
