@@ -6,7 +6,6 @@ class TransactionsController < ApplicationController
 	def index
 		logger.debug("Info session =================")
 		logger.debug(current_user.id)
-		@transactions = Transaction.all
 	end
 
 	def show
@@ -16,7 +15,7 @@ class TransactionsController < ApplicationController
 		@client_request = ClientRequest.find(params[:client_req_id])
 		logger.debug(@client_request.title)
 
-		@receive_email =
+		@receive_email = User.find(@client_request.matched_user).email
 
 		@payout = PayPal::SDK::REST::Payout.new(
 		  {
@@ -32,7 +31,7 @@ class TransactionsController < ApplicationController
 		          :currency => 'USD'
 		        },
 		        :note => 'Thanks for your patronage!',
-		        :receiver => 'verybluetomatos@gmail.com',
+		        :receiver => 'verybluetomatos-buyer@gmail.com', # replace with @receive_email
 		        :sender_item_id => "2014031400023",
 		      }
 		    ]
@@ -64,6 +63,11 @@ class TransactionsController < ApplicationController
 		rescue PayPal::SDK::REST::ResourceNotFound => err
 			logger.error "Payout Item not Found"
 		end
+
+		@client_request.received = "true"
+		@client_request.save
+
+		redirect_to '/'
 
 	end
 
