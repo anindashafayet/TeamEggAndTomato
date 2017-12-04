@@ -151,10 +151,11 @@ class ClientRequestsController < ApplicationController
 
   def auto_match
     @client_request = ClientRequest.find(params[:id]) #.where("city=? or city=nil",@client_request.city).
-    @matched_user = User.joins("INNER JOIN client_requests \
+    @matched_user = User.joins("LEFT OUTER JOIN client_requests \
       ON client_requests.matched_user = users.id").
-        where("(users.city IS ? or users.city = ?) AND users.id != ? AND client_requests.period != ?",
-        nil, @client_request.city, @client_request.user_id, @client_request.period.to_s).first
+        where("users.username != 'admin' AND users.username != 'service' \
+          AND (users.city IS ? or users.city = ?) AND users.id != ? AND (client_requests.period IS ? OR client_requests.period != ?)",
+        nil, @client_request.city, @client_request.user_id, nil, @client_request.period.to_s).order("RANDOM()").first
 
     if !@matched_user
       flash[:error] = "Cannot find any potential user to match! Please wait for applicants or try again later."
