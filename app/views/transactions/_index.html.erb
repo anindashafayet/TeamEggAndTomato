@@ -11,10 +11,11 @@ Transaction History
 		  <% title = cq.title %>
 	      <p><h5>Payment to: <%= link_to username, profile_path(User.find(transaction.target)) %></h4></p>
 	      <p class="row">
-			<span class="col-sm-4">Service: <%= service %></span>
-			<span class="col-sm-4">Title: <%= title %></span>
+			<span class="col-sm-2">Service: <%= service %></span>
+			<span class="col-sm-2">Title: <%= title %></span>
+			<span class="col-sm-2">Date: <%= cq.period %></span>
 	        <span class="col-sm-2">Amount: <%= transaction.transaction_amount %> USD</span>
-	        <span class="col-sm-4">
+	        <span class="col-sm-2">
 	          Status: <%= transaction.status %>
 	        </span>
 
