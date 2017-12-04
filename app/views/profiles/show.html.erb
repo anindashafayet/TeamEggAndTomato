@@ -60,8 +60,6 @@
         <p><%= link_to 'Edit Profile', edit_profile_path%></p>
     <% end %>
 
-    <p> <%= link_to 'Logout', logout_path, :method => :delete %> </p>
-
 
     <br>
     <strong>Listings</strong>
@@ -96,5 +94,6 @@
 
 
     <%= render "transactions/index" %>
+	<p> <%= link_to 'Logout', logout_path, :method => :delete %> </p>
 
 <% end %>
