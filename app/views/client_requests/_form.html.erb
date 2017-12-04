@@ -1,8 +1,5 @@
 <%= form_with model: @client_request do |form| %>
 
-    <%=  @client_request && @client_request.errors.any? %>
-    <%=  @address && @address.errors.any? %>
-    <%= @client_reqeust %>
     <% if @client_request && @client_request.errors.any? %>
         <div id="error_explanation", class= "alert alert-warning" >
           <h2>
