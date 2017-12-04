@@ -18,7 +18,7 @@
   <strong>Message Content:</strong>
   <%= @message.text %>
 </p>
-<% if logged_in_user_or_guest.id == @message.user_id%>
+<% if logged_in_user_or_guest.id == @message.user_id || logged_in_user_or_guest.username == "admin"%>
   <%= link_to 'Edit', edit_message_path(@message) %> |
   <%= link_to 'Delete', message_path(@message, prevPage:url_for(:back)),
               #option: {:prevPage => url_for(:back)},

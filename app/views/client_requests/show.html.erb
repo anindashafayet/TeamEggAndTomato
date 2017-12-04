@@ -191,7 +191,7 @@
 
 </div>
 <div class="container">
-  <% if @client_request.user_id == logged_in_user_or_guest.id%>
+  <% if @client_request.user_id == logged_in_user_or_guest.id || logged_in_user_or_guest.username == "admin"%>
     <%= link_to 'Edit', edit_client_request_path(@client_request) %> |
     <%= link_to 'Delete', client_request_path(@client_request),
                   method: :delete,
