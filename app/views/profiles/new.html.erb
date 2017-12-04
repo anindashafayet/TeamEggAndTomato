@@ -13,6 +13,10 @@
 
 <%= form_for @profile do |form| %>
     <p>
+      <%= form.label 'Profile Picture' %>
+      <%= form.file_field :image %>
+    </p>
+    <p>
       <%= form.label :about_me %><br>
       <%= form.text_area :about_me %><br>
 	  <br>

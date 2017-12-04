@@ -23,6 +23,9 @@
     <% if logged_in_user.profile.nil?%>
         <%= link_to 'Complete profile', new_profile_path%>
     <% else %>
+        <img src= <%= logged_in_user.profile.image %>>
+
+        <br><br>
         <strong>Personal Information</strong><br/>
         <p><%= logged_in_user.profile.about_me%></p>
 		    <strong>Gender</strong><br>
