@@ -169,9 +169,13 @@ class ClientRequestsController < ApplicationController
     if require_logged_in()
       @client_request = ClientRequest.new(client_request_params)
       @address = FreeAddress.new(address_params)
+	  logger.debug "address state ====================================="
       logger.debug @address.state
+	  logger.debug "after state"
       @client_request.user_id = logged_in_user_or_guest.id
 	  logger.debug(logged_in_user_or_guest.id)
+	  logger.debug "not saved any"
+	  logger.debug @address.errors.any?
       if @address.save
         logger.debug "save success address"
         @client_request.address_id = @address.id
@@ -194,6 +198,7 @@ class ClientRequestsController < ApplicationController
           @address.delete
         end
       else
+		logger.debug @client_request.errors.any?
         logger.debug "save not address"
         logger.debug @address.errors
         render 'new'

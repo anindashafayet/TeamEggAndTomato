@@ -16,6 +16,8 @@ class TransactionsController < ApplicationController
 		logger.debug(@client_request.title)
 
 		@receive_email = User.find(@client_request.matched_user).email
+		logger.debug("Email is ====================================")
+		logger.debug(@receive_email)
 
 		@payout = PayPal::SDK::REST::Payout.new(
 		  {
@@ -31,7 +33,7 @@ class TransactionsController < ApplicationController
 		          :currency => 'USD'
 		        },
 		        :note => 'Thanks for your patronage!',
-		        :receiver => 'verybluetomatos-buyer@gmail.com', # replace with @receive_email
+		        :receiver => @receive_email,#'verybluetomatos-buyer@gmail.com', # replace with @receive_email
 		        :sender_item_id => "2014031400023",
 		      }
 		    ]
